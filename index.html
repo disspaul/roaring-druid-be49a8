@@ -3,7 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1600">
-<title>Self Care Ritual Tracker</title>
+<title>Self Care Ritual</title>
+
+<!-- ── PWA / Add to Home Screen ── -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Self Care">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#faf7f2">
+
+<!-- Home screen icon — inline SVG converted to data URI -->
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%23faf7f2'/%3E%3Crect x='12' y='12' width='156' height='156' rx='32' fill='%23f5ece6'/%3E%3Ctext x='90' y='115' font-size='80' text-anchor='middle' font-family='Georgia,serif' fill='%23cd9b94'%3E✦%3C/text%3E%3Ctext x='90' y='155' font-size='18' text-anchor='middle' font-family='Arial,sans-serif' font-weight='600' fill='%23a67070' letter-spacing='2'%3ERITUAL%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%23faf7f2'/%3E%3Crect x='12' y='12' width='156' height='156' rx='32' fill='%23f5ece6'/%3E%3Ctext x='90' y='115' font-size='80' text-anchor='middle' font-family='Georgia,serif' fill='%23cd9b94'%3E✦%3C/text%3E%3Ctext x='90' y='155' font-size='18' text-anchor='middle' font-family='Arial,sans-serif' font-weight='600' fill='%23a67070' letter-spacing='2'%3ERITUAL%3C/text%3E%3C/svg%3E">
 <style>
   /* Offline-safe font fallbacks — no external requests needed */
   @font-face {
@@ -251,6 +262,11 @@
   .h-left p { font-size: var(--fs-subtitle, 11px); font-weight: 400; letter-spacing: 2px; text-transform: uppercase; color: var(--soft); margin-top: 4px; white-space: nowrap; }
 
   .week-nav { display: flex; align-items: center; gap: 16px; }
+  .live-clock {
+    font-size: var(--fs-week-range, 12px); font-weight: 400; letter-spacing: 2px;
+    color: var(--soft); text-transform: uppercase; white-space: nowrap;
+    min-width: 90px; text-align: right;
+  }
   .nav-btn {
     width: 38px; height: 38px; border-radius: 50%;
     border: 1.5px solid var(--bg3); background: var(--surface); color: var(--accent2);
@@ -908,6 +924,7 @@
       <p>Weekly Tracker</p>
     </div>
     <div style="display:flex;align-items:center;gap:12px;">
+      <span class="live-clock" id="liveClock"></span>
       <div class="week-nav">
         <button class="nav-btn" onclick="changeWeek(-1)">‹</button>
         <span class="week-label" id="weekLabel"></span>
@@ -2114,13 +2131,27 @@ async function doExport(fmt) {
     ctx.fillStyle = C.soft;
     ctx.fillText('WEEKLY TRACKER', gridLeft, headerTop + autoTitleSize + autoSubSize + 6);
 
-    // Week range centred
-    const wLabel = `${fmtDS(weekDates[0]).toUpperCase()} — ${fmtDS(weekDates[6]).toUpperCase()}`;
+    // Clock to the left of week range
+    const now = new Date();
+    let ch = now.getHours(), cm = now.getMinutes();
+    const ampm = ch >= 12 ? 'PM' : 'AM';
+    ch = ch % 12 || 12;
+    const CMONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const CDAYS   = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const dateStr = `${CDAYS[now.getDay()]}, ${CMONTHS[now.getMonth()]} ${now.getDate()}`;
+    const clockStr = `${dateStr}  ${ch}:${String(cm).padStart(2,'0')} ${ampm}`;
     ctx.font = `400 ${autoWeekSize}px Arial, sans-serif`;
     ctx.fillStyle = C.soft;
     ctx.textAlign = 'center';
-    ctx.fillText(wLabel, W / 2, headerTop + autoTitleSize * 0.75);
+    const clockW = ctx.measureText(clockStr).width;
+    const wLabel = `${fmtDS(weekDates[0]).toUpperCase()} — ${fmtDS(weekDates[6]).toUpperCase()}`;
+    const wLabelW = ctx.measureText(wLabel).width;
+    const gap = Math.round(autoWeekSize * 2);
+    const totalW = clockW + gap + wLabelW;
+    const startX = (W - totalW) / 2;
     ctx.textAlign = 'left';
+    ctx.fillText(clockStr, startX, headerTop + autoTitleSize * 0.75);
+    ctx.fillText(wLabel, startX + clockW + gap, headerTop + autoTitleSize * 0.75);
 
     // Header separator line
     const sepY = headerTop + headerSection - 2;
@@ -2433,6 +2464,22 @@ function showToast(msg) {
   clearTimeout(toast._timer);
   toast._timer = setTimeout(() => toast.classList.remove('show'), 3000);
 }
+
+// ── Live clock ────────────────────────────────────────────────────
+function updateClock() {
+  const el = document.getElementById('liveClock');
+  if (!el) return;
+  const now = new Date();
+  let h = now.getHours(), m = now.getMinutes();
+  const ampm = h >= 12 ? 'PM' : 'AM';
+  h = h % 12 || 12;
+  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const DAYS   = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const dateStr = `${DAYS[now.getDay()]}, ${MONTHS[now.getMonth()]} ${now.getDate()}`;
+  el.textContent = `${dateStr}  ${h}:${String(m).padStart(2,'0')} ${ampm}`;
+}
+updateClock();
+setInterval(updateClock, 1000);
 
 applyTheme(currentTheme);
 applyTypo();
