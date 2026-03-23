@@ -344,6 +344,20 @@
   }
   .item-edit-cancel:hover { background: var(--bg2); }
 
+
+  /* ── Drag to reorder rows ── */
+  .drag-handle {
+    display: flex; align-items: center; justify-content: center;
+    width: 16px; flex-shrink: 0; opacity: 0;
+    cursor: grab; color: var(--soft); font-size: 13px;
+    transition: opacity 0.15s; align-self: stretch;
+    padding: 0 2px;
+  }
+  .rl:hover .drag-handle { opacity: 1; }
+  .drag-handle:active { cursor: grabbing; }
+  .rl.drag-over { border-top: 2px solid var(--accent1) !important; }
+  .rl.dragging { opacity: 0.4; }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
@@ -1636,6 +1650,14 @@ function renderRow(grid, row, dates) {
 
   const rl = document.createElement('div');
   rl.className = `rl c${ci}`;
+  rl.draggable = true;
+  rl.dataset.rowId = row.id;
+
+  // Drag handle
+  const handle = document.createElement('div');
+  handle.className = 'drag-handle';
+  handle.innerHTML = '⠿';
+  handle.title = 'Drag to reorder';
 
   const iconEl = document.createElement('div');
   iconEl.className = `rl-icon c${ci}`;
@@ -1681,9 +1703,42 @@ function renderRow(grid, row, dates) {
     <button class="rl-btn" title="Rename" onclick="startEdit('${row.id}')">✎</button>
     <button class="rl-btn del" title="Delete" onclick="deleteRow('${row.id}')">✕</button>`;
 
+  rl.appendChild(handle);
   rl.appendChild(iconEl);
   rl.appendChild(textDiv);
   rl.appendChild(actions);
+
+  // ── Drag events ──
+  rl.addEventListener('dragstart', e => {
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', row.id);
+    setTimeout(() => rl.classList.add('dragging'), 0);
+  });
+  rl.addEventListener('dragend', () => {
+    rl.classList.remove('dragging');
+    document.querySelectorAll('.rl.drag-over').forEach(el => el.classList.remove('drag-over'));
+  });
+  rl.addEventListener('dragover', e => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    document.querySelectorAll('.rl.drag-over').forEach(el => el.classList.remove('drag-over'));
+    rl.classList.add('drag-over');
+  });
+  rl.addEventListener('dragleave', () => rl.classList.remove('drag-over'));
+  rl.addEventListener('drop', e => {
+    e.preventDefault();
+    rl.classList.remove('drag-over');
+    const fromId = e.dataTransfer.getData('text/plain');
+    const toId   = row.id;
+    if (fromId === toId) return;
+    const fromIdx = rows.findIndex(r => r.id === fromId);
+    const toIdx   = rows.findIndex(r => r.id === toId);
+    if (fromIdx === -1 || toIdx === -1) return;
+    const [moved] = rows.splice(fromIdx, 1);
+    rows.splice(toIdx, 0, moved);
+    save(); render();
+  });
+
   grid.appendChild(rl);
 
   dates.forEach(d => {
