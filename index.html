@@ -1220,16 +1220,16 @@ function save() {
 }
 
 // ── Firebase Realtime Sync ───────────────────────────────────────
-// Uses Firebase REST API — no SDK needed, works from a plain HTML file
+// Uses Firebase REST API with polling — reliable across all browsers/devices
 
-let fbConfig = JSON.parse(localStorage.getItem('sc4_fb_config') || 'null');
-let fbSyncKey = localStorage.getItem('sc4_fb_synckey') || '';
-let fbListener = null;   // EventSource for real-time push
-let fbSaveTimer = null;
-let fbIgnoreNext = false; // prevent echo when we pushed the change ourselves
+let fbConfig   = JSON.parse(localStorage.getItem('sc4_fb_config') || 'null');
+let fbSyncKey  = localStorage.getItem('sc4_fb_synckey') || '';
+let fbSaveTimer   = null;
+let fbPollTimer   = null;
+let fbLastPushed  = 0;    // timestamp of our last push — ignore echoes newer than this
+const FB_POLL_MS  = 3000; // poll every 3 seconds
 
 function fbUrl(path) {
-  // REST path: /syncKey/path.json?auth=apiKey (using apiKey as auth for open DB)
   return `${fbConfig.databaseURL}/${fbSyncKey}/${path}.json?auth=${fbConfig.apiKey}`;
 }
 
@@ -1244,21 +1244,21 @@ function setSyncStatus(state, label) {
 async function fbPush() {
   if (!fbConfig || !fbSyncKey) return;
   setSyncStatus('syncing', 'Saving…');
-  fbIgnoreNext = true;
   try {
-    const payload = { rows, logData, savedProds, updatedAt: Date.now() };
+    const now = Date.now();
+    const payload = { rows, logData, savedProds, updatedAt: now };
     const res = await fetch(fbUrl('data'), {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
     if (!res.ok) throw new Error(await res.text());
+    fbLastPushed = now;
     setSyncStatus('ok', 'Synced ✓');
     setTimeout(() => setSyncStatus('ok', 'Sync'), 2000);
   } catch(err) {
     setSyncStatus('error', 'Sync ✕');
     console.error('Firebase push failed:', err);
-    fbIgnoreNext = false;
   }
 }
 
@@ -1284,7 +1284,7 @@ async function fbPull() {
   }
 }
 
-// ── Apply data from Firebase to local state ──
+// ── Apply remote data only if it's newer than what we last pushed ──
 function applyRemoteData(data) {
   if (data.rows)       { rows       = data.rows;       localStorage.setItem('sc4_rows',  JSON.stringify(rows)); }
   if (data.logData)    { logData    = data.logData;    localStorage.setItem('sc4_log',   JSON.stringify(logData)); }
@@ -1292,48 +1292,61 @@ function applyRemoteData(data) {
   render();
 }
 
-// ── Real-time listener via Server-Sent Events (Firebase streaming REST) ──
-function fbStartListening() {
-  if (fbListener) { fbListener.close(); fbListener = null; }
+// ── Poll Firebase every 3 seconds for changes from other devices ──
+async function fbPollOnce() {
   if (!fbConfig || !fbSyncKey) return;
+  try {
+    // Only fetch updatedAt first (cheap) to check if anything changed
+    const res = await fetch(fbUrl('data/updatedAt'));
+    if (!res.ok) return;
+    const remoteTs = await res.json();
+    if (!remoteTs) return;
 
-  const url = `${fbConfig.databaseURL}/${fbSyncKey}/data.json?auth=${fbConfig.apiKey}`;
-  fbListener = new EventSource(url);
+    // Skip if this is our own recent push (within 5s grace window)
+    if (remoteTs <= fbLastPushed + 5000) return;
 
-  fbListener.addEventListener('put', (e) => {
-    try {
-      const msg = JSON.parse(e.data);
-      if (!msg.data) return;
-      if (fbIgnoreNext) { fbIgnoreNext = false; return; } // our own push echoed back
-      applyRemoteData(msg.data);
-      setSyncStatus('ok', 'Synced ✓');
-      setTimeout(() => setSyncStatus('ok', 'Sync'), 2000);
-    } catch(err) { console.error('Firebase SSE parse error:', err); }
-  });
+    // Something changed on another device — pull full data
+    const full = await fetch(fbUrl('data'));
+    if (!full.ok) return;
+    const data = await full.json();
+    if (!data) return;
 
-  fbListener.addEventListener('patch', (e) => {
-    try {
-      const msg = JSON.parse(e.data);
-      if (!msg.data || fbIgnoreNext) { fbIgnoreNext = false; return; }
-      // Merge patch into current data
-      const merged = { rows, logData, savedProds, ...msg.data };
-      applyRemoteData(merged);
-    } catch(err) { console.error('Firebase SSE patch error:', err); }
-  });
-
-  fbListener.onerror = () => {
-    setSyncStatus('error', 'Sync ✕');
-  };
+    applyRemoteData(data);
+    setSyncStatus('ok', '↓ Updated');
+    setTimeout(() => setSyncStatus('ok', 'Sync'), 2000);
+  } catch(err) {
+    // Silent fail on poll errors — don't spam error state
+  }
 }
+
+function fbStartPolling() {
+  if (fbPollTimer) clearInterval(fbPollTimer);
+  if (!fbConfig || !fbSyncKey) return;
+  fbPollTimer = setInterval(fbPollOnce, FB_POLL_MS);
+}
+
+function fbStopPolling() {
+  if (fbPollTimer) { clearInterval(fbPollTimer); fbPollTimer = null; }
+}
+
+// Pause polling while the tab is hidden (saves battery on mobile)
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    fbStopPolling();
+  } else if (fbConfig && fbSyncKey) {
+    fbPollOnce();       // immediate check when tab becomes visible
+    fbStartPolling();
+  }
+});
 
 // ── Settings UI ──
 function openSyncSettings() {
   if (fbConfig) {
-    document.getElementById('fbApiKey').value    = fbConfig.apiKey    || '';
-    document.getElementById('fbDbUrl').value     = fbConfig.databaseURL || '';
-    document.getElementById('fbProjectId').value = fbConfig.projectId  || '';
+    document.getElementById('fbApiKey').value    = fbConfig.apiKey       || '';
+    document.getElementById('fbDbUrl').value     = fbConfig.databaseURL  || '';
+    document.getElementById('fbProjectId').value = fbConfig.projectId    || '';
   }
-  document.getElementById('fbSyncKey').value   = fbSyncKey;
+  document.getElementById('fbSyncKey').value     = fbSyncKey;
   document.getElementById('gistStatus').textContent = '';
   document.getElementById('gistOverlay').classList.add('open');
 }
@@ -1362,19 +1375,17 @@ async function saveSyncSettings() {
   status.textContent = 'Connecting…';
   setSyncStatus('syncing', 'Connecting…');
 
-  // Try to pull existing data first
   const pulled = await fbPull();
   if (pulled) {
-    status.textContent = '✓ Connected! Data loaded. Starting real-time sync…';
+    status.textContent = '✓ Connected! Data loaded.';
   } else {
-    // Nothing there yet — push our local data
     await fbPush();
-    status.textContent = '✓ Connected! Your data has been uploaded.';
+    status.textContent = '✓ Connected! Data uploaded.';
   }
 
-  fbStartListening();
+  fbStartPolling();
   setSyncStatus('ok', 'Sync');
-  setTimeout(closeSyncSettings, 2000);
+  setTimeout(closeSyncSettings, 1800);
 }
 
 // ── Init on page load ──
@@ -1382,7 +1393,7 @@ async function saveSyncSettings() {
   if (fbConfig && fbSyncKey) {
     fbPull().then(pulled => {
       if (pulled) render();
-      fbStartListening();
+      fbStartPolling();
       setSyncStatus('ok', 'Sync');
     });
   }
