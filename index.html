@@ -281,6 +281,69 @@
   .gist-cancel-btn:hover { background: var(--bg2); }
   .gist-status { font-size: 11px; color: var(--soft); margin-top: 12px; text-align: center; min-height: 16px; }
 
+
+  /* ── Library item edit/delete actions ── */
+  .lib-item { position: relative; }
+  .lib-item-actions {
+    display: flex; gap: 4px; margin-left: auto; flex-shrink: 0;
+  }
+  .lib-item-edit, .lib-item-del {
+    width: 26px; height: 26px; border-radius: 7px;
+    border: 1.5px solid var(--border); background: transparent;
+    cursor: pointer; font-size: 12px; color: var(--soft);
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s; flex-shrink: 0;
+  }
+  .lib-item-edit:hover { background: var(--petal); color: var(--accent1); border-color: var(--accent1); }
+  .lib-item-del:hover  { background: var(--p0-bg); color: var(--accent1); border-color: var(--accent1); }
+
+  /* ── Item edit modal ── */
+  .item-edit-overlay {
+    position: fixed; inset: 0; z-index: 700;
+    background: rgba(58,48,48,0.4); backdrop-filter: blur(4px);
+    display: none; align-items: center; justify-content: center;
+  }
+  .item-edit-overlay.open { display: flex; }
+  .item-edit-panel {
+    background: var(--surface); border-radius: 24px;
+    padding: 32px 36px; width: 420px; max-width: 92vw;
+    box-shadow: 0 20px 60px rgba(58,48,48,0.2);
+    border: 1px solid var(--border);
+  }
+  .item-edit-panel h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 24px; font-weight: 300; color: var(--ink); margin-bottom: 22px;
+  }
+  .item-edit-field { margin-bottom: 18px; }
+  .item-edit-field label {
+    display: block; font-size: 10px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--soft); margin-bottom: 7px;
+  }
+  .item-edit-field input {
+    width: 100%; padding: 11px 14px; border-radius: 11px;
+    border: 1.5px solid var(--border); background: var(--bg);
+    font-family: 'Jost', sans-serif; font-size: 14px; color: var(--ink);
+    outline: none; box-sizing: border-box; transition: border-color 0.2s;
+  }
+  .item-edit-field input:focus { border-color: var(--accent1); }
+  .item-edit-actions { display: flex; gap: 10px; margin-top: 24px; }
+  .item-edit-save {
+    flex: 1; padding: 11px; border-radius: 13px;
+    background: var(--accent1); border: none; color: white;
+    font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .item-edit-save:hover { background: var(--accent2); }
+  .item-edit-cancel {
+    padding: 11px 20px; border-radius: 13px;
+    background: transparent; border: 1.5px solid var(--border); color: var(--soft);
+    font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .item-edit-cancel:hover { background: var(--bg2); }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
@@ -1783,6 +1846,7 @@ function renderLibraryTab(body) {
         const item = document.createElement('div');
         item.className = `lib-item ${alreadyAdded?'already-added':''}`;
         item.style.flex = '0 1 calc(50% - 3px)';
+        const savedIdx = savedProds.indexOf(p);
         item.innerHTML = `
           <div class="lib-item-icon" style="background:${PALETTE[p.colorIdx]?.bg||'#faeae6'}">${p.icon}</div>
           <div class="lib-item-info">
@@ -1791,7 +1855,11 @@ function renderLibraryTab(body) {
           </div>
           ${alreadyAdded
             ? `<span class="lib-item-added">✓ Added</span>`
-            : `<button class="lib-item-add" onclick="addRowFromItem('${p.name.replace(/'/g,"\\'")}','${p.icon}',${p.colorIdx})">+</button>`}`;
+            : `<button class="lib-item-add" onclick="addRowFromItem('${p.name.replace(/'/g,"\\'")}','${p.icon}',${p.colorIdx})">+</button>`}
+          <div class="lib-item-actions">
+            <button class="lib-item-edit" title="Edit" onclick="openItemEdit('saved',${savedIdx},event)">✎</button>
+            <button class="lib-item-del" title="Delete" onclick="deleteLibItem('saved',${savedIdx},event)">✕</button>
+          </div>`;
         items.appendChild(item);
       });
       savedSec.appendChild(items);
@@ -1839,7 +1907,11 @@ function renderLibraryTab(body) {
         </div>
         ${alreadyAdded
           ? `<span class="lib-item-added">✓ Added</span>`
-          : `<button class="lib-item-add" onclick="addRowFromItem('${item.name.replace(/'/g,"\\'")}','${item.icon}',${cat.catIdx})">+</button>`}`;
+          : `<button class="lib-item-add" onclick="addRowFromItem('${item.name.replace(/'/g,"\\'")}','${item.icon}',${cat.catIdx})">+</button>`}
+        <div class="lib-item-actions">
+          <button class="lib-item-edit" title="Edit" onclick="openItemEdit('preset',${PRESET_LIBRARY.indexOf(cat)},event,${cat.items.indexOf(item)})">✎</button>
+          <button class="lib-item-del" title="Delete" onclick="deleteLibItem('preset',${PRESET_LIBRARY.indexOf(cat)},event,${cat.items.indexOf(item)})">✕</button>
+        </div>`;
       itemsList.appendChild(el);
     });
 
@@ -1931,6 +2003,99 @@ function confirmCustom() {
   addRowFromItem(name, customIcon, customColor);
   // Reset form
   document.getElementById('customName').value = '';
+}
+
+
+// ── Library item edit ─────────────────────────────────────────────
+let _editCtx = null;  // { type:'saved'|'preset', catIdx, itemIdx, icon, colorIdx }
+const QUICK_ICONS_EDIT = ['🚿','✨','💊','🧴','🌿','🌸','🛁','💅','🧖','💆','🧼','🪥','🌺','🌷','💎','🍃','🌼','🫧','🌙','⭐','🦋','🪷','💐','🌻'];
+
+function openItemEdit(type, catOrSavedIdx, event, itemIdx) {
+  event.stopPropagation();
+  let item;
+  if (type === 'saved') {
+    item = savedProds[catOrSavedIdx];
+    _editCtx = { type, idx: catOrSavedIdx, icon: item.icon, colorIdx: item.colorIdx };
+  } else {
+    item = PRESET_LIBRARY[catOrSavedIdx].items[itemIdx];
+    _editCtx = { type, catIdx: catOrSavedIdx, itemIdx, icon: item.icon, colorIdx: PRESET_LIBRARY[catOrSavedIdx].catIdx };
+  }
+  document.getElementById('itemEditTitle').textContent = 'Edit — ' + item.name;
+  document.getElementById('itemEditName').value = item.name;
+  renderItemEditIcons();
+  renderItemEditColors();
+  document.getElementById('itemEditOverlay').classList.add('open');
+  setTimeout(() => document.getElementById('itemEditName')?.focus(), 50);
+}
+
+function renderItemEditIcons() {
+  const row = document.getElementById('itemEditIconRow');
+  if (!row) return;
+  row.innerHTML = '';
+  QUICK_ICONS_EDIT.forEach(e => {
+    const opt = document.createElement('div');
+    opt.className = `icon-opt ${_editCtx.icon === e ? 'sel' : ''}`;
+    opt.textContent = e;
+    opt.onclick = () => { _editCtx.icon = e; renderItemEditIcons(); };
+    row.appendChild(opt);
+  });
+}
+
+function renderItemEditColors() {
+  const row = document.getElementById('itemEditColorRow');
+  if (!row) return;
+  row.innerHTML = '';
+  PALETTE.forEach((p, pi) => {
+    const opt = document.createElement('div');
+    opt.className = `color-opt ${_editCtx.colorIdx === pi ? 'sel' : ''}`;
+    opt.style.background = p.accent;
+    opt.title = `Color ${pi+1}`;
+    opt.onclick = () => { _editCtx.colorIdx = pi; renderItemEditColors(); };
+    row.appendChild(opt);
+  });
+}
+
+function closeItemEdit() {
+  document.getElementById('itemEditOverlay').classList.remove('open');
+  _editCtx = null;
+}
+
+function saveItemEdit() {
+  if (!_editCtx) return;
+  const newName = document.getElementById('itemEditName').value.trim();
+  if (!newName) { document.getElementById('itemEditName').focus(); return; }
+
+  if (_editCtx.type === 'saved') {
+    savedProds[_editCtx.idx] = {
+      ...savedProds[_editCtx.idx],
+      name: newName,
+      icon: _editCtx.icon,
+      colorIdx: _editCtx.colorIdx
+    };
+    save();
+  } else {
+    // Edit preset library item in-place
+    PRESET_LIBRARY[_editCtx.catIdx].items[_editCtx.itemIdx].name = newName;
+    PRESET_LIBRARY[_editCtx.catIdx].items[_editCtx.itemIdx].icon = _editCtx.icon;
+  }
+
+  closeItemEdit();
+  refreshPanelBody();
+}
+
+function deleteLibItem(type, catOrSavedIdx, event, itemIdx) {
+  event.stopPropagation();
+  if (type === 'saved') {
+    const name = savedProds[catOrSavedIdx]?.name;
+    if (!confirm(`Remove "${name}" from My Saved Products?`)) return;
+    savedProds.splice(catOrSavedIdx, 1);
+    save();
+  } else {
+    const name = PRESET_LIBRARY[catOrSavedIdx]?.items[itemIdx]?.name;
+    if (!confirm(`Remove "${name}" from the library?`)) return;
+    PRESET_LIBRARY[catOrSavedIdx].items.splice(itemIdx, 1);
+  }
+  refreshPanelBody();
 }
 
 // ── Note modal ────────────────────────────────────────────────────
@@ -2844,6 +3009,29 @@ render();
         <button class="gist-save-btn" onclick="saveSyncSettings()">Connect &amp; Sync</button>
       </div>
       <div class="gist-status" id="gistStatus"></div>
+    </div>
+  </div>
+
+  <!-- Library item edit modal -->
+  <div class="item-edit-overlay" id="itemEditOverlay">
+    <div class="item-edit-panel">
+      <h3 id="itemEditTitle">Edit Ritual</h3>
+      <div class="item-edit-field">
+        <label>Name</label>
+        <input type="text" id="itemEditName" placeholder="Ritual name">
+      </div>
+      <div class="item-edit-field">
+        <label>Icon</label>
+        <div class="icon-row" id="itemEditIconRow"></div>
+      </div>
+      <div class="item-edit-field">
+        <label>Colour</label>
+        <div class="color-row" id="itemEditColorRow"></div>
+      </div>
+      <div class="item-edit-actions">
+        <button class="item-edit-cancel" onclick="closeItemEdit()">Cancel</button>
+        <button class="item-edit-save" onclick="saveItemEdit()">Save Changes</button>
+      </div>
     </div>
   </div>
 </body>
