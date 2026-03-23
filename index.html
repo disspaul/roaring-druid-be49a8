@@ -358,6 +358,105 @@
   .rl.drag-over { border-top: 2px solid var(--accent1) !important; }
   .rl.dragging { opacity: 0.4; }
 
+
+  /* ── Header right controls ── */
+  .h-right {
+    display: flex; align-items: center;
+    gap: clamp(4px, 0.8vw, 12px);
+    flex-shrink: 1; min-width: 0; overflow: visible;
+  }
+
+  /* Shrink all header buttons proportionally with canvas */
+  .theme-btn, .aa-btn, .orient-btn, .sync-btn, .export-btn {
+    padding: clamp(6px, 0.6vh, 10px) clamp(8px, 1vw, 18px) !important;
+    font-size: clamp(9px, 0.85vw, 11px) !important;
+    letter-spacing: clamp(0.5px, 0.1vw, 1.5px) !important;
+    white-space: nowrap;
+  }
+  .nav-btn {
+    width:  clamp(26px, 2.5vw, 38px) !important;
+    height: clamp(26px, 2.5vw, 38px) !important;
+    font-size: clamp(12px, 1.2vw, 18px) !important;
+  }
+  .week-label {
+    min-width: clamp(120px, 13vw, 200px) !important;
+    font-size: clamp(9px, 0.85vw, 12px) !important;
+  }
+  .live-clock {
+    font-size: clamp(9px, 0.85vw, 12px) !important;
+    min-width: unset !important;
+    white-space: nowrap;
+  }
+
+  /* Hide size label text on narrow canvases — keep icon only */
+  @media (max-width: 1300px) {
+    #sizeBtnLabel { display: none; }
+    .export-btn .export-icon + * { display: none; }
+  }
+
+
+  /* ── Settings dropdown ── */
+  .settings-wrap { position: relative; }
+  .settings-btn {
+    display: flex; align-items: center; gap: 7px;
+    padding: 10px 18px; border-radius: 20px;
+    border: 1.5px solid var(--blush);
+    background: white; color: var(--mauve);
+    font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    cursor: pointer; transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(150,100,100,0.07);
+    white-space: nowrap;
+  }
+  .settings-btn:hover { background: var(--petal); border-color: var(--rose); color: var(--deep); }
+
+  .settings-dropdown {
+    position: absolute; top: calc(100% + 8px); right: 0;
+    background: var(--surface); border-radius: 18px;
+    box-shadow: 0 12px 40px rgba(58,48,48,0.16);
+    border: 1px solid var(--border);
+    min-width: 240px; z-index: 200;
+    opacity: 0; pointer-events: none;
+    transform: translateY(-6px) scale(0.97);
+    transition: all 0.18s ease;
+    overflow: visible;
+    padding: 6px 0;
+  }
+  .settings-dropdown.open {
+    opacity: 1; pointer-events: all;
+    transform: translateY(0) scale(1);
+  }
+
+  .sopt {
+    display: flex; align-items: center; gap: 12px;
+    padding: 11px 18px; cursor: pointer;
+    transition: background 0.12s; position: relative;
+  }
+  .sopt:hover { background: var(--petal); }
+  .sopt-icon {
+    font-size: 15px; width: 26px; text-align: center;
+    flex-shrink: 0; color: var(--soft);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sopt-text { flex: 1; }
+  .sopt-label { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .sopt-sub { font-size: 10px; color: var(--soft); margin-top: 1px; }
+  .sopt-arrow { font-size: 16px; color: var(--soft); flex-shrink: 0; }
+  .sopt-divider { height: 1px; background: var(--border); margin: 4px 0; }
+
+  /* Theme submenu inside settings */
+  .sopt-theme { position: relative; }
+  .sopt-theme .theme-dropdown {
+    top: 0 !important; right: calc(100% + 6px) !important;
+    left: auto !important; bottom: auto !important;
+  }
+  /* Size submenu inside settings */
+  .sopt-size { position: relative; }
+  .sopt-size .size-dropdown {
+    top: 0 !important; right: calc(100% + 6px) !important;
+    left: auto !important; bottom: auto !important;
+  }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
@@ -366,13 +465,15 @@
     font-family: 'Jost', sans-serif;
     color: var(--ink);
     transition: background 0.3s ease, color 0.3s ease;
+    overflow-x: auto;
+    overflow-y: auto;
   }
 
-  /* Viewport — always exactly the target size */
+  /* Viewport — fixed canvas size, scrollable when larger than window */
   #viewport {
     width: 1600px;
     height: 1200px;
-    overflow: hidden;
+    overflow: visible;
     display: flex;
     flex-direction: column;
     background: var(--bg);
@@ -1075,7 +1176,7 @@
       <h1>Self Care <em>Ritual</em></h1>
       <p>Weekly Tracker</p>
     </div>
-    <div style="display:flex;align-items:center;gap:12px;">
+    <div class="h-right">
       <span class="live-clock" id="liveClock"></span>
       <div class="week-nav">
         <button class="nav-btn" onclick="changeWeek(-1)">‹</button>
@@ -1083,63 +1184,91 @@
         <button class="nav-btn" onclick="changeWeek(1)">›</button>
       </div>
 
-      <!-- Theme selector -->
-      <div class="theme-wrap" id="themeWrap">
-        <button class="theme-btn" onclick="toggleThemeMenu(event)">🎨 Theme</button>
-        <div class="theme-dropdown" id="themeDropdown" id="themeDropdown"></div>
-      </div>
-
-      <!-- Typography -->
-      <button class="aa-btn" id="aaBtn" onclick="openTypo()">Aa</button>
-
-      <!-- Size dropdown -->
-      <div class="size-wrap" id="sizeWrap">
-        <button class="orient-btn" id="sizeBtn" onclick="toggleSizeMenu(event)">
-          ⊞ <span id="sizeBtnLabel">1600 × 1200</span>
+      <!-- Single settings menu -->
+      <div class="settings-wrap" id="settingsWrap">
+        <button class="settings-btn" onclick="toggleSettingsMenu(event)">
+          ⚙ <span class="settings-label">Settings</span>
         </button>
-        <div class="size-dropdown" id="sizeDropdown"></div>
-      </div>
+        <div class="settings-dropdown" id="settingsDropdown">
 
-      <!-- Gist Sync -->
-      <button class="sync-btn" id="syncBtn" onclick="openSyncSettings()" title="Sync settings">
-        <span class="sync-dot" id="syncDot"></span>
-        <span id="syncLabel">Sync</span>
-      </button>
+          <!-- Theme submenu trigger -->
+          <div class="sopt sopt-theme" onclick="toggleThemeMenu(event)">
+            <span class="sopt-icon">🎨</span>
+            <div class="sopt-text">
+              <div class="sopt-label">Theme</div>
+              <div class="sopt-sub" id="soptThemeSub">Blush & Cream</div>
+            </div>
+            <span class="sopt-arrow">›</span>
+            <div class="theme-dropdown" id="themeDropdown"></div>
+          </div>
 
-      <div class="export-wrap" id="exportWrap">
-        <button class="export-btn" onclick="toggleExportMenu(event)">
-          <span class="export-icon">↓</span> Export
-        </button>
-        <div class="export-dropdown" id="exportDropdown">
-          <div class="export-option" onclick="doExport('jpg')">
-            <span class="opt-icon">🖼️</span>
-            <div class="opt-text">
-              <div class="opt-label">Save as JPG</div>
-              <div class="opt-sub" id="exportSubJpg">1600 × 1200 · compressed</div>
+          <!-- Typography -->
+          <div class="sopt" onclick="openTypo(); closeSettingsMenu()">
+            <span class="sopt-icon">Aa</span>
+            <div class="sopt-text">
+              <div class="sopt-label">Text Size</div>
+              <div class="sopt-sub">Adjust font sizes</div>
             </div>
           </div>
-          <div class="export-option" onclick="doExport('png')">
-            <span class="opt-icon">📐</span>
-            <div class="opt-text">
-              <div class="opt-label">Save as PNG</div>
-              <div class="opt-sub" id="exportSubPng">1600 × 1200 · lossless</div>
+
+          <!-- Canvas size submenu trigger -->
+          <div class="sopt sopt-size" onclick="toggleSizeMenu(event)">
+            <span class="sopt-icon">⊞</span>
+            <div class="sopt-text">
+              <div class="sopt-label">Canvas Size</div>
+              <div class="sopt-sub" id="sizeBtnLabel">1600 × 1200</div>
+            </div>
+            <span class="sopt-arrow">›</span>
+            <div class="size-dropdown" id="sizeDropdown"></div>
+          </div>
+
+          <div class="sopt-divider"></div>
+
+          <!-- Sync -->
+          <div class="sopt" onclick="openSyncSettings(); closeSettingsMenu()">
+            <span class="sopt-icon"><span class="sync-dot" id="syncDot"></span></span>
+            <div class="sopt-text">
+              <div class="sopt-label">Sync Settings</div>
+              <div class="sopt-sub" id="syncLabel">Not connected</div>
             </div>
           </div>
-          <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
-          <div class="export-option" onclick="backupData(); closeExportMenu()">
-            <span class="opt-icon">💾</span>
-            <div class="opt-text">
-              <div class="opt-label">Backup Data</div>
-              <div class="opt-sub">Download .json to transfer</div>
+
+          <div class="sopt-divider"></div>
+
+          <!-- Export -->
+          <div class="sopt" onclick="doExport('jpg'); closeSettingsMenu()">
+            <span class="sopt-icon">🖼️</span>
+            <div class="sopt-text">
+              <div class="sopt-label">Save as JPG</div>
+              <div class="sopt-sub" id="exportSubJpg">1600 × 1200 · compressed</div>
             </div>
           </div>
-          <div class="export-option" onclick="restoreData(); closeExportMenu()">
-            <span class="opt-icon">📂</span>
-            <div class="opt-text">
-              <div class="opt-label">Restore Data</div>
-              <div class="opt-sub">Load .json from backup</div>
+          <div class="sopt" onclick="doExport('png'); closeSettingsMenu()">
+            <span class="sopt-icon">📐</span>
+            <div class="sopt-text">
+              <div class="sopt-label">Save as PNG</div>
+              <div class="sopt-sub" id="exportSubPng">1600 × 1200 · lossless</div>
             </div>
           </div>
+
+          <div class="sopt-divider"></div>
+
+          <!-- Backup / Restore -->
+          <div class="sopt" onclick="backupData(); closeSettingsMenu()">
+            <span class="sopt-icon">💾</span>
+            <div class="sopt-text">
+              <div class="sopt-label">Backup Data</div>
+              <div class="sopt-sub">Download .json</div>
+            </div>
+          </div>
+          <div class="sopt" onclick="restoreData(); closeSettingsMenu()">
+            <span class="sopt-icon">📂</span>
+            <div class="sopt-text">
+              <div class="sopt-label">Restore Data</div>
+              <div class="sopt-sub">Load .json backup</div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -2370,13 +2499,13 @@ function applyTypo() {
 }
 
 function openTypo() {
-  document.getElementById('aaBtn').classList.add('active');
+  document.getElementById('aaBtn')?.classList.add('active');
   renderTypoRows();
   document.getElementById('typoOverlay').classList.add('open');
 }
 
 function closeTypo() {
-  document.getElementById('aaBtn').classList.remove('active');
+  document.getElementById('aaBtn')?.classList.remove('active');
   document.getElementById('typoOverlay').classList.remove('open');
 }
 
@@ -2472,8 +2601,9 @@ function applySize(id) {
   vp.style.transform = '';
 
   document.body.style.width    = size.w + 'px';
-  document.body.style.height   = size.h + 'px';
-  document.body.style.overflow = 'hidden';
+  document.body.style.minHeight = size.h + 'px';
+  document.body.style.height   = 'auto';
+  document.body.style.overflow = 'auto';
 
   // Update button label
   document.getElementById('sizeBtnLabel').textContent = size.sub;
@@ -2528,6 +2658,31 @@ function updateExportLabels() {
   document.getElementById('exportSubPng').textContent = `${w} × ${h} · lossless`;
 }
 
+// ── Settings menu ─────────────────────────────────────────────────
+function toggleSettingsMenu(e) {
+  e.stopPropagation();
+  const dd = document.getElementById('settingsDropdown');
+  const isOpen = dd.classList.contains('open');
+  closeSettingsMenu();
+  if (!isOpen) {
+    dd.classList.add('open');
+    // Update theme sublabel
+    const themeSub = document.getElementById('soptThemeSub');
+    if (themeSub) {
+      const names = {
+        blush:'Blush & Cream', midnight:'Midnight Spa', matcha:'Matcha',
+        cloud:'Cloud', sunset:'Sunset', lavender:'Lavender Dream',
+        noir:'Noir', sage:'Sage Garden'
+      };
+      themeSub.textContent = names[currentTheme] || currentTheme;
+    }
+    setTimeout(() => document.addEventListener('click', closeSettingsMenu, {once:true}), 50);
+  }
+}
+function closeSettingsMenu() {
+  document.getElementById('settingsDropdown')?.classList.remove('open');
+}
+
 // ── Export ────────────────────────────────────────────────────────
 function toggleExportMenu(e) {
   e.stopPropagation();
@@ -2551,7 +2706,7 @@ async function doExport(fmt) {
 
   const { w: exportW, h: exportH, label: orientLabel } = getActiveDimensions();
 
-  const toHide = ['exportWrap', 'sizeWrap', 'themeWrap', 'aaBtn', 'panelOverlay', 'noteOverlay', 'emojiPicker', 'typoOverlay', 'exportToast'];
+  const toHide = ['settingsWrap', 'panelOverlay', 'noteOverlay', 'emojiPicker', 'typoOverlay', 'exportToast'];
   toHide.forEach(id => { const el = document.getElementById(id); if (el) el.style.visibility = 'hidden'; });
 
   // Helper to resolve a CSS variable to its actual colour value
@@ -2620,7 +2775,28 @@ async function doExport(fmt) {
     const gridLeft   = pagePadHoriz;
     const gridRight  = W - pagePadHoriz;
     const gridW      = gridRight - gridLeft;
-    const labelColW  = Math.round(gridW * 0.138);  // ~same ratio as CSS 220px in 1600px
+    // Mirror render()'s dynamic column width calculation
+    // Measure longest name text + icon + padding to get the right column width
+    ctx.font = `600 ${autoRowNameSize}px Arial, sans-serif`;
+    const longestNameW = rows.reduce((max, r) => {
+      // Check both single-line and best word-wrap width
+      const full = ctx.measureText(r.name).width;
+      const words = r.name.split(' ');
+      let wrapped = full;
+      for (let i = 1; i < words.length; i++) {
+        const w = Math.max(
+          ctx.measureText(words.slice(0, i).join(' ')).width,
+          ctx.measureText(words.slice(i).join(' ')).width
+        );
+        wrapped = Math.min(wrapped, w);
+      }
+      return Math.max(max, wrapped);
+    }, 0);
+    ctx.font = `300 ${autoRowSubSize}px Arial, sans-serif`;
+    const subW = ctx.measureText('0/7 this week').width;
+    const iconSzEst = Math.max(24, Math.min(Math.round(dataRowH * 0.50), 44));
+    const neededColW = Math.max(longestNameW, subW) + iconSzEst + 32 + 18 + 14;
+    const labelColW  = Math.max(120, Math.min(Math.ceil(neededColW), Math.round(gridW * 0.28)));
     const dayColW    = (gridW - labelColW) / 7;
     const dayHeaderTop = headerTop + headerSection + headerMargin + headerPad;
     const sumTop     = gridTop + numRows * dataRowH + summaryMargin;
@@ -2751,21 +2927,49 @@ async function doExport(fmt) {
       ctx.textAlign = 'center';
       ctx.fillText(row.icon || '✦', iconX + iconSize / 2, iconY + iconSize * 0.72);
 
-      // Row name
-      const nameX = iconX + iconSize + Math.round(labelColW * 0.06);
+      // Row name — measure line count first so we can centre the block vertically
+      const nameX    = iconX + iconSize + Math.round(labelColW * 0.06);
       const nameMaxW = labelColW - nameX + gridLeft - 6;
       ctx.font = `600 ${autoRowNameSize}px Arial, sans-serif`;
+
+      // Split name into lines that fit nameMaxW
+      function getLines(text, maxW) {
+        const words = text.split(' ');
+        const lines = [];
+        let line = '';
+        for (const word of words) {
+          const test = line ? line + ' ' + word : word;
+          if (ctx.measureText(test).width > maxW && line) {
+            lines.push(line);
+            line = word;
+          } else { line = test; }
+        }
+        if (line) lines.push(line);
+        return lines;
+      }
+
+      const nameLineH  = autoRowNameSize * 1.3;
+      const nameLines  = getLines(row.name || 'Ritual', nameMaxW);
+      const nameBlockH = nameLines.length * nameLineH;
+      const subLineH   = autoRowSubSize * 1.4;
+      const totalTextH = nameBlockH + subLineH * 0.6 + autoRowSubSize;
+
+      // Centre the whole name+sub block in the row
+      const blockStartY = rowY + (dataRowH - totalTextH) / 2 + autoRowNameSize;
+
       ctx.fillStyle = C.ink;
       ctx.textAlign = 'left';
-      const nameY = rowY + dataRowH * 0.44;
-      wrapText(ctx, row.name || 'Ritual', nameX, nameY, nameMaxW, autoRowNameSize * 1.3);
+      nameLines.forEach((line, li) => {
+        ctx.font = `600 ${autoRowNameSize}px Arial, sans-serif`;
+        ctx.fillText(line, nameX, blockStartY + li * nameLineH);
+      });
 
-      // Check count
+      // Check count — placed just below name block
       let checkedCount = 0;
       weekDates.forEach(d => { if (logData[dk(d)]?.[row.id]?.checked) checkedCount++; });
       ctx.font = `300 ${autoRowSubSize}px Arial, sans-serif`;
       ctx.fillStyle = C.soft;
-      ctx.fillText(`${checkedCount}/7 this week`, nameX, rowY + dataRowH * 0.72);
+      ctx.fillText(`${checkedCount}/7 this week`, nameX, blockStartY + nameBlockH + autoRowSubSize * 0.2);
 
       // Separator right of label col
       ctx.strokeStyle = C.border;
