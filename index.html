@@ -208,7 +208,7 @@
   }
 
 
-  /* ── Gist Sync ── */
+  /* ── Firebase Sync ── */
   .sync-btn {
     display: flex; align-items: center; gap: 6px;
     padding: 10px 16px; border-radius: 20px;
@@ -230,7 +230,7 @@
   .sync-btn .sync-dot.error   { background: #e07878; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
-  /* Gist settings overlay */
+  /* Firebase settings overlay */
   .gist-overlay {
     position: fixed; inset: 0; z-index: 500;
     background: rgba(58,48,48,0.35); backdrop-filter: blur(4px);
@@ -239,7 +239,7 @@
   .gist-overlay.open { display: flex; }
   .gist-panel {
     background: var(--surface); border-radius: 24px;
-    padding: 36px 40px; width: 480px; max-width: 90vw;
+    padding: 36px 40px; width: 520px; max-width: 92vw;
     box-shadow: 0 20px 60px rgba(58,48,48,0.18);
     border: 1px solid var(--border);
   }
@@ -249,7 +249,7 @@
     margin-bottom: 6px;
   }
   .gist-panel p { font-size: 12px; color: var(--soft); margin-bottom: 24px; line-height: 1.6; }
-  .gist-field { margin-bottom: 16px; }
+  .gist-field { margin-bottom: 14px; }
   .gist-field label {
     display: block; font-size: 10px; font-weight: 600; letter-spacing: 2px;
     text-transform: uppercase; color: var(--soft); margin-bottom: 6px;
@@ -1023,7 +1023,7 @@
       </div>
 
       <!-- Gist Sync -->
-      <button class="sync-btn" id="syncBtn" onclick="openGistSettings()" title="Sync settings">
+      <button class="sync-btn" id="syncBtn" onclick="openSyncSettings()" title="Sync settings">
         <span class="sync-dot" id="syncDot"></span>
         <span id="syncLabel">Sync</span>
       </button>
@@ -1216,150 +1216,175 @@ function save() {
   localStorage.setItem('sc4_rows',  JSON.stringify(rows));
   localStorage.setItem('sc4_log',   JSON.stringify(logData));
   localStorage.setItem('sc4_saved', JSON.stringify(savedProds));
-  gistSaveDebounced();
+  fbSaveDebounced();
 }
 
-// ── GitHub Gist Sync ──────────────────────────────────────────────
-let gistToken  = localStorage.getItem('sc4_gist_token')  || '';
-let gistId     = localStorage.getItem('sc4_gist_id')     || '';
-let gistSaveTimer = null;
-let gistSyncing   = false;
+// ── Firebase Realtime Sync ───────────────────────────────────────
+// Uses Firebase REST API — no SDK needed, works from a plain HTML file
+
+let fbConfig = JSON.parse(localStorage.getItem('sc4_fb_config') || 'null');
+let fbSyncKey = localStorage.getItem('sc4_fb_synckey') || '';
+let fbListener = null;   // EventSource for real-time push
+let fbSaveTimer = null;
+let fbIgnoreNext = false; // prevent echo when we pushed the change ourselves
+
+function fbUrl(path) {
+  // REST path: /syncKey/path.json?auth=apiKey (using apiKey as auth for open DB)
+  return `${fbConfig.databaseURL}/${fbSyncKey}/${path}.json?auth=${fbConfig.apiKey}`;
+}
 
 function setSyncStatus(state, label) {
-  const dot   = document.getElementById('syncDot');
-  const lbl   = document.getElementById('syncLabel');
-  if (dot) { dot.className = 'sync-dot ' + state; }
+  const dot = document.getElementById('syncDot');
+  const lbl = document.getElementById('syncLabel');
+  if (dot) dot.className = 'sync-dot ' + state;
   if (lbl) lbl.textContent = label;
 }
 
-function gistSaveDebounced() {
-  if (!gistToken) return;
-  clearTimeout(gistSaveTimer);
-  gistSaveTimer = setTimeout(gistPush, 1500);
-}
-
-async function gistPush() {
-  if (!gistToken || gistSyncing) return;
-  gistSyncing = true;
+// ── Push local data to Firebase ──
+async function fbPush() {
+  if (!fbConfig || !fbSyncKey) return;
   setSyncStatus('syncing', 'Saving…');
-  const payload = JSON.stringify({ rows, logData, savedProds });
+  fbIgnoreNext = true;
   try {
-    let res, data;
-    if (gistId) {
-      // Update existing gist
-      res  = await fetch(`https://api.github.com/gists/${gistId}`, {
-        method: 'PATCH',
-        headers: { 'Authorization': `token ${gistToken}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ files: { 'selfcare-data.json': { content: payload } } })
-      });
-    } else {
-      // Create new gist
-      res = await fetch('https://api.github.com/gists', {
-        method: 'POST',
-        headers: { 'Authorization': `token ${gistToken}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          description: 'Self Care Ritual Tracker Data',
-          public: false,
-          files: { 'selfcare-data.json': { content: payload } }
-        })
-      });
-    }
-    data = await res.json();
-    if (!res.ok) throw new Error(data.message || 'GitHub error');
-    if (!gistId) {
-      gistId = data.id;
-      localStorage.setItem('sc4_gist_id', gistId);
-      document.getElementById('gistIdInput').value = gistId;
-    }
-    setSyncStatus('ok', 'Synced');
-    setTimeout(() => setSyncStatus('ok', 'Sync'), 3000);
+    const payload = { rows, logData, savedProds, updatedAt: Date.now() };
+    const res = await fetch(fbUrl('data'), {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error(await res.text());
+    setSyncStatus('ok', 'Synced ✓');
+    setTimeout(() => setSyncStatus('ok', 'Sync'), 2000);
   } catch(err) {
     setSyncStatus('error', 'Sync ✕');
-    console.error('Gist push failed:', err);
+    console.error('Firebase push failed:', err);
+    fbIgnoreNext = false;
   }
-  gistSyncing = false;
 }
 
-async function gistPull() {
-  if (!gistToken || !gistId) return false;
-  setSyncStatus('syncing', 'Loading…');
+function fbSaveDebounced() {
+  if (!fbConfig || !fbSyncKey) return;
+  clearTimeout(fbSaveTimer);
+  fbSaveTimer = setTimeout(fbPush, 800);
+}
+
+// ── Pull once from Firebase ──
+async function fbPull() {
+  if (!fbConfig || !fbSyncKey) return false;
   try {
-    const res  = await fetch(`https://api.github.com/gists/${gistId}`, {
-      headers: { 'Authorization': `token ${gistToken}` }
-    });
+    const res = await fetch(fbUrl('data'));
+    if (!res.ok) throw new Error(await res.text());
     const data = await res.json();
-    if (!res.ok) throw new Error(data.message || 'GitHub error');
-    const raw  = data.files?.['selfcare-data.json']?.content;
-    if (!raw) throw new Error('No data file in gist');
-    const payload = JSON.parse(raw);
-    if (payload.rows)       { rows       = payload.rows;       localStorage.setItem('sc4_rows',  JSON.stringify(rows)); }
-    if (payload.logData)    { logData    = payload.logData;    localStorage.setItem('sc4_log',   JSON.stringify(logData)); }
-    if (payload.savedProds) { savedProds = payload.savedProds; localStorage.setItem('sc4_saved', JSON.stringify(savedProds)); }
-    setSyncStatus('ok', 'Synced');
-    setTimeout(() => setSyncStatus('ok', 'Sync'), 3000);
+    if (!data) return false;
+    applyRemoteData(data);
     return true;
   } catch(err) {
-    setSyncStatus('error', 'Sync ✕');
-    console.error('Gist pull failed:', err);
+    console.error('Firebase pull failed:', err);
     return false;
   }
 }
 
-function openGistSettings() {
-  document.getElementById('gistTokenInput').value = gistToken;
-  document.getElementById('gistIdInput').value    = gistId;
+// ── Apply data from Firebase to local state ──
+function applyRemoteData(data) {
+  if (data.rows)       { rows       = data.rows;       localStorage.setItem('sc4_rows',  JSON.stringify(rows)); }
+  if (data.logData)    { logData    = data.logData;    localStorage.setItem('sc4_log',   JSON.stringify(logData)); }
+  if (data.savedProds) { savedProds = data.savedProds; localStorage.setItem('sc4_saved', JSON.stringify(savedProds)); }
+  render();
+}
+
+// ── Real-time listener via Server-Sent Events (Firebase streaming REST) ──
+function fbStartListening() {
+  if (fbListener) { fbListener.close(); fbListener = null; }
+  if (!fbConfig || !fbSyncKey) return;
+
+  const url = `${fbConfig.databaseURL}/${fbSyncKey}/data.json?auth=${fbConfig.apiKey}`;
+  fbListener = new EventSource(url);
+
+  fbListener.addEventListener('put', (e) => {
+    try {
+      const msg = JSON.parse(e.data);
+      if (!msg.data) return;
+      if (fbIgnoreNext) { fbIgnoreNext = false; return; } // our own push echoed back
+      applyRemoteData(msg.data);
+      setSyncStatus('ok', 'Synced ✓');
+      setTimeout(() => setSyncStatus('ok', 'Sync'), 2000);
+    } catch(err) { console.error('Firebase SSE parse error:', err); }
+  });
+
+  fbListener.addEventListener('patch', (e) => {
+    try {
+      const msg = JSON.parse(e.data);
+      if (!msg.data || fbIgnoreNext) { fbIgnoreNext = false; return; }
+      // Merge patch into current data
+      const merged = { rows, logData, savedProds, ...msg.data };
+      applyRemoteData(merged);
+    } catch(err) { console.error('Firebase SSE patch error:', err); }
+  });
+
+  fbListener.onerror = () => {
+    setSyncStatus('error', 'Sync ✕');
+  };
+}
+
+// ── Settings UI ──
+function openSyncSettings() {
+  if (fbConfig) {
+    document.getElementById('fbApiKey').value    = fbConfig.apiKey    || '';
+    document.getElementById('fbDbUrl').value     = fbConfig.databaseURL || '';
+    document.getElementById('fbProjectId').value = fbConfig.projectId  || '';
+  }
+  document.getElementById('fbSyncKey').value   = fbSyncKey;
   document.getElementById('gistStatus').textContent = '';
   document.getElementById('gistOverlay').classList.add('open');
 }
 
-function closeGistSettings() {
+function closeSyncSettings() {
   document.getElementById('gistOverlay').classList.remove('open');
 }
 
-async function saveGistSettings() {
-  const token = document.getElementById('gistTokenInput').value.trim();
-  const id    = document.getElementById('gistIdInput').value.trim();
-  const status = document.getElementById('gistStatus');
+async function saveSyncSettings() {
+  const apiKey    = document.getElementById('fbApiKey').value.trim();
+  const dbUrl     = document.getElementById('fbDbUrl').value.trim().replace(/\/$/, '');
+  const projectId = document.getElementById('fbProjectId').value.trim();
+  const syncKey   = document.getElementById('fbSyncKey').value.trim().replace(/[^a-zA-Z0-9_-]/g, '');
+  const status    = document.getElementById('gistStatus');
 
-  if (!token) { status.textContent = 'Please enter a GitHub token.'; return; }
-
-  gistToken = token;
-  gistId    = id;
-  localStorage.setItem('sc4_gist_token', gistToken);
-  localStorage.setItem('sc4_gist_id',    gistId);
-
-  status.textContent = gistId ? 'Pulling latest data…' : 'Creating new Gist…';
-
-  if (gistId) {
-    // Pull from existing gist first
-    const ok = await gistPull();
-    if (ok) {
-      render();
-      status.textContent = '✓ Connected! Data loaded from Gist.';
-      setTimeout(closeGistSettings, 1800);
-    } else {
-      status.textContent = '✕ Could not connect — check token and Gist ID.';
-    }
-  } else {
-    // Push current data to create new gist
-    await gistPush();
-    if (gistId) {
-      status.textContent = `✓ Gist created! ID saved automatically.`;
-      document.getElementById('gistIdInput').value = gistId;
-      setTimeout(closeGistSettings, 2000);
-    } else {
-      status.textContent = '✕ Could not create Gist — check your token.';
-    }
+  if (!apiKey || !dbUrl || !syncKey) {
+    status.textContent = 'Please fill in API Key, Database URL and Sync Key.';
+    return;
   }
+
+  fbConfig  = { apiKey, databaseURL: dbUrl, projectId };
+  fbSyncKey = syncKey;
+  localStorage.setItem('sc4_fb_config',  JSON.stringify(fbConfig));
+  localStorage.setItem('sc4_fb_synckey', fbSyncKey);
+
+  status.textContent = 'Connecting…';
+  setSyncStatus('syncing', 'Connecting…');
+
+  // Try to pull existing data first
+  const pulled = await fbPull();
+  if (pulled) {
+    status.textContent = '✓ Connected! Data loaded. Starting real-time sync…';
+  } else {
+    // Nothing there yet — push our local data
+    await fbPush();
+    status.textContent = '✓ Connected! Your data has been uploaded.';
+  }
+
+  fbStartListening();
+  setSyncStatus('ok', 'Sync');
+  setTimeout(closeSyncSettings, 2000);
 }
 
-// On load: if token+id are set, pull latest data
-(async function initGistSync() {
-  if (gistToken && gistId) {
-    const pulled = await gistPull();
-    if (pulled) render();
-  } else if (gistToken) {
-    setSyncStatus('ok', 'Sync');
+// ── Init on page load ──
+(function initFirebaseSync() {
+  if (fbConfig && fbSyncKey) {
+    fbPull().then(pulled => {
+      if (pulled) render();
+      fbStartListening();
+      setSyncStatus('ok', 'Sync');
+    });
   }
 })();
 
@@ -2781,23 +2806,31 @@ render();
 </script>
 <!-- html2canvas removed — export now uses native SVG/Canvas API (no external dependencies) -->
 
-  <!-- Gist sync settings overlay -->
+  <!-- Firebase sync settings overlay -->
   <div class="gist-overlay" id="gistOverlay">
     <div class="gist-panel">
-      <h3>Cloud Sync</h3>
-      <p>Enter your GitHub Personal Access Token (with <strong>gist</strong> scope) and a Gist ID.<br>
-      Leave Gist ID empty on first setup — one will be created for you automatically.</p>
+      <h3>Real-time Sync</h3>
+      <p>Paste your Firebase config below. Your data will sync instantly across all devices.<br>
+      <a href="https://console.firebase.google.com" target="_blank" style="color:var(--accent2)">console.firebase.google.com</a> → New project → Realtime Database → Web app config.</p>
       <div class="gist-field">
-        <label>GitHub Token</label>
-        <input type="password" id="gistTokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+        <label>API Key</label>
+        <input type="text" id="fbApiKey" placeholder="AIzaSy...">
       </div>
       <div class="gist-field">
-        <label>Gist ID <span style="font-weight:300;text-transform:none;letter-spacing:0">(auto-filled after first save)</span></label>
-        <input type="text" id="gistIdInput" placeholder="Leave empty to create new">
+        <label>Database URL</label>
+        <input type="text" id="fbDbUrl" placeholder="https://your-project-default-rtdb.firebaseio.com">
+      </div>
+      <div class="gist-field">
+        <label>Project ID</label>
+        <input type="text" id="fbProjectId" placeholder="your-project-id">
+      </div>
+      <div class="gist-field">
+        <label>Sync Key <span style="font-weight:300;text-transform:none;letter-spacing:0">— a private word shared across your devices</span></label>
+        <input type="text" id="fbSyncKey" placeholder="e.g. myrituals2025">
       </div>
       <div class="gist-actions">
-        <button class="gist-cancel-btn" onclick="closeGistSettings()">Cancel</button>
-        <button class="gist-save-btn" onclick="saveGistSettings()">Save &amp; Sync</button>
+        <button class="gist-cancel-btn" onclick="closeSyncSettings()">Cancel</button>
+        <button class="gist-save-btn" onclick="saveSyncSettings()">Connect &amp; Sync</button>
       </div>
       <div class="gist-status" id="gistStatus"></div>
     </div>
