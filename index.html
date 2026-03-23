@@ -2066,7 +2066,11 @@ function saveItemEdit() {
   const newName = document.getElementById('itemEditName').value.trim();
   if (!newName) { document.getElementById('itemEditName').focus(); return; }
 
+  // Remember old name so we can match tracker rows
+  let oldName = '';
+
   if (_editCtx.type === 'saved') {
+    oldName = savedProds[_editCtx.idx].name;
     savedProds[_editCtx.idx] = {
       ...savedProds[_editCtx.idx],
       name: newName,
@@ -2075,10 +2079,22 @@ function saveItemEdit() {
     };
     save();
   } else {
-    // Edit preset library item in-place
+    oldName = PRESET_LIBRARY[_editCtx.catIdx].items[_editCtx.itemIdx].name;
     PRESET_LIBRARY[_editCtx.catIdx].items[_editCtx.itemIdx].name = newName;
     PRESET_LIBRARY[_editCtx.catIdx].items[_editCtx.itemIdx].icon = _editCtx.icon;
   }
+
+  // ── Also update any matching rows already on the tracker ──
+  let trackerUpdated = false;
+  rows.forEach(row => {
+    if (row.name === oldName) {
+      row.name     = newName;
+      row.icon     = _editCtx.icon;
+      row.colorIdx = _editCtx.colorIdx;
+      trackerUpdated = true;
+    }
+  });
+  if (trackerUpdated) { save(); render(); }
 
   closeItemEdit();
   refreshPanelBody();
