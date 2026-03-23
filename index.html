@@ -207,6 +207,80 @@
     --p6-accent: #9a8870; --p6-bg: #ece4d8;
   }
 
+
+  /* ── Gist Sync ── */
+  .sync-btn {
+    display: flex; align-items: center; gap: 6px;
+    padding: 10px 16px; border-radius: 20px;
+    border: 1.5px solid var(--blush);
+    background: white; color: var(--mauve);
+    font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    cursor: pointer; transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(150,100,100,0.07);
+  }
+  .sync-btn:hover { background: var(--petal); border-color: var(--rose); color: var(--deep); }
+  .sync-btn .sync-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--soft); transition: background 0.3s;
+    flex-shrink: 0;
+  }
+  .sync-btn .sync-dot.ok      { background: #7abf8a; }
+  .sync-btn .sync-dot.syncing { background: var(--amber, #ccaa80); animation: pulse 1s infinite; }
+  .sync-btn .sync-dot.error   { background: #e07878; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  /* Gist settings overlay */
+  .gist-overlay {
+    position: fixed; inset: 0; z-index: 500;
+    background: rgba(58,48,48,0.35); backdrop-filter: blur(4px);
+    display: none; align-items: center; justify-content: center;
+  }
+  .gist-overlay.open { display: flex; }
+  .gist-panel {
+    background: var(--surface); border-radius: 24px;
+    padding: 36px 40px; width: 480px; max-width: 90vw;
+    box-shadow: 0 20px 60px rgba(58,48,48,0.18);
+    border: 1px solid var(--border);
+  }
+  .gist-panel h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 26px; font-weight: 300; color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .gist-panel p { font-size: 12px; color: var(--soft); margin-bottom: 24px; line-height: 1.6; }
+  .gist-field { margin-bottom: 16px; }
+  .gist-field label {
+    display: block; font-size: 10px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--soft); margin-bottom: 6px;
+  }
+  .gist-field input {
+    width: 100%; padding: 10px 14px; border-radius: 10px;
+    border: 1.5px solid var(--border); background: var(--bg);
+    font-family: 'Jost', sans-serif; font-size: 12px; color: var(--ink);
+    outline: none; box-sizing: border-box; transition: border-color 0.2s;
+  }
+  .gist-field input:focus { border-color: var(--accent1); }
+  .gist-field input::placeholder { color: var(--soft); opacity: 0.5; }
+  .gist-actions { display: flex; gap: 10px; margin-top: 24px; }
+  .gist-save-btn {
+    flex: 1; padding: 11px; border-radius: 14px;
+    background: var(--accent1); border: none; color: white;
+    font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .gist-save-btn:hover { background: var(--accent2); }
+  .gist-cancel-btn {
+    padding: 11px 20px; border-radius: 14px;
+    background: transparent; border: 1.5px solid var(--border); color: var(--soft);
+    font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .gist-cancel-btn:hover { background: var(--bg2); }
+  .gist-status { font-size: 11px; color: var(--soft); margin-top: 12px; text-align: center; min-height: 16px; }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
@@ -948,6 +1022,12 @@
         <div class="size-dropdown" id="sizeDropdown"></div>
       </div>
 
+      <!-- Gist Sync -->
+      <button class="sync-btn" id="syncBtn" onclick="openGistSettings()" title="Sync settings">
+        <span class="sync-dot" id="syncDot"></span>
+        <span id="syncLabel">Sync</span>
+      </button>
+
       <div class="export-wrap" id="exportWrap">
         <button class="export-btn" onclick="toggleExportMenu(event)">
           <span class="export-icon">↓</span> Export
@@ -965,6 +1045,21 @@
             <div class="opt-text">
               <div class="opt-label">Save as PNG</div>
               <div class="opt-sub" id="exportSubPng">1600 × 1200 · lossless</div>
+            </div>
+          </div>
+          <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
+          <div class="export-option" onclick="backupData(); closeExportMenu()">
+            <span class="opt-icon">💾</span>
+            <div class="opt-text">
+              <div class="opt-label">Backup Data</div>
+              <div class="opt-sub">Download .json to transfer</div>
+            </div>
+          </div>
+          <div class="export-option" onclick="restoreData(); closeExportMenu()">
+            <span class="opt-icon">📂</span>
+            <div class="opt-text">
+              <div class="opt-label">Restore Data</div>
+              <div class="opt-sub">Load .json from backup</div>
             </div>
           </div>
         </div>
@@ -1121,7 +1216,152 @@ function save() {
   localStorage.setItem('sc4_rows',  JSON.stringify(rows));
   localStorage.setItem('sc4_log',   JSON.stringify(logData));
   localStorage.setItem('sc4_saved', JSON.stringify(savedProds));
+  gistSaveDebounced();
 }
+
+// ── GitHub Gist Sync ──────────────────────────────────────────────
+let gistToken  = localStorage.getItem('sc4_gist_token')  || '';
+let gistId     = localStorage.getItem('sc4_gist_id')     || '';
+let gistSaveTimer = null;
+let gistSyncing   = false;
+
+function setSyncStatus(state, label) {
+  const dot   = document.getElementById('syncDot');
+  const lbl   = document.getElementById('syncLabel');
+  if (dot) { dot.className = 'sync-dot ' + state; }
+  if (lbl) lbl.textContent = label;
+}
+
+function gistSaveDebounced() {
+  if (!gistToken) return;
+  clearTimeout(gistSaveTimer);
+  gistSaveTimer = setTimeout(gistPush, 1500);
+}
+
+async function gistPush() {
+  if (!gistToken || gistSyncing) return;
+  gistSyncing = true;
+  setSyncStatus('syncing', 'Saving…');
+  const payload = JSON.stringify({ rows, logData, savedProds });
+  try {
+    let res, data;
+    if (gistId) {
+      // Update existing gist
+      res  = await fetch(`https://api.github.com/gists/${gistId}`, {
+        method: 'PATCH',
+        headers: { 'Authorization': `token ${gistToken}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ files: { 'selfcare-data.json': { content: payload } } })
+      });
+    } else {
+      // Create new gist
+      res = await fetch('https://api.github.com/gists', {
+        method: 'POST',
+        headers: { 'Authorization': `token ${gistToken}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          description: 'Self Care Ritual Tracker Data',
+          public: false,
+          files: { 'selfcare-data.json': { content: payload } }
+        })
+      });
+    }
+    data = await res.json();
+    if (!res.ok) throw new Error(data.message || 'GitHub error');
+    if (!gistId) {
+      gistId = data.id;
+      localStorage.setItem('sc4_gist_id', gistId);
+      document.getElementById('gistIdInput').value = gistId;
+    }
+    setSyncStatus('ok', 'Synced');
+    setTimeout(() => setSyncStatus('ok', 'Sync'), 3000);
+  } catch(err) {
+    setSyncStatus('error', 'Sync ✕');
+    console.error('Gist push failed:', err);
+  }
+  gistSyncing = false;
+}
+
+async function gistPull() {
+  if (!gistToken || !gistId) return false;
+  setSyncStatus('syncing', 'Loading…');
+  try {
+    const res  = await fetch(`https://api.github.com/gists/${gistId}`, {
+      headers: { 'Authorization': `token ${gistToken}` }
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || 'GitHub error');
+    const raw  = data.files?.['selfcare-data.json']?.content;
+    if (!raw) throw new Error('No data file in gist');
+    const payload = JSON.parse(raw);
+    if (payload.rows)       { rows       = payload.rows;       localStorage.setItem('sc4_rows',  JSON.stringify(rows)); }
+    if (payload.logData)    { logData    = payload.logData;    localStorage.setItem('sc4_log',   JSON.stringify(logData)); }
+    if (payload.savedProds) { savedProds = payload.savedProds; localStorage.setItem('sc4_saved', JSON.stringify(savedProds)); }
+    setSyncStatus('ok', 'Synced');
+    setTimeout(() => setSyncStatus('ok', 'Sync'), 3000);
+    return true;
+  } catch(err) {
+    setSyncStatus('error', 'Sync ✕');
+    console.error('Gist pull failed:', err);
+    return false;
+  }
+}
+
+function openGistSettings() {
+  document.getElementById('gistTokenInput').value = gistToken;
+  document.getElementById('gistIdInput').value    = gistId;
+  document.getElementById('gistStatus').textContent = '';
+  document.getElementById('gistOverlay').classList.add('open');
+}
+
+function closeGistSettings() {
+  document.getElementById('gistOverlay').classList.remove('open');
+}
+
+async function saveGistSettings() {
+  const token = document.getElementById('gistTokenInput').value.trim();
+  const id    = document.getElementById('gistIdInput').value.trim();
+  const status = document.getElementById('gistStatus');
+
+  if (!token) { status.textContent = 'Please enter a GitHub token.'; return; }
+
+  gistToken = token;
+  gistId    = id;
+  localStorage.setItem('sc4_gist_token', gistToken);
+  localStorage.setItem('sc4_gist_id',    gistId);
+
+  status.textContent = gistId ? 'Pulling latest data…' : 'Creating new Gist…';
+
+  if (gistId) {
+    // Pull from existing gist first
+    const ok = await gistPull();
+    if (ok) {
+      render();
+      status.textContent = '✓ Connected! Data loaded from Gist.';
+      setTimeout(closeGistSettings, 1800);
+    } else {
+      status.textContent = '✕ Could not connect — check token and Gist ID.';
+    }
+  } else {
+    // Push current data to create new gist
+    await gistPush();
+    if (gistId) {
+      status.textContent = `✓ Gist created! ID saved automatically.`;
+      document.getElementById('gistIdInput').value = gistId;
+      setTimeout(closeGistSettings, 2000);
+    } else {
+      status.textContent = '✕ Could not create Gist — check your token.';
+    }
+  }
+}
+
+// On load: if token+id are set, pull latest data
+(async function initGistSync() {
+  if (gistToken && gistId) {
+    const pulled = await gistPull();
+    if (pulled) render();
+  } else if (gistToken) {
+    setSyncStatus('ok', 'Sync');
+  }
+})();
 
 // ── Date helpers ──────────────────────────────────────────────────
 const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
@@ -2457,6 +2697,59 @@ function wrapText(ctx, text, x, y, maxW, lineH) {
   if (line) ctx.fillText(line, x, ly);
 }
 
+// ── Backup / Restore data ─────────────────────────────────────────
+function backupData() {
+  const payload = {
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    rows:      rows,
+    logData:   logData,
+    savedProds: savedProds,
+  };
+  const json = JSON.stringify(payload, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url  = URL.createObjectURL(blob);
+  const date = new Date().toISOString().slice(0,10);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = `selfcare-backup-${date}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 10000);
+  showToast('✓ Backup downloaded');
+}
+
+function restoreData() {
+  const input = document.createElement('input');
+  input.type  = 'file';
+  input.accept = '.json,application/json';
+  input.onchange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      try {
+        const payload = JSON.parse(ev.target.result);
+        if (!payload.rows || !payload.logData) throw new Error('Invalid backup file');
+        rows       = payload.rows;
+        logData    = payload.logData;
+        savedProds = payload.savedProds || [];
+        save();
+        render();
+        showToast('✓ Data restored successfully');
+      } catch(err) {
+        showToast('Invalid backup file — try again');
+        console.error(err);
+      }
+    };
+    reader.readAsText(file);
+  };
+  document.body.appendChild(input);
+  input.click();
+  document.body.removeChild(input);
+}
+
 function showToast(msg) {
   const toast = document.getElementById('exportToast');
   toast.textContent = msg;
@@ -2487,5 +2780,27 @@ applySize(currentSizeId);
 render();
 </script>
 <!-- html2canvas removed — export now uses native SVG/Canvas API (no external dependencies) -->
+
+  <!-- Gist sync settings overlay -->
+  <div class="gist-overlay" id="gistOverlay">
+    <div class="gist-panel">
+      <h3>Cloud Sync</h3>
+      <p>Enter your GitHub Personal Access Token (with <strong>gist</strong> scope) and a Gist ID.<br>
+      Leave Gist ID empty on first setup — one will be created for you automatically.</p>
+      <div class="gist-field">
+        <label>GitHub Token</label>
+        <input type="password" id="gistTokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+      </div>
+      <div class="gist-field">
+        <label>Gist ID <span style="font-weight:300;text-transform:none;letter-spacing:0">(auto-filled after first save)</span></label>
+        <input type="text" id="gistIdInput" placeholder="Leave empty to create new">
+      </div>
+      <div class="gist-actions">
+        <button class="gist-cancel-btn" onclick="closeGistSettings()">Cancel</button>
+        <button class="gist-save-btn" onclick="saveGistSettings()">Save &amp; Sync</button>
+      </div>
+      <div class="gist-status" id="gistStatus"></div>
+    </div>
+  </div>
 </body>
 </html>
