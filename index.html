@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,7 +6,6 @@
 <title>Self Care Ritual</title>
 
 <!-- ── PWA / Add to Home Screen ── -->
-
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Self Care">
@@ -15,7 +13,6 @@
 <meta name="theme-color" content="#faf7f2">
 
 <!-- Home screen icon — inline SVG converted to data URI -->
-
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%23faf7f2'/%3E%3Crect x='12' y='12' width='156' height='156' rx='32' fill='%23f5ece6'/%3E%3Ctext x='90' y='115' font-size='80' text-anchor='middle' font-family='Georgia,serif' fill='%23cd9b94'%3E✦%3C/text%3E%3Ctext x='90' y='155' font-size='18' text-anchor='middle' font-family='Arial,sans-serif' font-weight='600' fill='%23a67070' letter-spacing='2'%3ERITUAL%3C/text%3E%3C/svg%3E">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%23faf7f2'/%3E%3Crect x='12' y='12' width='156' height='156' rx='32' fill='%23f5ece6'/%3E%3Ctext x='90' y='115' font-size='80' text-anchor='middle' font-family='Georgia,serif' fill='%23cd9b94'%3E✦%3C/text%3E%3Ctext x='90' y='155' font-size='18' text-anchor='middle' font-family='Arial,sans-serif' font-weight='600' fill='%23a67070' letter-spacing='2'%3ERITUAL%3C/text%3E%3C/svg%3E">
 <style>
@@ -48,1253 +45,1239 @@
     --soft:        #7d6d6d;
     --border:      rgba(180,140,140,0.15);
 
-```
-/* palette row colours */
---p0-accent: #cd9b94; --p0-bg: #faeae6;
---p1-accent: #bab5cd; --p1-bg: #e5e2f2;
---p2-accent: #a3b59c; --p2-bg: #dae4d7;
---p3-accent: #ccaa80; --p3-bg: #f0e2ce;
---p4-accent: #90b5b0; --p4-bg: #d8eeec;
---p5-accent: #e0a0b8; --p5-bg: #fce8f0;
---p6-accent: #b0a090; --p6-bg: #ede8e0;
-
-/* legacy aliases kept for compatibility */
---cream:        var(--bg);
---petal:        var(--bg2);
---blush:        var(--bg3);
---rose:         var(--accent1);
---mauve:        var(--accent2);
---deep:         var(--accent3);
---sage:         var(--p2-accent);
---sage-light:   var(--p2-bg);
---lavender:     var(--p1-accent);
---lav-light:    var(--p1-bg);
---amber:        var(--p3-accent);
---amber-light:  var(--p3-bg);
---teal:         var(--p4-accent);
---teal-light:   var(--p4-bg);
-```
-
-}
-
-/* ══════════════════════════════
-THEME 1 — Blush & Cream (default)
-══════════════════════════════ */
-[data-theme=“blush”] {
-–bg: #faf7f2; –bg2: #f5ece6; –bg3: #eed8cf;
-–surface: #ffffff; –surface2: #fdf9f7;
-–accent1: #cd9b94; –accent2: #a67070; –accent3: #7a5050;
-–ink: #3a3030; –soft: #7d6d6d; –border: rgba(180,140,140,0.15);
-–p0-accent: #cd9b94; –p0-bg: #faeae6;
-–p1-accent: #bab5cd; –p1-bg: #e5e2f2;
-–p2-accent: #a3b59c; –p2-bg: #dae4d7;
-–p3-accent: #ccaa80; –p3-bg: #f0e2ce;
-–p4-accent: #90b5b0; –p4-bg: #d8eeec;
-–p5-accent: #e0a0b8; –p5-bg: #fce8f0;
-–p6-accent: #b0a090; –p6-bg: #ede8e0;
-}
-
-/* ══════════════════════════════
-THEME 2 — Midnight Spa
-══════════════════════════════ */
-[data-theme=“midnight”] {
-–bg: #12151f; –bg2: #1c2130; –bg3: #252b3d;
-–surface: #1e2436; –surface2: #252d42;
-–accent1: #c9a84c; –accent2: #e6c97a; –accent3: #f0dfa0;
-–ink: #f0ead8; –soft: #8a8fa8; –border: rgba(200,168,76,0.18);
-–p0-accent: #c9a84c; –p0-bg: #2a2418;
-–p1-accent: #8890c8; –p1-bg: #1e2238;
-–p2-accent: #7aaa88; –p2-bg: #182418;
-–p3-accent: #c89060; –p3-bg: #281e14;
-–p4-accent: #60a8b8; –p4-bg: #142028;
-–p5-accent: #c878a0; –p5-bg: #281420;
-–p6-accent: #a09080; –p6-bg: #201c18;
-}
-
-/* ══════════════════════════════
-THEME 3 — Matcha
-══════════════════════════════ */
-[data-theme=“matcha”] {
-–bg: #f4f0e8; –bg2: #e8e4d8; –bg3: #d4c8b0;
-–surface: #faf8f2; –surface2: #f0ece0;
-–accent1: #7a9968; –accent2: #5a7848; –accent3: #3d5230;
-–ink: #2c2e1e; –soft: #6a7258; –border: rgba(90,120,72,0.18);
-–p0-accent: #7a9968; –p0-bg: #e4eedd;
-–p1-accent: #b8a87a; –p1-bg: #f0e8d0;
-–p2-accent: #5a8868; –p2-bg: #d8eedf;
-–p3-accent: #c4984a; –p3-bg: #f8ecd0;
-–p4-accent: #7ab0a0; –p4-bg: #d8f0e8;
-–p5-accent: #b87890; –p5-bg: #f8e0e8;
-–p6-accent: #988870; –p6-bg: #ede4d8;
-}
-
-/* ══════════════════════════════
-THEME 4 — Cloud
-══════════════════════════════ */
-[data-theme=“cloud”] {
-–bg: #f8f9fb; –bg2: #eef1f6; –bg3: #dde4ee;
-–surface: #ffffff; –surface2: #f4f6fa;
-–accent1: #7eafd4; –accent2: #4d8ab8; –accent3: #2d6090;
-–ink: #1e2a3a; –soft: #6a7d94; –border: rgba(126,175,212,0.2);
-–p0-accent: #7eafd4; –p0-bg: #ddeef8;
-–p1-accent: #a494cc; –p1-bg: #ede8f8;
-–p2-accent: #80b898; –p2-bg: #ddf0e4;
-–p3-accent: #c4a870; –p3-bg: #f8edda;
-–p4-accent: #68b8c8; –p4-bg: #d8f0f8;
-–p5-accent: #cc88a8; –p5-bg: #f8e0ee;
-–p6-accent: #9898a8; –p6-bg: #eaeaf0;
-}
-
-/* ══════════════════════════════
-THEME 5 — Sunset
-══════════════════════════════ */
-[data-theme=“sunset”] {
-–bg: #fdf6ee; –bg2: #fce8d4; –bg3: #f8d0b0;
-–surface: #ffffff; –surface2: #fdf0e4;
-–accent1: #e8845a; –accent2: #c85e34; –accent3: #a03c18;
-–ink: #3a1e10; –soft: #8a5840; –border: rgba(232,132,90,0.2);
-–p0-accent: #e8845a; –p0-bg: #fde8dc;
-–p1-accent: #d4a060; –p1-bg: #fce8cc;
-–p2-accent: #88b070; –p2-bg: #e0f0d4;
-–p3-accent: #e0b050; –p3-bg: #fcf0cc;
-–p4-accent: #70b0a8; –p4-bg: #d4f0ec;
-–p5-accent: #e07898; –p5-bg: #fce0e8;
-–p6-accent: #b09080; –p6-bg: #f0e4dc;
-}
-
-/* ══════════════════════════════
-THEME 6 — Lavender Dream
-══════════════════════════════ */
-[data-theme=“lavender”] {
-–bg: #f6f4fc; –bg2: #ede8f8; –bg3: #d8d0f0;
-–surface: #ffffff; –surface2: #f2f0fc;
-–accent1: #9080c8; –accent2: #6858a8; –accent3: #483880;
-–ink: #20183c; –soft: #706090; –border: rgba(144,128,200,0.2);
-–p0-accent: #c080b0; –p0-bg: #f8e0f0;
-–p1-accent: #9080c8; –p1-bg: #e8e0f8;
-–p2-accent: #80a898; –p2-bg: #d8f0e8;
-–p3-accent: #b8a070; –p3-bg: #f0e8d0;
-–p4-accent: #7898c8; –p4-bg: #d8e8f8;
-–p5-accent: #c870a0; –p5-bg: #f8d8ec;
-–p6-accent: #9888b0; –p6-bg: #ece8f4;
-}
-
-/* ══════════════════════════════
-THEME 7 — Noir
-══════════════════════════════ */
-[data-theme=“noir”] {
-–bg: #0a0a0a; –bg2: #141414; –bg3: #1e1e1e;
-–surface: #161616; –surface2: #1c1c1c;
-–accent1: #e8a0a8; –accent2: #c87880; –accent3: #f0c0c8;
-–ink: #f0ede8; –soft: #888080; –border: rgba(240,160,168,0.15);
-–p0-accent: #e8a0a8; –p0-bg: #281820;
-–p1-accent: #b0a8d8; –p1-bg: #201828;
-–p2-accent: #90b888; –p2-bg: #182018;
-–p3-accent: #d0a868; –p3-bg: #281e10;
-–p4-accent: #78b8c0; –p4-bg: #102028;
-–p5-accent: #d888b0; –p5-bg: #281020;
-–p6-accent: #a09890; –p6-bg: #1c1814;
-}
-
-/* ══════════════════════════════
-THEME 8 — Sage Garden
-══════════════════════════════ */
-[data-theme=“sage”] {
-–bg: #f0f4ee; –bg2: #e0e8dc; –bg3: #c8d8c0;
-–surface: #f8fbf6; –surface2: #edf4e8;
-–accent1: #6a9870; –accent2: #4a7850; –accent3: #2e5234;
-–ink: #1c2e1e; –soft: #5a7060; –border: rgba(106,152,112,0.2);
-–p0-accent: #9aaa70; –p0-bg: #eaf0d8;
-–p1-accent: #80a898; –p1-bg: #d8f0e8;
-–p2-accent: #6a9870; –p2-bg: #d8eedd;
-–p3-accent: #b8a860; –p3-bg: #f0e8c8;
-–p4-accent: #70a8a8; –p4-bg: #d0ecec;
-–p5-accent: #a87898; –p5-bg: #f0dce8;
-–p6-accent: #9a8870; –p6-bg: #ece4d8;
-}
-
-/* ── Firebase Sync ── */
-.sync-btn {
-display: flex; align-items: center; gap: 6px;
-padding: 10px 16px; border-radius: 20px;
-border: 1.5px solid var(–blush);
-background: white; color: var(–mauve);
-font-family: ‘Jost’, sans-serif; font-size: 11px; font-weight: 600;
-letter-spacing: 1.5px; text-transform: uppercase;
-cursor: pointer; transition: all 0.2s;
-box-shadow: 0 2px 8px rgba(150,100,100,0.07);
-}
-.sync-btn:hover { background: var(–petal); border-color: var(–rose); color: var(–deep); }
-.sync-btn .sync-dot {
-width: 7px; height: 7px; border-radius: 50%;
-background: var(–soft); transition: background 0.3s;
-flex-shrink: 0;
-}
-.sync-btn .sync-dot.ok      { background: #7abf8a; }
-.sync-btn .sync-dot.syncing { background: var(–amber, #ccaa80); animation: pulse 1s infinite; }
-.sync-btn .sync-dot.error   { background: #e07878; }
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
-/* Firebase settings overlay */
-.gist-overlay {
-position: fixed; inset: 0; z-index: 500;
-background: rgba(58,48,48,0.35); backdrop-filter: blur(4px);
-display: none; align-items: center; justify-content: center;
-}
-.gist-overlay.open { display: flex; }
-.gist-panel {
-background: var(–surface); border-radius: 24px;
-padding: 36px 40px; width: 520px; max-width: 92vw;
-box-shadow: 0 20px 60px rgba(58,48,48,0.18);
-border: 1px solid var(–border);
-}
-.gist-panel h3 {
-font-family: ‘Cormorant Garamond’, Georgia, serif;
-font-size: 26px; font-weight: 300; color: var(–ink);
-margin-bottom: 6px;
-}
-.gist-panel p { font-size: 12px; color: var(–soft); margin-bottom: 24px; line-height: 1.6; }
-.gist-field { margin-bottom: 14px; }
-.gist-field label {
-display: block; font-size: 10px; font-weight: 600; letter-spacing: 2px;
-text-transform: uppercase; color: var(–soft); margin-bottom: 6px;
-}
-.gist-field input {
-width: 100%; padding: 10px 14px; border-radius: 10px;
-border: 1.5px solid var(–border); background: var(–bg);
-font-family: ‘Jost’, sans-serif; font-size: 12px; color: var(–ink);
-outline: none; box-sizing: border-box; transition: border-color 0.2s;
-}
-.gist-field input:focus { border-color: var(–accent1); }
-.gist-field input::placeholder { color: var(–soft); opacity: 0.5; }
-.gist-actions { display: flex; gap: 10px; margin-top: 24px; }
-.gist-save-btn {
-flex: 1; padding: 11px; border-radius: 14px;
-background: var(–accent1); border: none; color: white;
-font-family: ‘Jost’, sans-serif; font-size: 11px; font-weight: 600;
-letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
-transition: background 0.2s;
-}
-.gist-save-btn:hover { background: var(–accent2); }
-.gist-cancel-btn {
-padding: 11px 20px; border-radius: 14px;
-background: transparent; border: 1.5px solid var(–border); color: var(–soft);
-font-family: ‘Jost’, sans-serif; font-size: 11px; font-weight: 600;
-letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
-transition: all 0.2s;
-}
-.gist-cancel-btn:hover { background: var(–bg2); }
-.gist-status { font-size: 11px; color: var(–soft); margin-top: 12px; text-align: center; min-height: 16px; }
-
-/* ── Library item edit/delete actions ── */
-.lib-item { position: relative; }
-.lib-item-actions {
-display: flex; gap: 4px; margin-left: auto; flex-shrink: 0;
-}
-.lib-item-edit, .lib-item-del {
-width: 26px; height: 26px; border-radius: 7px;
-border: 1.5px solid var(–border); background: transparent;
-cursor: pointer; font-size: 12px; color: var(–soft);
-display: flex; align-items: center; justify-content: center;
-transition: all 0.15s; flex-shrink: 0;
-}
-.lib-item-edit:hover { background: var(–petal); color: var(–accent1); border-color: var(–accent1); }
-.lib-item-del:hover  { background: var(–p0-bg); color: var(–accent1); border-color: var(–accent1); }
-
-/* ── Item edit modal ── */
-.item-edit-overlay {
-position: fixed; inset: 0; z-index: 700;
-background: rgba(58,48,48,0.4); backdrop-filter: blur(4px);
-display: none; align-items: center; justify-content: center;
-}
-.item-edit-overlay.open { display: flex; }
-.item-edit-panel {
-background: var(–surface); border-radius: 24px;
-padding: 32px 36px; width: 420px; max-width: 92vw;
-box-shadow: 0 20px 60px rgba(58,48,48,0.2);
-border: 1px solid var(–border);
-}
-.item-edit-panel h3 {
-font-family: ‘Cormorant Garamond’, Georgia, serif;
-font-size: 24px; font-weight: 300; color: var(–ink); margin-bottom: 22px;
-}
-.item-edit-field { margin-bottom: 18px; }
-.item-edit-field label {
-display: block; font-size: 10px; font-weight: 600; letter-spacing: 2px;
-text-transform: uppercase; color: var(–soft); margin-bottom: 7px;
-}
-.item-edit-field input {
-width: 100%; padding: 11px 14px; border-radius: 11px;
-border: 1.5px solid var(–border); background: var(–bg);
-font-family: ‘Jost’, sans-serif; font-size: 14px; color: var(–ink);
-outline: none; box-sizing: border-box; transition: border-color 0.2s;
-}
-.item-edit-field input:focus { border-color: var(–accent1); }
-.item-edit-actions { display: flex; gap: 10px; margin-top: 24px; }
-.item-edit-save {
-flex: 1; padding: 11px; border-radius: 13px;
-background: var(–accent1); border: none; color: white;
-font-family: ‘Jost’, sans-serif; font-size: 11px; font-weight: 600;
-letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
-transition: background 0.2s;
-}
-.item-edit-save:hover { background: var(–accent2); }
-.item-edit-cancel {
-padding: 11px 20px; border-radius: 13px;
-background: transparent; border: 1.5px solid var(–border); color: var(–soft);
-font-family: ‘Jost’, sans-serif; font-size: 11px; font-weight: 600;
-letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
-transition: all 0.2s;
-}
-.item-edit-cancel:hover { background: var(–bg2); }
-
-/* ── Drag to reorder rows ── */
-.drag-handle {
-display: flex; align-items: center; justify-content: center;
-width: 16px; flex-shrink: 0; opacity: 0;
-cursor: grab; color: var(–soft); font-size: 13px;
-transition: opacity 0.15s; align-self: stretch;
-padding: 0 2px;
-}
-.rl:hover .drag-handle { opacity: 1; }
-.drag-handle:active { cursor: grabbing; }
-.rl.drag-over { border-top: 2px solid var(–accent1) !important; }
-.rl.dragging { opacity: 0.4; }
-
-/* ── Header right controls ── */
-.h-right {
-display: flex; align-items: center;
-gap: clamp(4px, 0.8vw, 12px);
-flex-shrink: 1; min-width: 0; overflow: visible;
-}
-
-/* Shrink all header buttons proportionally with canvas */
-.theme-btn, .aa-btn, .orient-btn, .sync-btn, .export-btn {
-padding: clamp(6px, 0.6vh, 10px) clamp(8px, 1vw, 18px) !important;
-font-size: clamp(9px, 0.85vw, 11px) !important;
-letter-spacing: clamp(0.5px, 0.1vw, 1.5px) !important;
-white-space: nowrap;
-}
-.nav-btn {
-width:  clamp(26px, 2.5vw, 38px) !important;
-height: clamp(26px, 2.5vw, 38px) !important;
-font-size: clamp(12px, 1.2vw, 18px) !important;
-}
-.week-label {
-min-width: clamp(120px, 13vw, 200px) !important;
-font-size: clamp(9px, 0.85vw, 12px) !important;
-}
-.live-clock {
-font-size: clamp(9px, 0.85vw, 12px) !important;
-min-width: unset !important;
-white-space: nowrap;
-}
-
-/* Hide size label text on narrow canvases — keep icon only */
-@media (max-width: 1300px) {
-#sizeBtnLabel { display: none; }
-.export-btn .export-icon + * { display: none; }
-}
-
-/* ── Settings dropdown ── */
-.settings-wrap { position: relative; }
-
-.settings-dropdown {
-position: absolute; top: calc(100% + 8px); right: 0;
-background: var(–surface); border-radius: 18px;
-box-shadow: 0 12px 40px rgba(58,48,48,0.16);
-border: 1px solid var(–border);
-min-width: 240px; z-index: 200;
-opacity: 0; pointer-events: none;
-transform: translateY(-6px) scale(0.97);
-transition: all 0.18s ease;
-overflow: visible;
-padding: 6px 0;
-}
-.settings-dropdown.open {
-opacity: 1; pointer-events: all;
-transform: translateY(0) scale(1);
-}
-
-.sopt {
-display: flex; align-items: center; gap: 12px;
-padding: 11px 18px; cursor: pointer;
-transition: background 0.12s; position: relative;
-}
-.sopt:hover { background: var(–petal); }
-.sopt-icon {
-font-size: 15px; width: 26px; text-align: center;
-flex-shrink: 0; color: var(–soft);
-display: flex; align-items: center; justify-content: center;
-}
-.sopt-text { flex: 1; }
-.sopt-label { font-size: 13px; font-weight: 500; color: var(–ink); }
-.sopt-sub { font-size: 10px; color: var(–soft); margin-top: 1px; }
-.sopt-arrow { font-size: 16px; color: var(–soft); flex-shrink: 0; }
-.sopt-divider { height: 1px; background: var(–border); margin: 4px 0; }
-
-/* Theme submenu inside settings */
-.sopt-theme { position: relative; }
-.sopt-theme .theme-dropdown {
-top: 0 !important; left: calc(100% + 6px) !important;
-right: auto !important; bottom: auto !important;
-}
-/* Size submenu inside settings */
-.sopt-size { position: relative; }
-.sopt-size .size-dropdown {
-top: 0 !important; left: calc(100% + 6px) !important;
-right: auto !important; bottom: auto !important;
-}
-
-/* ── Title as settings trigger ── */
-.title-btn {
-display: flex; align-items: baseline; gap: 8px;
-cursor: pointer; user-select: none;
-}
-.title-btn:hover h1 em { color: var(–accent1); }
-.title-caret {
-font-size: 18px; color: var(–soft); opacity: 0.5;
-transition: transform 0.2s, opacity 0.2s;
-line-height: 1;
-}
-.settings-dropdown.open ~ * .title-caret,
-.title-btn:hover .title-caret { opacity: 1; }
-
-/* Settings dropdown now anchors to h-left */
-.h-left .settings-wrap { position: relative; }
-.h-left .settings-dropdown {
-top: calc(100% + 6px);
-left: 0;
-right: auto;
-min-width: 260px;
-}
-
-- { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-margin: 0; padding: 0;
-background: var(–bg);
-font-family: ‘Jost’, sans-serif;
-color: var(–ink);
-transition: background 0.3s ease, color 0.3s ease;
-overflow-x: auto;
-overflow-y: auto;
-}
-
-/* Viewport — fixed canvas size, scrollable when larger than window */
-#viewport {
-width: 1600px;
-height: 1200px;
-overflow: visible;
-display: flex;
-flex-direction: column;
-background: var(–bg);
-transition: background 0.3s ease;
-}
-
-body::before {
-content: ‘’;
-position: fixed; inset: 0;
-background:
-radial-gradient(ellipse 900px 600px at 8% 15%, rgba(205,155,148,0.1) 0%, transparent 70%),
-radial-gradient(ellipse 700px 800px at 92% 85%, rgba(186,181,205,0.12) 0%, transparent 70%);
-pointer-events: none; z-index: 0;
-}
-
-.page {
-position: relative; z-index: 1;
-padding: 36px 44px 32px;
-display: flex;
-flex-direction: column;
-height: 100%;
-box-sizing: border-box;
-}
-
-/* ── Header ── */
-header {
-display: flex; align-items: center; justify-content: space-between;
-margin-bottom: var(–header-margin, 24px); padding-bottom: var(–header-pad, 18px);
-border-bottom: 1px solid var(–border);
-flex-shrink: 0;
-}
-.h-left h1 {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: var(–fs-title, 54px); font-weight: 300; letter-spacing: -0.5px; line-height: 1.1;
-white-space: nowrap;
-}
-.h-left h1 em { font-style: italic; color: var(–mauve); }
-.h-left p { font-size: var(–fs-subtitle, 11px); font-weight: 400; letter-spacing: 2px; text-transform: uppercase; color: var(–soft); margin-top: 4px; white-space: nowrap; }
-
-.week-nav { display: flex; align-items: center; gap: 16px; }
-.live-clock {
-font-size: var(–fs-week-range, 12px); font-weight: 400; letter-spacing: 2px;
-color: var(–soft); text-transform: uppercase; white-space: nowrap;
-min-width: 90px; text-align: right;
-}
-.nav-btn {
-width: 38px; height: 38px; border-radius: 50%;
-border: 1.5px solid var(–bg3); background: var(–surface); color: var(–accent2);
-font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;
-transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-.nav-btn:hover { background: var(–bg2); border-color: var(–accent1); }
-.week-label {
-font-size: var(–fs-week-range, 12px); font-weight: 400; letter-spacing: 2px; text-transform: uppercase;
-color: var(–soft); min-width: 200px; text-align: center;
-}
-
-/* ── Grid ── */
-.grid-wrap {
-border-radius: 20px; overflow: hidden;
-border: 1px solid var(–border);
-box-shadow: 0 4px 40px rgba(100,70,70,0.07);
-flex: 1;
-display: flex;
-flex-direction: column;
-min-height: 0;
-}
-.grid {
-display: grid;
-grid-template-columns: 220px repeat(7, 1fr);
-flex: 1;
-grid-auto-rows: auto;
-}
-
-.gh {
-background: var(–surface); padding: 14px 6px; text-align: center;
-border-bottom: 2px solid var(–border);
-}
-.gh.corner {
-border-right: 2px solid var(–border);
-display: flex; align-items: center; justify-content: flex-start; gap: 12px; padding: 16px 18px;
-background: var(–surface);
-}
-.gh .dname { font-size: var(–fs-day-label, 10px); font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(–soft); }
-.gh .dnum { font-family: ‘Cormorant Garamond’, serif; font-size: var(–fs-day-num, 30px); font-weight: 300; color: var(–ink); line-height: 1; margin-top: 2px; }
-.gh .dnum.today { color: var(–rose); }
-.gh .dnum.today::after { content: ‘’; display: block; width: 18px; height: 2px; background: var(–rose); border-radius: 2px; margin: 3px auto 0; }
-
-.add-row-btn {
-display: flex; align-items: center; gap: 6px;
-padding: 8px 14px; border-radius: 20px;
-border: 1.5px dashed rgba(180,140,140,0.4);
-background: transparent; color: var(–mauve);
-font-family: ‘Jost’, sans-serif; font-size: 11px; font-weight: 600;
-letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: all 0.2s;
-}
-.add-row-btn:hover { background: var(–petal); border-color: var(–rose); color: var(–deep); }
-.add-row-btn.active { background: var(–rose); border-color: var(–rose); color: white; border-style: solid; }
-
-/* Row label */
-.rl {
-background: var(–surface); border-right: 2px solid var(–border);
-border-bottom: 1px solid var(–border);
-padding: 12px 14px 12px 18px; display: flex; align-items: center;
-gap: 10px; position: relative;
-}
-.rl::before {
-content: ‘’; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
-}
-.rl.c0::before { background: #cd9b94; }
-.rl.c1::before { background: #bab5cd; }
-.rl.c2::before { background: #a3b59c; }
-.rl.c3::before { background: #ccaa80; }
-.rl.c4::before { background: #90b5b0; }
-.rl.c5::before { background: #e0a0b8; }
-.rl.c6::before { background: #b0a090; }
-
-.rl-icon { font-size: 18px; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; cursor: pointer; align-self: flex-start; margin-top: 2px; }
-.rl-icon.c0 { background: var(–p0-bg); } .rl-icon.c1 { background: var(–p1-bg); }
-.rl-icon.c2 { background: var(–p2-bg); } .rl-icon.c3 { background: var(–p3-bg); }
-.rl-icon.c4 { background: var(–p4-bg); } .rl-icon.c5 { background: var(–p5-bg); }
-.rl-icon.c6 { background: var(–p6-bg); }
-
-.rl-text { flex: 1; overflow: visible; min-width: 0; }
-.rl-name {
-font-size: var(–fs-row-name, 12px); font-weight: 600; letter-spacing: 0.3px;
-color: var(–ink);
-white-space: normal;
-word-break: normal;
-overflow-wrap: normal;
-hyphens: none;
-line-height: 1.35;
-max-width: 100%;
-}
-.rl-sub { font-size: var(–fs-row-count, 10px); font-weight: 300; color: var(–soft); font-style: italic; margin-top: 3px; white-space: nowrap; }
-.rl-actions { display: flex; gap: 3px; opacity: 0; transition: opacity 0.15s; align-self: flex-start; margin-top: 2px; }
-.rl:hover .rl-actions { opacity: 1; }
-.rl-btn { width: 24px; height: 24px; border-radius: 7px; border: 1px solid var(–border); background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(–soft); transition: all 0.15s; }
-.rl-btn:hover { background: var(–bg2); color: var(–accent1); }
-.rl-btn.del:hover { background: var(–p0-bg); color: var(–accent1); }
-.rl-name-input { font-size: 12px; font-weight: 600; color: var(–ink); background: transparent; border: none; border-bottom: 1.5px solid var(–accent1); outline: none; font-family: ‘Jost’, sans-serif; width: 110px; }
-
-/* Cell matches row height automatically via grid */
-.cell {
-background: var(–surface); border-bottom: 1px solid var(–border);
-border-right: 1px solid var(–border);
-cursor: pointer;
-display: flex; align-items: center; justify-content: center;
-position: relative; transition: background 0.2s;
-overflow: hidden;
-}
-.cell:hover { background: var(–surface2); }
-
-/* Hover ghost tick */
-.cell:not(.checked):hover .check-ghost { opacity: 1; transform: scale(1); }
-.check-ghost {
-position: absolute; inset: 0;
-display: flex; align-items: center; justify-content: center;
-opacity: 0; transform: scale(0.85); transition: all 0.18s ease; pointer-events: none;
-}
-.check-ghost::after {
-content: ‘✓’; font-size: 36px; font-weight: 700;
-color: var(–border); font-family: ‘Jost’, sans-serif; line-height: 1;
-}
-
-/* Checked state */
-.cell.checked.c0 { background: var(–p0-bg); }
-.cell.checked.c1 { background: var(–p1-bg); }
-.cell.checked.c2 { background: var(–p2-bg); }
-.cell.checked.c3 { background: var(–p3-bg); }
-.cell.checked.c4 { background: var(–p4-bg); }
-.cell.checked.c5 { background: var(–p5-bg); }
-.cell.checked.c6 { background: var(–p6-bg); }
-
-/* The big check mark */
-.check-mark {
-display: flex; align-items: center; justify-content: center;
-width: 100%; height: 100%;
-position: absolute; inset: 0;
-opacity: 0;
-transform: scale(0.5);
-transition: opacity 0.2s ease, transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
-pointer-events: none;
-}
-.cell.checked .check-mark {
-opacity: 1; transform: scale(1);
-}
-
-.check-mark-inner {
-font-size: 44px;
-font-weight: 700;
-font-family: ‘Jost’, sans-serif;
-line-height: 1;
-/* per-colour */
-}
-.cell.checked.c0 .check-mark-inner { color: var(–p0-accent); }
-.cell.checked.c1 .check-mark-inner { color: var(–p1-accent); }
-.cell.checked.c2 .check-mark-inner { color: var(–p2-accent); }
-.cell.checked.c3 .check-mark-inner { color: var(–p3-accent); }
-.cell.checked.c4 .check-mark-inner { color: var(–p4-accent); }
-.cell.checked.c5 .check-mark-inner { color: var(–p5-accent); }
-.cell.checked.c6 .check-mark-inner { color: var(–p6-accent); }
-
-.note-dot { position: absolute; top: 7px; right: 7px; width: 7px; height: 7px; border-radius: 50%; background: var(–blush); z-index: 2; }
-.cell.checked .note-dot { background: rgba(255,255,255,0.7); }
-
-/* ── Summary ── */
-.summary { display: grid; gap: 12px; margin-top: 16px; flex-shrink: 0; }
-.sum-card { background: var(–surface); border-radius: 14px; padding: 14px 18px; display: flex; align-items: center; gap: 14px; border: 1px solid var(–border); box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
-.sum-icon { width: 40px; height: 40px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-.sum-icon.c0 { background: var(–p0-bg); } .sum-icon.c1 { background: var(–p1-bg); }
-.sum-icon.c2 { background: var(–p2-bg); } .sum-icon.c3 { background: var(–p3-bg); }
-.sum-icon.c4 { background: var(–p4-bg); } .sum-icon.c5 { background: var(–p5-bg); }
-.sum-icon.c6 { background: var(–p6-bg); }
-.sum-body { flex: 1; }
-.sum-nums { font-family: ‘Cormorant Garamond’, serif; font-size: var(–fs-sum-num, 26px); font-weight: 300; line-height: 1; color: var(–ink); }
-.sum-nums span { font-size: 12px; font-family: ‘Jost’, sans-serif; font-weight: 300; color: var(–soft); }
-.sum-label { font-size: var(–fs-sum-name, 10px); letter-spacing: 1.5px; text-transform: uppercase; color: var(–soft); margin-top: 3px; font-weight: 500; }
-.pbar { height: 3px; background: rgba(180,140,140,0.12); border-radius: 2px; margin-top: 6px; overflow: hidden; }
-.pfill { height: 100%; border-radius: 2px; transition: width 0.5s ease; }
-.pfill.c0 { background: var(–p0-accent); } .pfill.c1 { background: var(–p1-accent); }
-.pfill.c2 { background: var(–p2-accent); } .pfill.c3 { background: var(–p3-accent); }
-.pfill.c4 { background: var(–p4-accent); } .pfill.c5 { background: var(–p5-accent); }
-.pfill.c6 { background: var(–p6-accent); }
-
-/* ══════════════════════════════════════════
-LIBRARY POPUP (centred modal)
-══════════════════════════════════════════ */
-.panel-overlay {
-position: fixed; inset: 0;
-background: rgba(58,48,48,0.45);
-backdrop-filter: blur(8px);
-z-index: 300;
-display: flex; align-items: center; justify-content: center;
-opacity: 0; pointer-events: none;
-transition: opacity 0.25s ease;
-}
-.panel-overlay.open { opacity: 1; pointer-events: all; }
-
-.library-panel {
-width: 860px; max-height: 82vh;
-background: var(–bg);
-border-radius: 28px;
-box-shadow: 0 32px 80px rgba(0,0,0,0.22), 0 0 0 1px var(–border);
-display: flex; flex-direction: column;
-transform: translateY(20px) scale(0.97); opacity: 0;
-transition: transform 0.28s cubic-bezier(0.32,0,0.17,1), opacity 0.28s ease;
-}
-.panel-overlay.open .library-panel {
-transform: translateY(0) scale(1);
-opacity: 1;
-}
-
-.panel-header {
-padding: 32px 36px 0;
-flex-shrink: 0;
-}
-.panel-header-top {
-display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 6px;
-}
-.panel-header h2 {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 34px; font-weight: 300;
-}
-.panel-header h2 em { font-style: italic; color: var(–mauve); }
-.panel-header p { font-size: 12px; color: var(–soft); font-weight: 300; line-height: 1.5; margin-bottom: 22px; }
-
-.panel-close {
-width: 34px; height: 34px; border-radius: 50%;
-border: 1.5px solid var(–blush); background: transparent;
-color: var(–soft); font-size: 15px; cursor: pointer;
-display: flex; align-items: center; justify-content: center;
-transition: all 0.15s; flex-shrink: 0;
-}
-.panel-close:hover { background: var(–petal); color: var(–rose); }
-
-/* Tabs */
-.panel-tabs {
-display: flex; gap: 0;
-border-bottom: 2px solid var(–border);
-margin: 0 36px;
-}
-.panel-tab {
-padding: 10px 22px;
-font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
-color: var(–soft); cursor: pointer; border-bottom: 2px solid transparent;
-margin-bottom: -2px; transition: all 0.15s; white-space: nowrap;
-}
-.panel-tab:hover { color: var(–mauve); }
-.panel-tab.active { color: var(–rose); border-bottom-color: var(–rose); }
-
-/* Panel body scrollable */
-.panel-body {
-flex: 1; overflow-y: auto; padding: 24px 36px 36px;
-}
-.panel-body::-webkit-scrollbar { width: 4px; }
-.panel-body::-webkit-scrollbar-track { background: transparent; }
-.panel-body::-webkit-scrollbar-thumb { background: var(–blush); border-radius: 2px; }
-
-/* ── Library tab ── */
-.lib-top-row {
-display: flex; align-items: center; gap: 14px; margin-bottom: 22px;
-}
-.lib-search {
-position: relative; flex: 1;
-}
-.lib-search input {
-width: 100%; padding: 11px 16px 11px 38px;
-border: 1.5px solid rgba(180,140,140,0.22); border-radius: 12px;
-font-family: ‘Jost’, sans-serif; font-size: 13px;
-background: white; color: var(–ink); outline: none;
-transition: border-color 0.2s;
-}
-.lib-search input:focus { border-color: var(–rose); }
-.lib-search input::placeholder { color: rgba(130,110,110,0.45); }
-.lib-search .search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 14px; color: var(–soft); pointer-events: none; }
-
-/* Two-column category grid */
-.lib-cats-grid {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 24px 28px;
-}
-
-.lib-category { margin-bottom: 0; }
-.lib-cat-label {
-display: flex; align-items: center; gap: 8px;
-font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-color: var(–soft); margin-bottom: 10px;
-}
-.lib-cat-label .cat-dot { width: 8px; height: 8px; border-radius: 50%; }
-
-.lib-items { display: flex; flex-direction: column; gap: 5px; }
-
-.lib-item {
-display: flex; align-items: center; gap: 10px;
-padding: 9px 12px; border-radius: 11px;
-background: white; border: 1.5px solid transparent;
-cursor: pointer; transition: all 0.15s;
-}
-.lib-item:hover { border-color: var(–blush); box-shadow: 0 2px 10px rgba(100,70,70,0.07); }
-.lib-item.already-added { opacity: 0.6; pointer-events: none; }
-.lib-item.already-added .lib-item-actions { pointer-events: all; opacity: 1; }
-
-.lib-item-icon { font-size: 18px; width: 34px; height: 34px; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.lib-item-info { flex: 1; }
-.lib-item-name { font-size: 13px; font-weight: 500; color: var(–ink); }
-.lib-item-tag { font-size: 10px; color: var(–soft); font-style: italic; margin-top: 1px; }
-.lib-item-add {
-width: 28px; height: 28px; border-radius: 8px;
-border: 1.5px solid rgba(180,140,140,0.25);
-background: transparent; color: var(–rose);
-font-size: 17px; cursor: pointer; display: flex; align-items: center; justify-content: center;
-transition: all 0.15s; font-weight: 300;
-}
-.lib-item-add:hover { background: var(–rose); color: white; border-color: var(–rose); }
-.lib-item-added { font-size: 12px; color: var(–sage); font-weight: 600; padding: 0 6px; }
-
-/* My saved products section inside library */
-.saved-section { margin-bottom: 28px; }
-.saved-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-.saved-header span { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(–mauve); }
-.saved-empty { font-size: 12px; color: var(–soft); font-style: italic; text-align: center; padding: 16px 0; }
-
-/* ── Custom tab ── */
-.custom-form { display: flex; flex-direction: column; gap: 20px; }
-.form-field label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(–soft); margin-bottom: 9px; }
-.form-field input {
-width: 100%; padding: 12px 16px;
-border: 1.5px solid rgba(180,140,140,0.22); border-radius: 12px;
-font-family: ‘Jost’, sans-serif; font-size: 14px;
-background: white; color: var(–ink); outline: none; transition: border-color 0.2s;
-}
-.form-field input:focus { border-color: var(–rose); }
-.form-field input::placeholder { color: rgba(130,110,110,0.4); }
-
-.icon-row { display: flex; gap: 8px; flex-wrap: wrap; }
-.icon-opt {
-width: 42px; height: 42px; border-radius: 12px;
-display: flex; align-items: center; justify-content: center;
-font-size: 20px; cursor: pointer; background: white;
-border: 2px solid transparent; transition: all 0.12s;
-}
-.icon-opt:hover { background: var(–petal); }
-.icon-opt.sel { border-color: var(–rose); background: var(–petal); }
-
-.color-row { display: flex; gap: 10px; flex-wrap: wrap; }
-.color-opt {
-width: 32px; height: 32px; border-radius: 50%;
-cursor: pointer; border: 3px solid transparent; transition: all 0.12s;
-}
-.color-opt:hover { transform: scale(1.15); }
-.color-opt.sel { border-color: var(–ink); transform: scale(1.1); }
-
-.save-also-row {
-display: flex; align-items: center; gap: 10px;
-padding: 12px 16px; background: var(–petal); border-radius: 12px;
-cursor: pointer;
-}
-.save-also-check {
-width: 20px; height: 20px; border-radius: 6px;
-border: 2px solid rgba(180,140,140,0.35); background: white;
-display: flex; align-items: center; justify-content: center;
-font-size: 11px; color: white; transition: all 0.15s; flex-shrink: 0;
-}
-.save-also-check.checked { background: var(–rose); border-color: var(–rose); }
-.save-also-label { font-size: 12px; color: var(–ink); font-weight: 400; }
-.save-also-label span { font-size: 11px; color: var(–soft); display: block; font-weight: 300; margin-top: 1px; }
-
-.btn-add-custom {
-width: 100%; padding: 15px;
-background: var(–rose); color: white; border: none;
-border-radius: 14px; font-family: ‘Jost’, sans-serif;
-font-size: 12px; font-weight: 700; letter-spacing: 2px;
-text-transform: uppercase; cursor: pointer; transition: background 0.2s;
-margin-top: 4px;
-}
-.btn-add-custom:hover { background: var(–mauve); }
-
-/* Note overlay */
-.overlay { position: fixed; inset: 0; background: rgba(58,48,48,0.38); backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; z-index: 200; }
-.overlay.open { display: flex; }
-.note-modal { background: var(–cream); border-radius: 22px; padding: 38px; width: 440px; box-shadow: 0 24px 60px rgba(58,48,48,0.2); border: 1px solid var(–border); animation: popIn 0.2s ease; }
-@keyframes popIn { from { transform: translateY(12px) scale(0.97); opacity: 0; } to { transform: none; opacity: 1; } }
-.nm-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 6px; }
-.nm-head h3 { font-family: ‘Cormorant Garamond’, serif; font-size: 26px; font-weight: 300; }
-.nm-date { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(–soft); margin-bottom: 24px; }
-.nm-lbl { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(–soft); margin-bottom: 10px; }
-.nm-textarea { width: 100%; padding: 12px 16px; border: 1.5px solid rgba(180,140,140,0.22); border-radius: 12px; font-family: ‘Jost’, sans-serif; font-size: 13px; background: white; color: var(–ink); outline: none; resize: none; height: 90px; transition: border-color 0.2s; }
-.nm-textarea:focus { border-color: var(–rose); }
-.modal-close { width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(–blush); background: transparent; color: var(–soft); font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
-.modal-close:hover { background: var(–petal); }
-.nm-actions { display: flex; gap: 10px; margin-top: 24px; }
-.btn-save { flex: 1; padding: 13px; background: var(–rose); color: white; border: none; border-radius: 12px; font-family: ‘Jost’, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
-.btn-save:hover { background: var(–mauve); }
-.btn-ghost { padding: 13px 20px; background: transparent; color: var(–soft); border: 1.5px solid rgba(180,140,140,0.25); border-radius: 12px; font-family: ‘Jost’, sans-serif; font-size: 12px; cursor: pointer; transition: all 0.15s; }
-.btn-ghost:hover { background: var(–petal); }
-
-/* Emoji picker */
-.emoji-picker-wrap { position: fixed; background: white; border-radius: 16px; padding: 14px; box-shadow: 0 12px 40px rgba(58,48,48,0.18); border: 1px solid var(–border); z-index: 500; display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; width: 278px; }
-.ep-opt { width: 28px; height: 28px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 17px; cursor: pointer; transition: background 0.1s; }
-.ep-opt:hover { background: var(–petal); }
-
-/* ── Theme selector ── */
-.theme-wrap { position: relative; }
-
-.theme-btn {
-display: flex; align-items: center; gap: 7px;
-padding: 10px 16px; border-radius: 20px;
-border: 1.5px solid var(–bg3);
-background: var(–surface); color: var(–accent2);
-font-family: ‘Jost’, sans-serif; font-size: 11px; font-weight: 600;
-letter-spacing: 1.5px; text-transform: uppercase;
-cursor: pointer; transition: all 0.2s;
-box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-}
-.theme-btn:hover { background: var(–bg2); border-color: var(–accent1); color: var(–accent3); }
-
-.theme-dropdown {
-position: absolute; top: calc(100% + 8px); right: 0;
-background: var(–surface); border-radius: 18px;
-box-shadow: 0 8px 40px rgba(0,0,0,0.16);
-border: 1px solid var(–border);
-overflow: hidden; min-width: 220px;
-opacity: 0; pointer-events: none;
-transform: translateY(-6px) scale(0.97);
-transition: all 0.18s ease; z-index: 100;
-}
-.theme-dropdown.open { opacity: 1; pointer-events: all; transform: none; }
-
-.theme-option {
-display: flex; align-items: center; gap: 12px;
-padding: 12px 16px; cursor: pointer; transition: background 0.12s;
-}
-.theme-option:hover { background: var(–bg2); }
-.theme-option:not(:last-child) { border-bottom: 1px solid var(–border); }
-.theme-option.active { background: var(–bg2); }
-
-.theme-swatch-group {
-display: flex; gap: 3px; flex-shrink: 0;
-}
-.theme-dot {
-width: 12px; height: 12px; border-radius: 50%;
-}
-.theme-option-name {
-font-size: 13px; font-weight: 500; color: var(–ink); flex: 1;
-}
-.theme-check { font-size: 14px; color: var(–accent1); width: 16px; }
-
-/* ── Aa Typography button ── */
-.aa-btn {
-display: flex; align-items: center; gap: 5px;
-padding: 10px 16px; border-radius: 20px;
-border: 1.5px solid var(–blush);
-background: white; color: var(–mauve);
-font-family: ‘Cormorant Garamond’, serif; font-size: 17px; font-weight: 400;
-cursor: pointer; transition: all 0.2s;
-box-shadow: 0 2px 8px rgba(150,100,100,0.07);
-letter-spacing: 0px;
-}
-.aa-btn:hover { background: var(–petal); border-color: var(–rose); color: var(–deep); }
-.aa-btn.active { background: var(–petal); border-color: var(–rose); color: var(–deep); }
-
-/* Typography overlay */
-.typo-overlay {
-position: fixed; inset: 0;
-background: transparent;
-z-index: 350;
-display: flex; align-items: center; justify-content: center;
-opacity: 0; pointer-events: none;
-transition: opacity 0.22s ease;
-}
-.typo-overlay.open { opacity: 1; pointer-events: all; }
-
-.typo-popup {
-width: 500px;
-background: var(–cream);
-border-radius: 26px;
-box-shadow: 0 12px 50px rgba(58,48,48,0.18), 0 0 0 1px rgba(180,140,140,0.18), 0 2px 8px rgba(58,48,48,0.08);
-padding: 36px 38px 32px;
-transform: translateY(-8px) scale(0.97);
-opacity: 0;
-transition: transform 0.25s cubic-bezier(0.32,0,0.17,1), opacity 0.25s ease;
-}
-.typo-overlay.open .typo-popup { transform: translateY(0) scale(1); opacity: 1; }
-
-.typo-header {
-display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 6px;
-}
-.typo-header h2 { font-family: ‘Cormorant Garamond’, serif; font-size: 30px; font-weight: 300; }
-.typo-header h2 em { font-style: italic; color: var(–mauve); }
-.typo-sub { font-size: 12px; color: var(–soft); font-weight: 300; margin-bottom: 24px; }
-
-.typo-rows { display: flex; flex-direction: column; gap: 6px; }
-
-.typo-row {
-display: flex; align-items: center;
-background: white; border-radius: 14px;
-padding: 13px 18px; border: 1px solid var(–border);
-gap: 14px; transition: box-shadow 0.15s;
-}
-.typo-row:hover { box-shadow: 0 2px 14px rgba(100,70,70,0.07); }
-
-.typo-row-info { flex: 1; overflow: hidden; }
-.typo-row-label {
-font-size: 10px; font-weight: 700; letter-spacing: 1.8px;
-text-transform: uppercase; color: var(–soft); margin-bottom: 5px;
-}
-.typo-row-preview {
-color: var(–ink); font-weight: 400; line-height: 1.2;
-white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-max-width: 280px; transition: font-size 0.12s;
-}
-
-.typo-stepper { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-
-.typo-step-btn {
-width: 30px; height: 30px; border-radius: 9px;
-border: 1.5px solid rgba(180,140,140,0.25);
-background: white; color: var(–mauve);
-font-size: 17px; font-weight: 300; cursor: pointer;
-display: flex; align-items: center; justify-content: center;
-transition: all 0.15s; user-select: none;
-}
-.typo-step-btn:hover:not(:disabled) { background: var(–rose); color: white; border-color: var(–rose); }
-.typo-step-btn:disabled { opacity: 0.28; cursor: not-allowed; }
-
-.typo-size-val {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 20px; font-weight: 300; color: var(–ink);
-min-width: 44px; text-align: center;
-}
-
-.typo-footer {
-display: flex; justify-content: space-between; align-items: center; margin-top: 20px;
-}
-.typo-reset-btn {
-padding: 9px 18px; border-radius: 10px;
-border: 1.5px solid rgba(180,140,140,0.22);
-background: transparent; color: var(–soft);
-font-family: ‘Jost’, sans-serif; font-size: 10px; font-weight: 600;
-letter-spacing: 1.5px; text-transform: uppercase;
-cursor: pointer; transition: all 0.15s;
-}
-.typo-reset-btn:hover { background: var(–petal); color: var(–mauve); }
-.typo-done-btn {
-padding: 10px 28px; border-radius: 12px; border: none;
-background: var(–rose); color: white;
-font-family: ‘Jost’, sans-serif; font-size: 11px; font-weight: 600;
-letter-spacing: 1.5px; text-transform: uppercase;
-cursor: pointer; transition: background 0.15s;
-}
-.typo-done-btn:hover { background: var(–mauve); }
-
-.size-wrap { position: relative; }
-
-.size-dropdown {
-position: absolute; top: calc(100% + 8px); right: 0;
-background: var(–surface); border-radius: 18px;
-box-shadow: 0 8px 40px rgba(0,0,0,0.16);
-border: 1px solid var(–border);
-overflow: hidden; min-width: 210px;
-opacity: 0; pointer-events: none;
-transform: translateY(-6px) scale(0.97);
-transition: all 0.18s ease; z-index: 100;
-}
-.size-dropdown.open { opacity: 1; pointer-events: all; transform: none; }
-
-.size-option {
-display: flex; align-items: center; gap: 14px;
-padding: 13px 18px; cursor: pointer; transition: background 0.12s;
-}
-.size-option:hover { background: var(–bg2); }
-.size-option:not(:last-child) { border-bottom: 1px solid var(–border); }
-.size-option.active { background: var(–bg2); }
-
-.size-icon { font-size: 16px; width: 22px; text-align: center; flex-shrink: 0; }
-.size-option-info { flex: 1; }
-.size-option-dims { font-size: 13px; font-weight: 600; color: var(–ink); }
-.size-option-label { font-size: 10px; color: var(–soft); margin-top: 1px; letter-spacing: 0.5px; }
-.size-check { font-size: 13px; color: var(–accent1); width: 16px; text-align: right; }
-
-/* ── Orientation toggle ── */
-.orient-btn {
-display: flex; align-items: center; gap: 7px;
-padding: 10px 16px; border-radius: 20px;
-border: 1.5px solid var(–blush);
-background: white; color: var(–mauve);
-font-family: ‘Jost’, sans-serif; font-size: 11px; font-weight: 600;
-letter-spacing: 1.5px; text-transform: uppercase;
-cursor: pointer; transition: all 0.2s;
-box-shadow: 0 2px 8px rgba(150,100,100,0.07);
-}
-.orient-btn:hover { background: var(–petal); border-color: var(–rose); color: var(–deep); }
-.orient-btn.portrait { background: var(–lav-light); border-color: var(–lavender); color: #5a5580; }
-.orient-btn.portrait:hover { background: var(–lavender); color: white; }
-
-/* Per-size layout tweaks no longer needed — transform scale handles fitting */
-
-/* ── Export button + dropdown ── */
-.export-wrap { position: relative; }
-
-.export-btn {
-display: flex; align-items: center; gap: 7px;
-padding: 10px 18px; border-radius: 20px;
-border: 1.5px solid var(–blush);
-background: white; color: var(–mauve);
-font-family: ‘Jost’, sans-serif; font-size: 11px; font-weight: 600;
-letter-spacing: 1.5px; text-transform: uppercase;
-cursor: pointer; transition: all 0.2s;
-box-shadow: 0 2px 8px rgba(150,100,100,0.07);
-}
-.export-btn:hover { background: var(–petal); border-color: var(–rose); color: var(–deep); }
-.export-btn .export-icon { font-size: 14px; }
-
-.export-dropdown {
-position: absolute; top: calc(100% + 8px); right: 0;
-background: white; border-radius: 16px;
-box-shadow: 0 8px 32px rgba(58,48,48,0.14);
-border: 1px solid var(–border);
-overflow: hidden; min-width: 190px;
-opacity: 0; pointer-events: none;
-transform: translateY(-6px) scale(0.97);
-transition: all 0.18s ease;
-z-index: 100;
-}
-.export-dropdown.open {
-opacity: 1; pointer-events: all;
-transform: translateY(0) scale(1);
-}
-
-.export-option {
-display: flex; align-items: center; gap: 12px;
-padding: 13px 18px; cursor: pointer;
-transition: background 0.12s;
-}
-.export-option:hover { background: var(–petal); }
-.export-option:not(:last-child) { border-bottom: 1px solid rgba(180,140,140,0.1); }
-.export-option .opt-icon { font-size: 16px; width: 24px; text-align: center; flex-shrink: 0; }
-.export-option .opt-text .opt-label { font-size: 13px; font-weight: 500; color: var(–ink); }
-.export-option .opt-text .opt-sub { font-size: 10px; color: var(–soft); font-weight: 300; margin-top: 1px; }
-
-/* Export toast */
-.export-toast {
-position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(20px);
-background: rgba(58,48,48,0.9); backdrop-filter: blur(8px);
-color: white; padding: 12px 28px; border-radius: 30px;
-font-size: 12px; font-weight: 500; letter-spacing: 1px;
-opacity: 0; transition: all 0.3s ease; pointer-events: none; z-index: 500;
-white-space: nowrap;
-}
-.export-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    /* palette row colours */
+    --p0-accent: #cd9b94; --p0-bg: #faeae6;
+    --p1-accent: #bab5cd; --p1-bg: #e5e2f2;
+    --p2-accent: #a3b59c; --p2-bg: #dae4d7;
+    --p3-accent: #ccaa80; --p3-bg: #f0e2ce;
+    --p4-accent: #90b5b0; --p4-bg: #d8eeec;
+    --p5-accent: #e0a0b8; --p5-bg: #fce8f0;
+    --p6-accent: #b0a090; --p6-bg: #ede8e0;
+
+    /* legacy aliases kept for compatibility */
+    --cream:        var(--bg);
+    --petal:        var(--bg2);
+    --blush:        var(--bg3);
+    --rose:         var(--accent1);
+    --mauve:        var(--accent2);
+    --deep:         var(--accent3);
+    --sage:         var(--p2-accent);
+    --sage-light:   var(--p2-bg);
+    --lavender:     var(--p1-accent);
+    --lav-light:    var(--p1-bg);
+    --amber:        var(--p3-accent);
+    --amber-light:  var(--p3-bg);
+    --teal:         var(--p4-accent);
+    --teal-light:   var(--p4-bg);
+  }
+
+  /* ══════════════════════════════
+     THEME 1 — Blush & Cream (default)
+  ══════════════════════════════ */
+  [data-theme="blush"] {
+    --bg: #faf7f2; --bg2: #f5ece6; --bg3: #eed8cf;
+    --surface: #ffffff; --surface2: #fdf9f7;
+    --accent1: #cd9b94; --accent2: #a67070; --accent3: #7a5050;
+    --ink: #3a3030; --soft: #7d6d6d; --border: rgba(180,140,140,0.15);
+    --p0-accent: #cd9b94; --p0-bg: #faeae6;
+    --p1-accent: #bab5cd; --p1-bg: #e5e2f2;
+    --p2-accent: #a3b59c; --p2-bg: #dae4d7;
+    --p3-accent: #ccaa80; --p3-bg: #f0e2ce;
+    --p4-accent: #90b5b0; --p4-bg: #d8eeec;
+    --p5-accent: #e0a0b8; --p5-bg: #fce8f0;
+    --p6-accent: #b0a090; --p6-bg: #ede8e0;
+  }
+
+  /* ══════════════════════════════
+     THEME 2 — Midnight Spa
+  ══════════════════════════════ */
+  [data-theme="midnight"] {
+    --bg: #12151f; --bg2: #1c2130; --bg3: #252b3d;
+    --surface: #1e2436; --surface2: #252d42;
+    --accent1: #c9a84c; --accent2: #e6c97a; --accent3: #f0dfa0;
+    --ink: #f0ead8; --soft: #8a8fa8; --border: rgba(200,168,76,0.18);
+    --p0-accent: #c9a84c; --p0-bg: #2a2418;
+    --p1-accent: #8890c8; --p1-bg: #1e2238;
+    --p2-accent: #7aaa88; --p2-bg: #182418;
+    --p3-accent: #c89060; --p3-bg: #281e14;
+    --p4-accent: #60a8b8; --p4-bg: #142028;
+    --p5-accent: #c878a0; --p5-bg: #281420;
+    --p6-accent: #a09080; --p6-bg: #201c18;
+  }
+
+  /* ══════════════════════════════
+     THEME 3 — Matcha
+  ══════════════════════════════ */
+  [data-theme="matcha"] {
+    --bg: #f4f0e8; --bg2: #e8e4d8; --bg3: #d4c8b0;
+    --surface: #faf8f2; --surface2: #f0ece0;
+    --accent1: #7a9968; --accent2: #5a7848; --accent3: #3d5230;
+    --ink: #2c2e1e; --soft: #6a7258; --border: rgba(90,120,72,0.18);
+    --p0-accent: #7a9968; --p0-bg: #e4eedd;
+    --p1-accent: #b8a87a; --p1-bg: #f0e8d0;
+    --p2-accent: #5a8868; --p2-bg: #d8eedf;
+    --p3-accent: #c4984a; --p3-bg: #f8ecd0;
+    --p4-accent: #7ab0a0; --p4-bg: #d8f0e8;
+    --p5-accent: #b87890; --p5-bg: #f8e0e8;
+    --p6-accent: #988870; --p6-bg: #ede4d8;
+  }
+
+  /* ══════════════════════════════
+     THEME 4 — Cloud
+  ══════════════════════════════ */
+  [data-theme="cloud"] {
+    --bg: #f8f9fb; --bg2: #eef1f6; --bg3: #dde4ee;
+    --surface: #ffffff; --surface2: #f4f6fa;
+    --accent1: #7eafd4; --accent2: #4d8ab8; --accent3: #2d6090;
+    --ink: #1e2a3a; --soft: #6a7d94; --border: rgba(126,175,212,0.2);
+    --p0-accent: #7eafd4; --p0-bg: #ddeef8;
+    --p1-accent: #a494cc; --p1-bg: #ede8f8;
+    --p2-accent: #80b898; --p2-bg: #ddf0e4;
+    --p3-accent: #c4a870; --p3-bg: #f8edda;
+    --p4-accent: #68b8c8; --p4-bg: #d8f0f8;
+    --p5-accent: #cc88a8; --p5-bg: #f8e0ee;
+    --p6-accent: #9898a8; --p6-bg: #eaeaf0;
+  }
+
+  /* ══════════════════════════════
+     THEME 5 — Sunset
+  ══════════════════════════════ */
+  [data-theme="sunset"] {
+    --bg: #fdf6ee; --bg2: #fce8d4; --bg3: #f8d0b0;
+    --surface: #ffffff; --surface2: #fdf0e4;
+    --accent1: #e8845a; --accent2: #c85e34; --accent3: #a03c18;
+    --ink: #3a1e10; --soft: #8a5840; --border: rgba(232,132,90,0.2);
+    --p0-accent: #e8845a; --p0-bg: #fde8dc;
+    --p1-accent: #d4a060; --p1-bg: #fce8cc;
+    --p2-accent: #88b070; --p2-bg: #e0f0d4;
+    --p3-accent: #e0b050; --p3-bg: #fcf0cc;
+    --p4-accent: #70b0a8; --p4-bg: #d4f0ec;
+    --p5-accent: #e07898; --p5-bg: #fce0e8;
+    --p6-accent: #b09080; --p6-bg: #f0e4dc;
+  }
+
+  /* ══════════════════════════════
+     THEME 6 — Lavender Dream
+  ══════════════════════════════ */
+  [data-theme="lavender"] {
+    --bg: #f6f4fc; --bg2: #ede8f8; --bg3: #d8d0f0;
+    --surface: #ffffff; --surface2: #f2f0fc;
+    --accent1: #9080c8; --accent2: #6858a8; --accent3: #483880;
+    --ink: #20183c; --soft: #706090; --border: rgba(144,128,200,0.2);
+    --p0-accent: #c080b0; --p0-bg: #f8e0f0;
+    --p1-accent: #9080c8; --p1-bg: #e8e0f8;
+    --p2-accent: #80a898; --p2-bg: #d8f0e8;
+    --p3-accent: #b8a070; --p3-bg: #f0e8d0;
+    --p4-accent: #7898c8; --p4-bg: #d8e8f8;
+    --p5-accent: #c870a0; --p5-bg: #f8d8ec;
+    --p6-accent: #9888b0; --p6-bg: #ece8f4;
+  }
+
+  /* ══════════════════════════════
+     THEME 7 — Noir
+  ══════════════════════════════ */
+  [data-theme="noir"] {
+    --bg: #0a0a0a; --bg2: #141414; --bg3: #1e1e1e;
+    --surface: #161616; --surface2: #1c1c1c;
+    --accent1: #e8a0a8; --accent2: #c87880; --accent3: #f0c0c8;
+    --ink: #f0ede8; --soft: #888080; --border: rgba(240,160,168,0.15);
+    --p0-accent: #e8a0a8; --p0-bg: #281820;
+    --p1-accent: #b0a8d8; --p1-bg: #201828;
+    --p2-accent: #90b888; --p2-bg: #182018;
+    --p3-accent: #d0a868; --p3-bg: #281e10;
+    --p4-accent: #78b8c0; --p4-bg: #102028;
+    --p5-accent: #d888b0; --p5-bg: #281020;
+    --p6-accent: #a09890; --p6-bg: #1c1814;
+  }
+
+  /* ══════════════════════════════
+     THEME 8 — Sage Garden
+  ══════════════════════════════ */
+  [data-theme="sage"] {
+    --bg: #f0f4ee; --bg2: #e0e8dc; --bg3: #c8d8c0;
+    --surface: #f8fbf6; --surface2: #edf4e8;
+    --accent1: #6a9870; --accent2: #4a7850; --accent3: #2e5234;
+    --ink: #1c2e1e; --soft: #5a7060; --border: rgba(106,152,112,0.2);
+    --p0-accent: #9aaa70; --p0-bg: #eaf0d8;
+    --p1-accent: #80a898; --p1-bg: #d8f0e8;
+    --p2-accent: #6a9870; --p2-bg: #d8eedd;
+    --p3-accent: #b8a860; --p3-bg: #f0e8c8;
+    --p4-accent: #70a8a8; --p4-bg: #d0ecec;
+    --p5-accent: #a87898; --p5-bg: #f0dce8;
+    --p6-accent: #9a8870; --p6-bg: #ece4d8;
+  }
+
+
+  /* ── Firebase Sync ── */
+  .sync-btn {
+    display: flex; align-items: center; gap: 6px;
+    padding: 10px 16px; border-radius: 20px;
+    border: 1.5px solid var(--blush);
+    background: white; color: var(--mauve);
+    font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    cursor: pointer; transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(150,100,100,0.07);
+  }
+  .sync-btn:hover { background: var(--petal); border-color: var(--rose); color: var(--deep); }
+  .sync-btn .sync-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--soft); transition: background 0.3s;
+    flex-shrink: 0;
+  }
+  .sync-btn .sync-dot.ok      { background: #7abf8a; }
+  .sync-btn .sync-dot.syncing { background: var(--amber, #ccaa80); animation: pulse 1s infinite; }
+  .sync-btn .sync-dot.error   { background: #e07878; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  /* Firebase settings overlay */
+  .gist-overlay {
+    position: fixed; inset: 0; z-index: 500;
+    background: rgba(58,48,48,0.35); backdrop-filter: blur(4px);
+    display: none; align-items: center; justify-content: center;
+  }
+  .gist-overlay.open { display: flex; }
+  .gist-panel {
+    background: var(--surface); border-radius: 24px;
+    padding: 36px 40px; width: 520px; max-width: 92vw;
+    box-shadow: 0 20px 60px rgba(58,48,48,0.18);
+    border: 1px solid var(--border);
+  }
+  .gist-panel h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 26px; font-weight: 300; color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .gist-panel p { font-size: 12px; color: var(--soft); margin-bottom: 24px; line-height: 1.6; }
+  .gist-field { margin-bottom: 14px; }
+  .gist-field label {
+    display: block; font-size: 10px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--soft); margin-bottom: 6px;
+  }
+  .gist-field input {
+    width: 100%; padding: 10px 14px; border-radius: 10px;
+    border: 1.5px solid var(--border); background: var(--bg);
+    font-family: 'Jost', sans-serif; font-size: 12px; color: var(--ink);
+    outline: none; box-sizing: border-box; transition: border-color 0.2s;
+  }
+  .gist-field input:focus { border-color: var(--accent1); }
+  .gist-field input::placeholder { color: var(--soft); opacity: 0.5; }
+  .gist-actions { display: flex; gap: 10px; margin-top: 24px; }
+  .gist-save-btn {
+    flex: 1; padding: 11px; border-radius: 14px;
+    background: var(--accent1); border: none; color: white;
+    font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .gist-save-btn:hover { background: var(--accent2); }
+  .gist-cancel-btn {
+    padding: 11px 20px; border-radius: 14px;
+    background: transparent; border: 1.5px solid var(--border); color: var(--soft);
+    font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .gist-cancel-btn:hover { background: var(--bg2); }
+  .gist-status { font-size: 11px; color: var(--soft); margin-top: 12px; text-align: center; min-height: 16px; }
+
+
+  /* ── Library item edit/delete actions ── */
+  .lib-item { position: relative; }
+  .lib-item-actions {
+    display: flex; gap: 4px; margin-left: auto; flex-shrink: 0;
+  }
+  .lib-item-edit, .lib-item-del {
+    width: 26px; height: 26px; border-radius: 7px;
+    border: 1.5px solid var(--border); background: transparent;
+    cursor: pointer; font-size: 12px; color: var(--soft);
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s; flex-shrink: 0;
+  }
+  .lib-item-edit:hover { background: var(--petal); color: var(--accent1); border-color: var(--accent1); }
+  .lib-item-del:hover  { background: var(--p0-bg); color: var(--accent1); border-color: var(--accent1); }
+
+  /* ── Item edit modal ── */
+  .item-edit-overlay {
+    position: fixed; inset: 0; z-index: 700;
+    background: rgba(58,48,48,0.4); backdrop-filter: blur(4px);
+    display: none; align-items: center; justify-content: center;
+  }
+  .item-edit-overlay.open { display: flex; }
+  .item-edit-panel {
+    background: var(--surface); border-radius: 24px;
+    padding: 32px 36px; width: 420px; max-width: 92vw;
+    box-shadow: 0 20px 60px rgba(58,48,48,0.2);
+    border: 1px solid var(--border);
+  }
+  .item-edit-panel h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 24px; font-weight: 300; color: var(--ink); margin-bottom: 22px;
+  }
+  .item-edit-field { margin-bottom: 18px; }
+  .item-edit-field label {
+    display: block; font-size: 10px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--soft); margin-bottom: 7px;
+  }
+  .item-edit-field input {
+    width: 100%; padding: 11px 14px; border-radius: 11px;
+    border: 1.5px solid var(--border); background: var(--bg);
+    font-family: 'Jost', sans-serif; font-size: 14px; color: var(--ink);
+    outline: none; box-sizing: border-box; transition: border-color 0.2s;
+  }
+  .item-edit-field input:focus { border-color: var(--accent1); }
+  .item-edit-actions { display: flex; gap: 10px; margin-top: 24px; }
+  .item-edit-save {
+    flex: 1; padding: 11px; border-radius: 13px;
+    background: var(--accent1); border: none; color: white;
+    font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .item-edit-save:hover { background: var(--accent2); }
+  .item-edit-cancel {
+    padding: 11px 20px; border-radius: 13px;
+    background: transparent; border: 1.5px solid var(--border); color: var(--soft);
+    font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .item-edit-cancel:hover { background: var(--bg2); }
+
+
+  /* ── Drag to reorder rows ── */
+  .drag-handle {
+    display: flex; align-items: center; justify-content: center;
+    width: 16px; flex-shrink: 0; opacity: 0;
+    cursor: grab; color: var(--soft); font-size: 13px;
+    transition: opacity 0.15s; align-self: stretch;
+    padding: 0 2px;
+  }
+  .rl:hover .drag-handle { opacity: 1; }
+  .drag-handle:active { cursor: grabbing; }
+  .rl.drag-over { border-top: 2px solid var(--accent1) !important; }
+  .rl.dragging { opacity: 0.4; }
+
+
+  /* ── Header right controls ── */
+  .h-right {
+    display: flex; align-items: center;
+    gap: clamp(4px, 0.8vw, 12px);
+    flex-shrink: 1; min-width: 0; overflow: visible;
+  }
+
+  /* Shrink all header buttons proportionally with canvas */
+  .theme-btn, .aa-btn, .orient-btn, .sync-btn, .export-btn {
+    padding: clamp(6px, 0.6vh, 10px) clamp(8px, 1vw, 18px) !important;
+    font-size: clamp(9px, 0.85vw, 11px) !important;
+    letter-spacing: clamp(0.5px, 0.1vw, 1.5px) !important;
+    white-space: nowrap;
+  }
+  .nav-btn {
+    width:  clamp(26px, 2.5vw, 38px) !important;
+    height: clamp(26px, 2.5vw, 38px) !important;
+    font-size: clamp(12px, 1.2vw, 18px) !important;
+  }
+  .week-label {
+    min-width: clamp(120px, 13vw, 200px) !important;
+    font-size: clamp(9px, 0.85vw, 12px) !important;
+  }
+  .live-clock {
+    font-size: clamp(9px, 0.85vw, 12px) !important;
+    min-width: unset !important;
+    white-space: nowrap;
+  }
+
+  /* Hide size label text on narrow canvases — keep icon only */
+  @media (max-width: 1300px) {
+    #sizeBtnLabel { display: none; }
+    .export-btn .export-icon + * { display: none; }
+  }
+
+
+  /* ── Settings dropdown ── */
+  .settings-wrap { position: relative; }
+  .settings-btn {
+    display: flex; align-items: center; gap: 7px;
+    padding: 10px 18px; border-radius: 20px;
+    border: 1.5px solid var(--blush);
+    background: white; color: var(--mauve);
+    font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    cursor: pointer; transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(150,100,100,0.07);
+    white-space: nowrap;
+  }
+  .settings-btn:hover { background: var(--petal); border-color: var(--rose); color: var(--deep); }
+
+  .settings-dropdown {
+    position: absolute; top: calc(100% + 8px); right: 0;
+    background: var(--surface); border-radius: 18px;
+    box-shadow: 0 12px 40px rgba(58,48,48,0.16);
+    border: 1px solid var(--border);
+    min-width: 240px; z-index: 200;
+    opacity: 0; pointer-events: none;
+    transform: translateY(-6px) scale(0.97);
+    transition: all 0.18s ease;
+    overflow: visible;
+    padding: 6px 0;
+  }
+  .settings-dropdown.open {
+    opacity: 1; pointer-events: all;
+    transform: translateY(0) scale(1);
+  }
+
+  .sopt {
+    display: flex; align-items: center; gap: 12px;
+    padding: 11px 18px; cursor: pointer;
+    transition: background 0.12s; position: relative;
+  }
+  .sopt:hover { background: var(--petal); }
+  .sopt-icon {
+    font-size: 15px; width: 26px; text-align: center;
+    flex-shrink: 0; color: var(--soft);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sopt-text { flex: 1; }
+  .sopt-label { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .sopt-sub { font-size: 10px; color: var(--soft); margin-top: 1px; }
+  .sopt-arrow { font-size: 16px; color: var(--soft); flex-shrink: 0; }
+  .sopt-divider { height: 1px; background: var(--border); margin: 4px 0; }
+
+  /* Theme submenu inside settings */
+  .sopt-theme { position: relative; }
+  .sopt-theme .theme-dropdown {
+    top: 0 !important; right: calc(100% + 6px) !important;
+    left: auto !important; bottom: auto !important;
+  }
+  /* Size submenu inside settings */
+  .sopt-size { position: relative; }
+  .sopt-size .size-dropdown {
+    top: 0 !important; right: calc(100% + 6px) !important;
+    left: auto !important; bottom: auto !important;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    font-family: 'Jost', sans-serif;
+    color: var(--ink);
+    transition: background 0.3s ease, color 0.3s ease;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+
+  /* Viewport — fixed canvas size, scrollable when larger than window */
+  #viewport {
+    width: 1600px;
+    height: 1200px;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    transition: background 0.3s ease;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(ellipse 900px 600px at 8% 15%, rgba(205,155,148,0.1) 0%, transparent 70%),
+      radial-gradient(ellipse 700px 800px at 92% 85%, rgba(186,181,205,0.12) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+
+  .page {
+    position: relative; z-index: 1;
+    padding: 36px 44px 32px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+  /* ── Header ── */
+  header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: var(--header-margin, 24px); padding-bottom: var(--header-pad, 18px);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .h-left h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: var(--fs-title, 54px); font-weight: 300; letter-spacing: -0.5px; line-height: 1.1;
+    white-space: nowrap;
+  }
+  .h-left h1 em { font-style: italic; color: var(--mauve); }
+  .h-left p { font-size: var(--fs-subtitle, 11px); font-weight: 400; letter-spacing: 2px; text-transform: uppercase; color: var(--soft); margin-top: 4px; white-space: nowrap; }
+
+  .week-nav { display: flex; align-items: center; gap: 16px; }
+  .live-clock {
+    font-size: var(--fs-week-range, 12px); font-weight: 400; letter-spacing: 2px;
+    color: var(--soft); text-transform: uppercase; white-space: nowrap;
+    min-width: 90px; text-align: right;
+  }
+  .nav-btn {
+    width: 38px; height: 38px; border-radius: 50%;
+    border: 1.5px solid var(--bg3); background: var(--surface); color: var(--accent2);
+    font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .nav-btn:hover { background: var(--bg2); border-color: var(--accent1); }
+  .week-label {
+    font-size: var(--fs-week-range, 12px); font-weight: 400; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--soft); min-width: 200px; text-align: center;
+  }
+
+  /* ── Grid ── */
+  .grid-wrap {
+    border-radius: 20px; overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 40px rgba(100,70,70,0.07);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 220px repeat(7, 1fr);
+    flex: 1;
+    grid-auto-rows: auto;
+  }
+
+  .gh {
+    background: var(--surface); padding: 14px 6px; text-align: center;
+    border-bottom: 2px solid var(--border);
+  }
+  .gh.corner {
+    border-right: 2px solid var(--border);
+    display: flex; align-items: center; justify-content: flex-start; gap: 12px; padding: 16px 18px;
+    background: var(--surface);
+  }
+  .gh .dname { font-size: var(--fs-day-label, 10px); font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--soft); }
+  .gh .dnum { font-family: 'Cormorant Garamond', serif; font-size: var(--fs-day-num, 30px); font-weight: 300; color: var(--ink); line-height: 1; margin-top: 2px; }
+  .gh .dnum.today { color: var(--rose); }
+  .gh .dnum.today::after { content: ''; display: block; width: 18px; height: 2px; background: var(--rose); border-radius: 2px; margin: 3px auto 0; }
+
+  .add-row-btn {
+    display: flex; align-items: center; gap: 6px;
+    padding: 8px 14px; border-radius: 20px;
+    border: 1.5px dashed rgba(180,140,140,0.4);
+    background: transparent; color: var(--mauve);
+    font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: all 0.2s;
+  }
+  .add-row-btn:hover { background: var(--petal); border-color: var(--rose); color: var(--deep); }
+  .add-row-btn.active { background: var(--rose); border-color: var(--rose); color: white; border-style: solid; }
+
+  /* Row label */
+  .rl {
+    background: var(--surface); border-right: 2px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 14px 12px 18px; display: flex; align-items: center;
+    gap: 10px; position: relative;
+  }
+  .rl::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+  }
+  .rl.c0::before { background: #cd9b94; }
+  .rl.c1::before { background: #bab5cd; }
+  .rl.c2::before { background: #a3b59c; }
+  .rl.c3::before { background: #ccaa80; }
+  .rl.c4::before { background: #90b5b0; }
+  .rl.c5::before { background: #e0a0b8; }
+  .rl.c6::before { background: #b0a090; }
+
+  .rl-icon { font-size: 18px; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; cursor: pointer; align-self: flex-start; margin-top: 2px; }
+  .rl-icon.c0 { background: var(--p0-bg); } .rl-icon.c1 { background: var(--p1-bg); }
+  .rl-icon.c2 { background: var(--p2-bg); } .rl-icon.c3 { background: var(--p3-bg); }
+  .rl-icon.c4 { background: var(--p4-bg); } .rl-icon.c5 { background: var(--p5-bg); }
+  .rl-icon.c6 { background: var(--p6-bg); }
+
+  .rl-text { flex: 1; overflow: visible; min-width: 0; }
+  .rl-name {
+    font-size: var(--fs-row-name, 12px); font-weight: 600; letter-spacing: 0.3px;
+    color: var(--ink);
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: normal;
+    hyphens: none;
+    line-height: 1.35;
+    max-width: 100%;
+  }
+  .rl-sub { font-size: var(--fs-row-count, 10px); font-weight: 300; color: var(--soft); font-style: italic; margin-top: 3px; white-space: nowrap; }
+  .rl-actions { display: flex; gap: 3px; opacity: 0; transition: opacity 0.15s; align-self: flex-start; margin-top: 2px; }
+  .rl:hover .rl-actions { opacity: 1; }
+  .rl-btn { width: 24px; height: 24px; border-radius: 7px; border: 1px solid var(--border); background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--soft); transition: all 0.15s; }
+  .rl-btn:hover { background: var(--bg2); color: var(--accent1); }
+  .rl-btn.del:hover { background: var(--p0-bg); color: var(--accent1); }
+  .rl-name-input { font-size: 12px; font-weight: 600; color: var(--ink); background: transparent; border: none; border-bottom: 1.5px solid var(--accent1); outline: none; font-family: 'Jost', sans-serif; width: 110px; }
+
+  /* Cell matches row height automatically via grid */
+  .cell {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; transition: background 0.2s;
+    overflow: hidden;
+  }
+  .cell:hover { background: var(--surface2); }
+
+  /* Hover ghost tick */
+  .cell:not(.checked):hover .check-ghost { opacity: 1; transform: scale(1); }
+  .check-ghost {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transform: scale(0.85); transition: all 0.18s ease; pointer-events: none;
+  }
+  .check-ghost::after {
+    content: '✓'; font-size: 36px; font-weight: 700;
+    color: var(--border); font-family: 'Jost', sans-serif; line-height: 1;
+  }
+
+  /* Checked state */
+  .cell.checked.c0 { background: var(--p0-bg); }
+  .cell.checked.c1 { background: var(--p1-bg); }
+  .cell.checked.c2 { background: var(--p2-bg); }
+  .cell.checked.c3 { background: var(--p3-bg); }
+  .cell.checked.c4 { background: var(--p4-bg); }
+  .cell.checked.c5 { background: var(--p5-bg); }
+  .cell.checked.c6 { background: var(--p6-bg); }
+
+  /* The big check mark */
+  .check-mark {
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; height: 100%;
+    position: absolute; inset: 0;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.2s ease, transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+  }
+  .cell.checked .check-mark {
+    opacity: 1; transform: scale(1);
+  }
+
+  .check-mark-inner {
+    font-size: 44px;
+    font-weight: 700;
+    font-family: 'Jost', sans-serif;
+    line-height: 1;
+    /* per-colour */
+  }
+  .cell.checked.c0 .check-mark-inner { color: var(--p0-accent); }
+  .cell.checked.c1 .check-mark-inner { color: var(--p1-accent); }
+  .cell.checked.c2 .check-mark-inner { color: var(--p2-accent); }
+  .cell.checked.c3 .check-mark-inner { color: var(--p3-accent); }
+  .cell.checked.c4 .check-mark-inner { color: var(--p4-accent); }
+  .cell.checked.c5 .check-mark-inner { color: var(--p5-accent); }
+  .cell.checked.c6 .check-mark-inner { color: var(--p6-accent); }
+
+  .note-dot { position: absolute; top: 7px; right: 7px; width: 7px; height: 7px; border-radius: 50%; background: var(--blush); z-index: 2; }
+  .cell.checked .note-dot { background: rgba(255,255,255,0.7); }
+
+  /* ── Summary ── */
+  .summary { display: grid; gap: 12px; margin-top: 16px; flex-shrink: 0; }
+  .sum-card { background: var(--surface); border-radius: 14px; padding: 14px 18px; display: flex; align-items: center; gap: 14px; border: 1px solid var(--border); box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+  .sum-icon { width: 40px; height: 40px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .sum-icon.c0 { background: var(--p0-bg); } .sum-icon.c1 { background: var(--p1-bg); }
+  .sum-icon.c2 { background: var(--p2-bg); } .sum-icon.c3 { background: var(--p3-bg); }
+  .sum-icon.c4 { background: var(--p4-bg); } .sum-icon.c5 { background: var(--p5-bg); }
+  .sum-icon.c6 { background: var(--p6-bg); }
+  .sum-body { flex: 1; }
+  .sum-nums { font-family: 'Cormorant Garamond', serif; font-size: var(--fs-sum-num, 26px); font-weight: 300; line-height: 1; color: var(--ink); }
+  .sum-nums span { font-size: 12px; font-family: 'Jost', sans-serif; font-weight: 300; color: var(--soft); }
+  .sum-label { font-size: var(--fs-sum-name, 10px); letter-spacing: 1.5px; text-transform: uppercase; color: var(--soft); margin-top: 3px; font-weight: 500; }
+  .pbar { height: 3px; background: rgba(180,140,140,0.12); border-radius: 2px; margin-top: 6px; overflow: hidden; }
+  .pfill { height: 100%; border-radius: 2px; transition: width 0.5s ease; }
+  .pfill.c0 { background: var(--p0-accent); } .pfill.c1 { background: var(--p1-accent); }
+  .pfill.c2 { background: var(--p2-accent); } .pfill.c3 { background: var(--p3-accent); }
+  .pfill.c4 { background: var(--p4-accent); } .pfill.c5 { background: var(--p5-accent); }
+  .pfill.c6 { background: var(--p6-accent); }
+
+  /* ══════════════════════════════════════════
+     LIBRARY POPUP (centred modal)
+  ══════════════════════════════════════════ */
+  .panel-overlay {
+    position: fixed; inset: 0;
+    background: rgba(58,48,48,0.45);
+    backdrop-filter: blur(8px);
+    z-index: 300;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .panel-overlay.open { opacity: 1; pointer-events: all; }
+
+  .library-panel {
+    width: 860px; max-height: 82vh;
+    background: var(--bg);
+    border-radius: 28px;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.22), 0 0 0 1px var(--border);
+    display: flex; flex-direction: column;
+    transform: translateY(20px) scale(0.97); opacity: 0;
+    transition: transform 0.28s cubic-bezier(0.32,0,0.17,1), opacity 0.28s ease;
+  }
+  .panel-overlay.open .library-panel {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+
+  .panel-header {
+    padding: 32px 36px 0;
+    flex-shrink: 0;
+  }
+  .panel-header-top {
+    display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 6px;
+  }
+  .panel-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px; font-weight: 300;
+  }
+  .panel-header h2 em { font-style: italic; color: var(--mauve); }
+  .panel-header p { font-size: 12px; color: var(--soft); font-weight: 300; line-height: 1.5; margin-bottom: 22px; }
+
+  .panel-close {
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 1.5px solid var(--blush); background: transparent;
+    color: var(--soft); font-size: 15px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s; flex-shrink: 0;
+  }
+  .panel-close:hover { background: var(--petal); color: var(--rose); }
+
+  /* Tabs */
+  .panel-tabs {
+    display: flex; gap: 0;
+    border-bottom: 2px solid var(--border);
+    margin: 0 36px;
+  }
+  .panel-tab {
+    padding: 10px 22px;
+    font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--soft); cursor: pointer; border-bottom: 2px solid transparent;
+    margin-bottom: -2px; transition: all 0.15s; white-space: nowrap;
+  }
+  .panel-tab:hover { color: var(--mauve); }
+  .panel-tab.active { color: var(--rose); border-bottom-color: var(--rose); }
+
+  /* Panel body scrollable */
+  .panel-body {
+    flex: 1; overflow-y: auto; padding: 24px 36px 36px;
+  }
+  .panel-body::-webkit-scrollbar { width: 4px; }
+  .panel-body::-webkit-scrollbar-track { background: transparent; }
+  .panel-body::-webkit-scrollbar-thumb { background: var(--blush); border-radius: 2px; }
+
+  /* ── Library tab ── */
+  .lib-top-row {
+    display: flex; align-items: center; gap: 14px; margin-bottom: 22px;
+  }
+  .lib-search {
+    position: relative; flex: 1;
+  }
+  .lib-search input {
+    width: 100%; padding: 11px 16px 11px 38px;
+    border: 1.5px solid rgba(180,140,140,0.22); border-radius: 12px;
+    font-family: 'Jost', sans-serif; font-size: 13px;
+    background: white; color: var(--ink); outline: none;
+    transition: border-color 0.2s;
+  }
+  .lib-search input:focus { border-color: var(--rose); }
+  .lib-search input::placeholder { color: rgba(130,110,110,0.45); }
+  .lib-search .search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 14px; color: var(--soft); pointer-events: none; }
+
+  /* Two-column category grid */
+  .lib-cats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 28px;
+  }
+
+  .lib-category { margin-bottom: 0; }
+  .lib-cat-label {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--soft); margin-bottom: 10px;
+  }
+  .lib-cat-label .cat-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  .lib-items { display: flex; flex-direction: column; gap: 5px; }
+
+  .lib-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 12px; border-radius: 11px;
+    background: white; border: 1.5px solid transparent;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .lib-item:hover { border-color: var(--blush); box-shadow: 0 2px 10px rgba(100,70,70,0.07); }
+  .lib-item.already-added { opacity: 0.6; pointer-events: none; }
+  .lib-item.already-added .lib-item-actions { pointer-events: all; opacity: 1; }
+
+  .lib-item-icon { font-size: 18px; width: 34px; height: 34px; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .lib-item-info { flex: 1; }
+  .lib-item-name { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .lib-item-tag { font-size: 10px; color: var(--soft); font-style: italic; margin-top: 1px; }
+  .lib-item-add {
+    width: 28px; height: 28px; border-radius: 8px;
+    border: 1.5px solid rgba(180,140,140,0.25);
+    background: transparent; color: var(--rose);
+    font-size: 17px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s; font-weight: 300;
+  }
+  .lib-item-add:hover { background: var(--rose); color: white; border-color: var(--rose); }
+  .lib-item-added { font-size: 12px; color: var(--sage); font-weight: 600; padding: 0 6px; }
+
+  /* My saved products section inside library */
+  .saved-section { margin-bottom: 28px; }
+  .saved-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .saved-header span { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--mauve); }
+  .saved-empty { font-size: 12px; color: var(--soft); font-style: italic; text-align: center; padding: 16px 0; }
+
+  /* ── Custom tab ── */
+  .custom-form { display: flex; flex-direction: column; gap: 20px; }
+  .form-field label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--soft); margin-bottom: 9px; }
+  .form-field input {
+    width: 100%; padding: 12px 16px;
+    border: 1.5px solid rgba(180,140,140,0.22); border-radius: 12px;
+    font-family: 'Jost', sans-serif; font-size: 14px;
+    background: white; color: var(--ink); outline: none; transition: border-color 0.2s;
+  }
+  .form-field input:focus { border-color: var(--rose); }
+  .form-field input::placeholder { color: rgba(130,110,110,0.4); }
+
+  .icon-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .icon-opt {
+    width: 42px; height: 42px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; cursor: pointer; background: white;
+    border: 2px solid transparent; transition: all 0.12s;
+  }
+  .icon-opt:hover { background: var(--petal); }
+  .icon-opt.sel { border-color: var(--rose); background: var(--petal); }
+
+  .color-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .color-opt {
+    width: 32px; height: 32px; border-radius: 50%;
+    cursor: pointer; border: 3px solid transparent; transition: all 0.12s;
+  }
+  .color-opt:hover { transform: scale(1.15); }
+  .color-opt.sel { border-color: var(--ink); transform: scale(1.1); }
+
+  .save-also-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 16px; background: var(--petal); border-radius: 12px;
+    cursor: pointer;
+  }
+  .save-also-check {
+    width: 20px; height: 20px; border-radius: 6px;
+    border: 2px solid rgba(180,140,140,0.35); background: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: white; transition: all 0.15s; flex-shrink: 0;
+  }
+  .save-also-check.checked { background: var(--rose); border-color: var(--rose); }
+  .save-also-label { font-size: 12px; color: var(--ink); font-weight: 400; }
+  .save-also-label span { font-size: 11px; color: var(--soft); display: block; font-weight: 300; margin-top: 1px; }
+
+  .btn-add-custom {
+    width: 100%; padding: 15px;
+    background: var(--rose); color: white; border: none;
+    border-radius: 14px; font-family: 'Jost', sans-serif;
+    font-size: 12px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; cursor: pointer; transition: background 0.2s;
+    margin-top: 4px;
+  }
+  .btn-add-custom:hover { background: var(--mauve); }
+
+  /* Note overlay */
+  .overlay { position: fixed; inset: 0; background: rgba(58,48,48,0.38); backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; z-index: 200; }
+  .overlay.open { display: flex; }
+  .note-modal { background: var(--cream); border-radius: 22px; padding: 38px; width: 440px; box-shadow: 0 24px 60px rgba(58,48,48,0.2); border: 1px solid var(--border); animation: popIn 0.2s ease; }
+  @keyframes popIn { from { transform: translateY(12px) scale(0.97); opacity: 0; } to { transform: none; opacity: 1; } }
+  .nm-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 6px; }
+  .nm-head h3 { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; }
+  .nm-date { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--soft); margin-bottom: 24px; }
+  .nm-lbl { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--soft); margin-bottom: 10px; }
+  .nm-textarea { width: 100%; padding: 12px 16px; border: 1.5px solid rgba(180,140,140,0.22); border-radius: 12px; font-family: 'Jost', sans-serif; font-size: 13px; background: white; color: var(--ink); outline: none; resize: none; height: 90px; transition: border-color 0.2s; }
+  .nm-textarea:focus { border-color: var(--rose); }
+  .modal-close { width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(--blush); background: transparent; color: var(--soft); font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+  .modal-close:hover { background: var(--petal); }
+  .nm-actions { display: flex; gap: 10px; margin-top: 24px; }
+  .btn-save { flex: 1; padding: 13px; background: var(--rose); color: white; border: none; border-radius: 12px; font-family: 'Jost', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
+  .btn-save:hover { background: var(--mauve); }
+  .btn-ghost { padding: 13px 20px; background: transparent; color: var(--soft); border: 1.5px solid rgba(180,140,140,0.25); border-radius: 12px; font-family: 'Jost', sans-serif; font-size: 12px; cursor: pointer; transition: all 0.15s; }
+  .btn-ghost:hover { background: var(--petal); }
+
+  /* Emoji picker */
+  .emoji-picker-wrap { position: fixed; background: white; border-radius: 16px; padding: 14px; box-shadow: 0 12px 40px rgba(58,48,48,0.18); border: 1px solid var(--border); z-index: 500; display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; width: 278px; }
+  .ep-opt { width: 28px; height: 28px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 17px; cursor: pointer; transition: background 0.1s; }
+  .ep-opt:hover { background: var(--petal); }
+
+  /* ── Theme selector ── */
+  .theme-wrap { position: relative; }
+
+  .theme-btn {
+    display: flex; align-items: center; gap: 7px;
+    padding: 10px 16px; border-radius: 20px;
+    border: 1.5px solid var(--bg3);
+    background: var(--surface); color: var(--accent2);
+    font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    cursor: pointer; transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  }
+  .theme-btn:hover { background: var(--bg2); border-color: var(--accent1); color: var(--accent3); }
+
+  .theme-dropdown {
+    position: absolute; top: calc(100% + 8px); right: 0;
+    background: var(--surface); border-radius: 18px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.16);
+    border: 1px solid var(--border);
+    overflow: hidden; min-width: 220px;
+    opacity: 0; pointer-events: none;
+    transform: translateY(-6px) scale(0.97);
+    transition: all 0.18s ease; z-index: 100;
+  }
+  .theme-dropdown.open { opacity: 1; pointer-events: all; transform: none; }
+
+  .theme-option {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 16px; cursor: pointer; transition: background 0.12s;
+  }
+  .theme-option:hover { background: var(--bg2); }
+  .theme-option:not(:last-child) { border-bottom: 1px solid var(--border); }
+  .theme-option.active { background: var(--bg2); }
+
+  .theme-swatch-group {
+    display: flex; gap: 3px; flex-shrink: 0;
+  }
+  .theme-dot {
+    width: 12px; height: 12px; border-radius: 50%;
+  }
+  .theme-option-name {
+    font-size: 13px; font-weight: 500; color: var(--ink); flex: 1;
+  }
+  .theme-check { font-size: 14px; color: var(--accent1); width: 16px; }
+
+  /* ── Aa Typography button ── */
+  .aa-btn {
+    display: flex; align-items: center; gap: 5px;
+    padding: 10px 16px; border-radius: 20px;
+    border: 1.5px solid var(--blush);
+    background: white; color: var(--mauve);
+    font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 400;
+    cursor: pointer; transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(150,100,100,0.07);
+    letter-spacing: 0px;
+  }
+  .aa-btn:hover { background: var(--petal); border-color: var(--rose); color: var(--deep); }
+  .aa-btn.active { background: var(--petal); border-color: var(--rose); color: var(--deep); }
+
+  /* Typography overlay */
+  .typo-overlay {
+    position: fixed; inset: 0;
+    background: transparent;
+    z-index: 350;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.22s ease;
+  }
+  .typo-overlay.open { opacity: 1; pointer-events: all; }
+
+  .typo-popup {
+    width: 500px;
+    background: var(--cream);
+    border-radius: 26px;
+    box-shadow: 0 12px 50px rgba(58,48,48,0.18), 0 0 0 1px rgba(180,140,140,0.18), 0 2px 8px rgba(58,48,48,0.08);
+    padding: 36px 38px 32px;
+    transform: translateY(-8px) scale(0.97);
+    opacity: 0;
+    transition: transform 0.25s cubic-bezier(0.32,0,0.17,1), opacity 0.25s ease;
+  }
+  .typo-overlay.open .typo-popup { transform: translateY(0) scale(1); opacity: 1; }
+
+  .typo-header {
+    display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 6px;
+  }
+  .typo-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 300; }
+  .typo-header h2 em { font-style: italic; color: var(--mauve); }
+  .typo-sub { font-size: 12px; color: var(--soft); font-weight: 300; margin-bottom: 24px; }
+
+  .typo-rows { display: flex; flex-direction: column; gap: 6px; }
+
+  .typo-row {
+    display: flex; align-items: center;
+    background: white; border-radius: 14px;
+    padding: 13px 18px; border: 1px solid var(--border);
+    gap: 14px; transition: box-shadow 0.15s;
+  }
+  .typo-row:hover { box-shadow: 0 2px 14px rgba(100,70,70,0.07); }
+
+  .typo-row-info { flex: 1; overflow: hidden; }
+  .typo-row-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1.8px;
+    text-transform: uppercase; color: var(--soft); margin-bottom: 5px;
+  }
+  .typo-row-preview {
+    color: var(--ink); font-weight: 400; line-height: 1.2;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    max-width: 280px; transition: font-size 0.12s;
+  }
+
+  .typo-stepper { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+
+  .typo-step-btn {
+    width: 30px; height: 30px; border-radius: 9px;
+    border: 1.5px solid rgba(180,140,140,0.25);
+    background: white; color: var(--mauve);
+    font-size: 17px; font-weight: 300; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s; user-select: none;
+  }
+  .typo-step-btn:hover:not(:disabled) { background: var(--rose); color: white; border-color: var(--rose); }
+  .typo-step-btn:disabled { opacity: 0.28; cursor: not-allowed; }
+
+  .typo-size-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 300; color: var(--ink);
+    min-width: 44px; text-align: center;
+  }
+
+  .typo-footer {
+    display: flex; justify-content: space-between; align-items: center; margin-top: 20px;
+  }
+  .typo-reset-btn {
+    padding: 9px 18px; border-radius: 10px;
+    border: 1.5px solid rgba(180,140,140,0.22);
+    background: transparent; color: var(--soft);
+    font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .typo-reset-btn:hover { background: var(--petal); color: var(--mauve); }
+  .typo-done-btn {
+    padding: 10px 28px; border-radius: 12px; border: none;
+    background: var(--rose); color: white;
+    font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    cursor: pointer; transition: background 0.15s;
+  }
+  .typo-done-btn:hover { background: var(--mauve); }
+
+  .size-wrap { position: relative; }
+
+  .size-dropdown {
+    position: absolute; top: calc(100% + 8px); right: 0;
+    background: var(--surface); border-radius: 18px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.16);
+    border: 1px solid var(--border);
+    overflow: hidden; min-width: 210px;
+    opacity: 0; pointer-events: none;
+    transform: translateY(-6px) scale(0.97);
+    transition: all 0.18s ease; z-index: 100;
+  }
+  .size-dropdown.open { opacity: 1; pointer-events: all; transform: none; }
+
+  .size-option {
+    display: flex; align-items: center; gap: 14px;
+    padding: 13px 18px; cursor: pointer; transition: background 0.12s;
+  }
+  .size-option:hover { background: var(--bg2); }
+  .size-option:not(:last-child) { border-bottom: 1px solid var(--border); }
+  .size-option.active { background: var(--bg2); }
+
+  .size-icon { font-size: 16px; width: 22px; text-align: center; flex-shrink: 0; }
+  .size-option-info { flex: 1; }
+  .size-option-dims { font-size: 13px; font-weight: 600; color: var(--ink); }
+  .size-option-label { font-size: 10px; color: var(--soft); margin-top: 1px; letter-spacing: 0.5px; }
+  .size-check { font-size: 13px; color: var(--accent1); width: 16px; text-align: right; }
+
+  /* ── Orientation toggle ── */
+  .orient-btn {
+    display: flex; align-items: center; gap: 7px;
+    padding: 10px 16px; border-radius: 20px;
+    border: 1.5px solid var(--blush);
+    background: white; color: var(--mauve);
+    font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    cursor: pointer; transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(150,100,100,0.07);
+  }
+  .orient-btn:hover { background: var(--petal); border-color: var(--rose); color: var(--deep); }
+  .orient-btn.portrait { background: var(--lav-light); border-color: var(--lavender); color: #5a5580; }
+  .orient-btn.portrait:hover { background: var(--lavender); color: white; }
+
+  /* Per-size layout tweaks no longer needed — transform scale handles fitting */
+
+  /* ── Export button + dropdown ── */
+  .export-wrap { position: relative; }
+
+  .export-btn {
+    display: flex; align-items: center; gap: 7px;
+    padding: 10px 18px; border-radius: 20px;
+    border: 1.5px solid var(--blush);
+    background: white; color: var(--mauve);
+    font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    cursor: pointer; transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(150,100,100,0.07);
+  }
+  .export-btn:hover { background: var(--petal); border-color: var(--rose); color: var(--deep); }
+  .export-btn .export-icon { font-size: 14px; }
+
+  .export-dropdown {
+    position: absolute; top: calc(100% + 8px); right: 0;
+    background: white; border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(58,48,48,0.14);
+    border: 1px solid var(--border);
+    overflow: hidden; min-width: 190px;
+    opacity: 0; pointer-events: none;
+    transform: translateY(-6px) scale(0.97);
+    transition: all 0.18s ease;
+    z-index: 100;
+  }
+  .export-dropdown.open {
+    opacity: 1; pointer-events: all;
+    transform: translateY(0) scale(1);
+  }
+
+  .export-option {
+    display: flex; align-items: center; gap: 12px;
+    padding: 13px 18px; cursor: pointer;
+    transition: background 0.12s;
+  }
+  .export-option:hover { background: var(--petal); }
+  .export-option:not(:last-child) { border-bottom: 1px solid rgba(180,140,140,0.1); }
+  .export-option .opt-icon { font-size: 16px; width: 24px; text-align: center; flex-shrink: 0; }
+  .export-option .opt-text .opt-label { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .export-option .opt-text .opt-sub { font-size: 10px; color: var(--soft); font-weight: 300; margin-top: 1px; }
+
+  /* Export toast */
+  .export-toast {
+    position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: rgba(58,48,48,0.9); backdrop-filter: blur(8px);
+    color: white; padding: 12px 28px; border-radius: 30px;
+    font-size: 12px; font-weight: 500; letter-spacing: 1px;
+    opacity: 0; transition: all 0.3s ease; pointer-events: none; z-index: 500;
+    white-space: nowrap;
+  }
+  .export-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 </style>
-
 </head>
 <body>
 <div id="viewport">
 <div class="page">
   <header>
     <div class="h-left">
-      <!-- Title acts as settings trigger -->
+      <h1>Self Care <em>Ritual</em></h1>
+      <p>Weekly Tracker</p>
+    </div>
+    <div class="h-right">
+      <span class="live-clock" id="liveClock"></span>
+      <div class="week-nav">
+        <button class="nav-btn" onclick="changeWeek(-1)">‹</button>
+        <span class="week-label" id="weekLabel"></span>
+        <button class="nav-btn" onclick="changeWeek(1)">›</button>
+      </div>
+
+      <!-- Single settings menu -->
       <div class="settings-wrap" id="settingsWrap">
-        <div class="title-btn" onclick="toggleSettingsMenu(event)">
-          <h1>Self Care <em>Ritual</em></h1>
-          <span class="title-caret">›</span>
-        </div>
-        <p>Weekly Tracker</p>
+        <button class="settings-btn" onclick="toggleSettingsMenu(event)">
+          ⚙ <span class="settings-label">Settings</span>
+        </button>
         <div class="settings-dropdown" id="settingsDropdown">
 
-```
-      <!-- Theme submenu trigger -->
-      <div class="sopt sopt-theme" onclick="toggleThemeMenu(event)">
-        <span class="sopt-icon">🎨</span>
-        <div class="sopt-text">
-          <div class="sopt-label">Theme</div>
-          <div class="sopt-sub" id="soptThemeSub">Blush & Cream</div>
+          <!-- Theme submenu trigger -->
+          <div class="sopt sopt-theme" onclick="toggleThemeMenu(event)">
+            <span class="sopt-icon">🎨</span>
+            <div class="sopt-text">
+              <div class="sopt-label">Theme</div>
+              <div class="sopt-sub" id="soptThemeSub">Blush & Cream</div>
+            </div>
+            <span class="sopt-arrow">›</span>
+            <div class="theme-dropdown" id="themeDropdown"></div>
+          </div>
+
+          <!-- Typography -->
+          <div class="sopt" onclick="openTypo(); closeSettingsMenu()">
+            <span class="sopt-icon">Aa</span>
+            <div class="sopt-text">
+              <div class="sopt-label">Text Size</div>
+              <div class="sopt-sub">Adjust font sizes</div>
+            </div>
+          </div>
+
+          <!-- Canvas size submenu trigger -->
+          <div class="sopt sopt-size" onclick="toggleSizeMenu(event)">
+            <span class="sopt-icon">⊞</span>
+            <div class="sopt-text">
+              <div class="sopt-label">Canvas Size</div>
+              <div class="sopt-sub" id="sizeBtnLabel">1600 × 1200</div>
+            </div>
+            <span class="sopt-arrow">›</span>
+            <div class="size-dropdown" id="sizeDropdown"></div>
+          </div>
+
+          <div class="sopt-divider"></div>
+
+          <!-- Sync -->
+          <div class="sopt" onclick="openSyncSettings(); closeSettingsMenu()">
+            <span class="sopt-icon"><span class="sync-dot" id="syncDot"></span></span>
+            <div class="sopt-text">
+              <div class="sopt-label">Sync Settings</div>
+              <div class="sopt-sub" id="syncLabel">Not connected</div>
+            </div>
+          </div>
+
+          <div class="sopt-divider"></div>
+
+          <!-- Export -->
+          <div class="sopt" onclick="doExport('jpg'); closeSettingsMenu()">
+            <span class="sopt-icon">🖼️</span>
+            <div class="sopt-text">
+              <div class="sopt-label">Save as JPG</div>
+              <div class="sopt-sub" id="exportSubJpg">1600 × 1200 · compressed</div>
+            </div>
+          </div>
+          <div class="sopt" onclick="doExport('png'); closeSettingsMenu()">
+            <span class="sopt-icon">📐</span>
+            <div class="sopt-text">
+              <div class="sopt-label">Save as PNG</div>
+              <div class="sopt-sub" id="exportSubPng">1600 × 1200 · lossless</div>
+            </div>
+          </div>
+
+          <div class="sopt-divider"></div>
+
+          <!-- Backup / Restore -->
+          <div class="sopt" onclick="backupData(); closeSettingsMenu()">
+            <span class="sopt-icon">💾</span>
+            <div class="sopt-text">
+              <div class="sopt-label">Backup Data</div>
+              <div class="sopt-sub">Download .json</div>
+            </div>
+          </div>
+          <div class="sopt" onclick="restoreData(); closeSettingsMenu()">
+            <span class="sopt-icon">📂</span>
+            <div class="sopt-text">
+              <div class="sopt-label">Restore Data</div>
+              <div class="sopt-sub">Load .json backup</div>
+            </div>
+          </div>
+
         </div>
-        <span class="sopt-arrow">›</span>
-        <div class="theme-dropdown" id="themeDropdown"></div>
       </div>
-
-      <!-- Typography -->
-      <div class="sopt" onclick="openTypo(); closeSettingsMenu()">
-        <span class="sopt-icon">Aa</span>
-        <div class="sopt-text">
-          <div class="sopt-label">Text Size</div>
-          <div class="sopt-sub">Adjust font sizes</div>
-        </div>
-      </div>
-
-      <!-- Canvas size submenu trigger -->
-      <div class="sopt sopt-size" onclick="toggleSizeMenu(event)">
-        <span class="sopt-icon">⊞</span>
-        <div class="sopt-text">
-          <div class="sopt-label">Canvas Size</div>
-          <div class="sopt-sub" id="sizeBtnLabel">1600 × 1200</div>
-        </div>
-        <span class="sopt-arrow">›</span>
-        <div class="size-dropdown" id="sizeDropdown"></div>
-      </div>
-
-      <div class="sopt-divider"></div>
-
-      <!-- Sync -->
-      <div class="sopt" onclick="openSyncSettings(); closeSettingsMenu()">
-        <span class="sopt-icon"><span class="sync-dot" id="syncDot"></span></span>
-        <div class="sopt-text">
-          <div class="sopt-label">Sync Settings</div>
-          <div class="sopt-sub" id="syncLabel">Not connected</div>
-        </div>
-      </div>
-
-      <div class="sopt-divider"></div>
-
-      <!-- Export -->
-      <div class="sopt" onclick="doExport('jpg'); closeSettingsMenu()">
-        <span class="sopt-icon">🖼️</span>
-        <div class="sopt-text">
-          <div class="sopt-label">Save as JPG</div>
-          <div class="sopt-sub" id="exportSubJpg">1600 × 1200 · compressed</div>
-        </div>
-      </div>
-      <div class="sopt" onclick="doExport('png'); closeSettingsMenu()">
-        <span class="sopt-icon">📐</span>
-        <div class="sopt-text">
-          <div class="sopt-label">Save as PNG</div>
-          <div class="sopt-sub" id="exportSubPng">1600 × 1200 · lossless</div>
-        </div>
-      </div>
-
-      <div class="sopt-divider"></div>
-
-      <!-- Backup / Restore -->
-      <div class="sopt" onclick="backupData(); closeSettingsMenu()">
-        <span class="sopt-icon">💾</span>
-        <div class="sopt-text">
-          <div class="sopt-label">Backup Data</div>
-          <div class="sopt-sub">Download .json</div>
-        </div>
-      </div>
-      <div class="sopt" onclick="restoreData(); closeSettingsMenu()">
-        <span class="sopt-icon">📂</span>
-        <div class="sopt-text">
-          <div class="sopt-label">Restore Data</div>
-          <div class="sopt-sub">Load .json backup</div>
-        </div>
-      </div>
-
     </div>
-  </div>
-</div>
-<div class="h-right">
-  <span class="live-clock" id="liveClock"></span>
-  <div class="week-nav">
-    <button class="nav-btn" onclick="changeWeek(-1)">‹</button>
-    <span class="week-label" id="weekLabel"></span>
-    <button class="nav-btn" onclick="changeWeek(1)">›</button>
-  </div>
-</div>
-```
-
   </header>
 
   <!-- Export toast -->
-
   <div class="export-toast" id="exportToast"></div>
 
 <!-- Typography popup -->
-
 <div class="typo-overlay" id="typoOverlay" onclick="handleTypoOverlayClick(event)">
   <div class="typo-popup" id="typoPopup">
     <div class="typo-header">
@@ -1318,7 +1301,6 @@ white-space: nowrap;
 </div><!-- end viewport -->
 
 <!-- Library panel overlay -->
-
 <div class="panel-overlay" id="panelOverlay" onclick="handleOverlayClick(event)">
   <div class="library-panel" id="libraryPanel">
     <div class="panel-header">
@@ -1337,13 +1319,11 @@ white-space: nowrap;
 </div>
 
 <!-- Note overlay -->
-
 <div class="overlay" id="noteOverlay">
   <div class="note-modal" id="noteModal"></div>
 </div>
 
 <!-- Emoji picker -->
-
 <div class="emoji-picker-wrap" id="emojiPicker" style="display:none"></div>
 
 <script>
@@ -1633,14 +1613,7 @@ function getWeekDates(off=0) {
   sun.setDate(now.getDate() - now.getDay() + off*7);
   return Array.from({length:7},(_,i)=>{ const d=new Date(sun); d.setDate(sun.getDate()+i); return d; });
 }
-function dk(d) {
-  // Use LOCAL date to avoid UTC timezone shift (toISOString() uses UTC which
-  // causes dates to appear shifted by 1 day for timezones behind UTC)
-  const y = d.getFullYear();
-  const m = String(d.getMonth() + 1).padStart(2, '0');
-  const day = String(d.getDate()).padStart(2, '0');
-  return `${y}-${m}-${day}`;
-}
+function dk(d) { return d.toISOString().split('T')[0]; }
 function isToday(d) { return dk(d)===dk(new Date()); }
 function fmtShort(d) { return d.toLocaleDateString('en-US',{month:'short',day:'numeric'}); }
 function fmtLong(d)  { return d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'}); }
@@ -2340,380 +2313,388 @@ function openNote(date, row) {
     <div class="nm-date">${fmtLong(date)}</div>
     <div class="nm-lbl">Notes</div>
     <textarea class="nm-textarea" id="noteText" placeholder="How did it feel? Any reactions…">${note}</textarea>
-
-```
-<div class="nm-actions">
-  <button class="btn-ghost" onclick="closeNote()">Cancel</button>
-  <button class="btn-save" onclick="saveNote()">Save Note</button>
-</div>`;
-```
-
-document.getElementById(‘noteOverlay’).classList.add(‘open’);
+    <div class="nm-actions">
+      <button class="btn-ghost" onclick="closeNote()">Cancel</button>
+      <button class="btn-save" onclick="saveNote()">Save Note</button>
+    </div>`;
+  document.getElementById('noteOverlay').classList.add('open');
 }
-function closeNote() { document.getElementById(‘noteOverlay’).classList.remove(‘open’); noteCtx=null; }
+function closeNote() { document.getElementById('noteOverlay').classList.remove('open'); noteCtx=null; }
 function saveNote() {
-const key = dk(noteCtx.date);
-if (!logData[key]) logData[key]={};
-if (!logData[key][noteCtx.row.id]) logData[key][noteCtx.row.id]={};
-logData[key][noteCtx.row.id].note = document.getElementById(‘noteText’).value.trim();
-save(); closeNote(); render();
+  const key = dk(noteCtx.date);
+  if (!logData[key]) logData[key]={};
+  if (!logData[key][noteCtx.row.id]) logData[key][noteCtx.row.id]={};
+  logData[key][noteCtx.row.id].note = document.getElementById('noteText').value.trim();
+  save(); closeNote(); render();
 }
 
 // ── Emoji picker ──────────────────────────────────────────────────
 let emojiPickerOpen = false;
 function openEmojiPicker(anchorId, cb) {
-emojiCb = cb;
-const anchor = document.getElementById(anchorId);
-if (!anchor) return;
-const rect = anchor.getBoundingClientRect();
-const picker = document.getElementById(‘emojiPicker’);
-picker.innerHTML = EMOJIS.map(e=>`<div class="ep-opt" onclick="pickEmoji('${e}')">${e}</div>`).join(’’);
-picker.style.display = ‘grid’;
-picker.style.top  = (rect.bottom + window.scrollY + 6)+‘px’;
-picker.style.left = rect.left+‘px’;
-emojiPickerOpen = true;
-setTimeout(()=>document.addEventListener(‘click’, closePicker, {once:true}), 60);
+  emojiCb = cb;
+  const anchor = document.getElementById(anchorId);
+  if (!anchor) return;
+  const rect = anchor.getBoundingClientRect();
+  const picker = document.getElementById('emojiPicker');
+  picker.innerHTML = EMOJIS.map(e=>`<div class="ep-opt" onclick="pickEmoji('${e}')">${e}</div>`).join('');
+  picker.style.display = 'grid';
+  picker.style.top  = (rect.bottom + window.scrollY + 6)+'px';
+  picker.style.left = rect.left+'px';
+  emojiPickerOpen = true;
+  setTimeout(()=>document.addEventListener('click', closePicker, {once:true}), 60);
 }
 function pickEmoji(e) {
-if (emojiCb) emojiCb(e);
-document.getElementById(‘emojiPicker’).style.display=‘none’;
-emojiPickerOpen=false;
+  if (emojiCb) emojiCb(e);
+  document.getElementById('emojiPicker').style.display='none';
+  emojiPickerOpen=false;
 }
 function closePicker(ev) {
-const p=document.getElementById(‘emojiPicker’);
-if (p && !p.contains(ev.target)) { p.style.display=‘none’; emojiPickerOpen=false; }
+  const p=document.getElementById('emojiPicker');
+  if (p && !p.contains(ev.target)) { p.style.display='none'; emojiPickerOpen=false; }
 }
 
-document.getElementById(‘noteOverlay’).addEventListener(‘click’, function(e){ if(e.target===this) closeNote(); });
+document.getElementById('noteOverlay').addEventListener('click', function(e){ if(e.target===this) closeNote(); });
 
 // ── Themes ────────────────────────────────────────────────────────
 const THEMES = [
-{ id: ‘blush’,    name: ‘Blush & Cream’,   dots: [’#cd9b94’,’#a3b59c’,’#bab5cd’,’#ccaa80’] },
-{ id: ‘midnight’, name: ‘Midnight Spa’,     dots: [’#12151f’,’#c9a84c’,’#8890c8’,’#7aaa88’] },
-{ id: ‘matcha’,   name: ‘Matcha’,           dots: [’#f4f0e8’,’#7a9968’,’#b8a87a’,’#5a8868’] },
-{ id: ‘cloud’,    name: ‘Cloud’,            dots: [’#f8f9fb’,’#7eafd4’,’#a494cc’,’#80b898’] },
-{ id: ‘sunset’,   name: ‘Sunset’,           dots: [’#fdf6ee’,’#e8845a’,’#d4a060’,’#e0b050’] },
-{ id: ‘lavender’, name: ‘Lavender Dream’,   dots: [’#f6f4fc’,’#9080c8’,’#c080b0’,’#80a898’] },
-{ id: ‘noir’,     name: ‘Noir’,             dots: [’#0a0a0a’,’#e8a0a8’,’#b0a8d8’,’#90b888’] },
-{ id: ‘sage’,     name: ‘Sage Garden’,      dots: [’#f0f4ee’,’#6a9870’,’#9aaa70’,’#b8a860’] },
+  { id: 'blush',    name: 'Blush & Cream',   dots: ['#cd9b94','#a3b59c','#bab5cd','#ccaa80'] },
+  { id: 'midnight', name: 'Midnight Spa',     dots: ['#12151f','#c9a84c','#8890c8','#7aaa88'] },
+  { id: 'matcha',   name: 'Matcha',           dots: ['#f4f0e8','#7a9968','#b8a87a','#5a8868'] },
+  { id: 'cloud',    name: 'Cloud',            dots: ['#f8f9fb','#7eafd4','#a494cc','#80b898'] },
+  { id: 'sunset',   name: 'Sunset',           dots: ['#fdf6ee','#e8845a','#d4a060','#e0b050'] },
+  { id: 'lavender', name: 'Lavender Dream',   dots: ['#f6f4fc','#9080c8','#c080b0','#80a898'] },
+  { id: 'noir',     name: 'Noir',             dots: ['#0a0a0a','#e8a0a8','#b0a8d8','#90b888'] },
+  { id: 'sage',     name: 'Sage Garden',      dots: ['#f0f4ee','#6a9870','#9aaa70','#b8a860'] },
 ];
 
-let currentTheme = localStorage.getItem(‘sc4_theme’) || ‘blush’;
+let currentTheme = localStorage.getItem('sc4_theme') || 'blush';
 
 function applyTheme(id) {
-currentTheme = id;
-document.documentElement.setAttribute(‘data-theme’, id);
-localStorage.setItem(‘sc4_theme’, id);
-renderThemeDropdown();
+  currentTheme = id;
+  document.documentElement.setAttribute('data-theme', id);
+  localStorage.setItem('sc4_theme', id);
+  renderThemeDropdown();
 }
 
 function renderThemeDropdown() {
-const dd = document.getElementById(‘themeDropdown’);
-if (!dd) return;
-dd.innerHTML = THEMES.map(t => `<div class="theme-option ${t.id === currentTheme ? 'active' : ''}" onclick="applyTheme('${t.id}'); closeThemeMenu()"> <div class="theme-swatch-group"> ${t.dots.map(c =>`<div class="theme-dot" style="background:${c}"></div>`).join('')} </div> <span class="theme-option-name">${t.name}</span> <span class="theme-check">${t.id === currentTheme ? '✓' : ''}</span> </div>`).join(’’);
+  const dd = document.getElementById('themeDropdown');
+  if (!dd) return;
+  dd.innerHTML = THEMES.map(t => `
+    <div class="theme-option ${t.id === currentTheme ? 'active' : ''}" onclick="applyTheme('${t.id}'); closeThemeMenu()">
+      <div class="theme-swatch-group">
+        ${t.dots.map(c => `<div class="theme-dot" style="background:${c}"></div>`).join('')}
+      </div>
+      <span class="theme-option-name">${t.name}</span>
+      <span class="theme-check">${t.id === currentTheme ? '✓' : ''}</span>
+    </div>`).join('');
 }
 
 function toggleThemeMenu(e) {
-e.stopPropagation();
-const dd = document.getElementById(‘themeDropdown’);
-dd.classList.toggle(‘open’);
-if (dd.classList.contains(‘open’)) {
-renderThemeDropdown();
-setTimeout(() => document.addEventListener(‘click’, closeThemeMenu, {once:true}), 50);
-}
+  e.stopPropagation();
+  const dd = document.getElementById('themeDropdown');
+  dd.classList.toggle('open');
+  if (dd.classList.contains('open')) {
+    renderThemeDropdown();
+    setTimeout(() => document.addEventListener('click', closeThemeMenu, {once:true}), 50);
+  }
 }
 
 function closeThemeMenu() {
-document.getElementById(‘themeDropdown’)?.classList.remove(‘open’);
+  document.getElementById('themeDropdown')?.classList.remove('open');
 }
 
 // ── Typography ────────────────────────────────────────────────────
 const TYPO_CONTROLS = [
-{
-id: ‘week-range’,
-label: ‘Week Range’,
-cssVar: ‘–fs-week-range’,
-default: 12, min: 6, max: 999, step: 1,
-preview: () => document.getElementById(‘weekLabel’)?.textContent || ‘Mar 9 – Mar 15’,
-previewFont: “‘Jost’, sans-serif”,
-previewWeight: ‘400’,
-previewCase: ‘uppercase’,
-previewSpacing: ‘2px’,
-},
-{
-id: ‘day-label’,
-label: ‘Day Labels’,
-cssVar: ‘–fs-day-label’,
-default: 10, min: 6, max: 999, step: 1,
-preview: () => ‘SUN   MON   TUE   WED’,
-previewFont: “‘Jost’, sans-serif”,
-previewWeight: ‘600’,
-previewCase: ‘uppercase’,
-previewSpacing: ‘2.5px’,
-},
-{
-id: ‘day-num’,
-label: ‘Date Numbers’,
-cssVar: ‘–fs-day-num’,
-default: 30, min: 6, max: 999, step: 2,
-preview: () => { const dates = getWeekDates(weekOffset); return dates.map(d=>d.getDate()).join(’   ’); },
-previewFont: “‘Cormorant Garamond’, serif”,
-previewWeight: ‘300’,
-previewCase: ‘normal’,
-previewSpacing: ‘0’,
-},
-{
-id: ‘row-name’,
-label: ‘Ritual Name (left column)’,
-cssVar: ‘–fs-row-name’,
-default: 12, min: 6, max: 999, step: 1,
-preview: () => rows[0]?.name || ‘Olaplex No.4’,
-previewFont: “‘Jost’, sans-serif”,
-previewWeight: ‘600’,
-previewCase: ‘normal’,
-previewSpacing: ‘0.3px’,
-},
-{
-id: ‘row-count’,
-label: ‘1/7 Count (left column)’,
-cssVar: ‘–fs-row-count’,
-default: 10, min: 6, max: 999, step: 1,
-preview: () => ‘1/7 this week’,
-previewFont: “‘Jost’, sans-serif”,
-previewWeight: ‘300’,
-previewCase: ‘normal’,
-previewSpacing: ‘0’,
-},
-{
-id: ‘sum-num’,
-label: ‘Summary Number (bottom cards)’,
-cssVar: ‘–fs-sum-num’,
-default: 26, min: 6, max: 999, step: 2,
-preview: () => ‘1  /7’,
-previewFont: “‘Cormorant Garamond’, serif”,
-previewWeight: ‘300’,
-previewCase: ‘normal’,
-previewSpacing: ‘0’,
-},
-{
-id: ‘sum-name’,
-label: ‘Summary Name (bottom cards)’,
-cssVar: ‘–fs-sum-name’,
-default: 10, min: 6, max: 999, step: 1,
-preview: () => rows[0]?.name?.toUpperCase() || ‘SHAMPOO — CLARIFYING’,
-previewFont: “‘Jost’, sans-serif”,
-previewWeight: ‘500’,
-previewCase: ‘uppercase’,
-previewSpacing: ‘1.5px’,
-},
+  {
+    id: 'week-range',
+    label: 'Week Range',
+    cssVar: '--fs-week-range',
+    default: 12, min: 6, max: 999, step: 1,
+    preview: () => document.getElementById('weekLabel')?.textContent || 'Mar 9 – Mar 15',
+    previewFont: "'Jost', sans-serif",
+    previewWeight: '400',
+    previewCase: 'uppercase',
+    previewSpacing: '2px',
+  },
+  {
+    id: 'day-label',
+    label: 'Day Labels',
+    cssVar: '--fs-day-label',
+    default: 10, min: 6, max: 999, step: 1,
+    preview: () => 'SUN   MON   TUE   WED',
+    previewFont: "'Jost', sans-serif",
+    previewWeight: '600',
+    previewCase: 'uppercase',
+    previewSpacing: '2.5px',
+  },
+  {
+    id: 'day-num',
+    label: 'Date Numbers',
+    cssVar: '--fs-day-num',
+    default: 30, min: 6, max: 999, step: 2,
+    preview: () => { const dates = getWeekDates(weekOffset); return dates.map(d=>d.getDate()).join('   '); },
+    previewFont: "'Cormorant Garamond', serif",
+    previewWeight: '300',
+    previewCase: 'normal',
+    previewSpacing: '0',
+  },
+  {
+    id: 'row-name',
+    label: 'Ritual Name (left column)',
+    cssVar: '--fs-row-name',
+    default: 12, min: 6, max: 999, step: 1,
+    preview: () => rows[0]?.name || 'Olaplex No.4',
+    previewFont: "'Jost', sans-serif",
+    previewWeight: '600',
+    previewCase: 'normal',
+    previewSpacing: '0.3px',
+  },
+  {
+    id: 'row-count',
+    label: '1/7 Count (left column)',
+    cssVar: '--fs-row-count',
+    default: 10, min: 6, max: 999, step: 1,
+    preview: () => '1/7 this week',
+    previewFont: "'Jost', sans-serif",
+    previewWeight: '300',
+    previewCase: 'normal',
+    previewSpacing: '0',
+  },
+  {
+    id: 'sum-num',
+    label: 'Summary Number (bottom cards)',
+    cssVar: '--fs-sum-num',
+    default: 26, min: 6, max: 999, step: 2,
+    preview: () => '1  /7',
+    previewFont: "'Cormorant Garamond', serif",
+    previewWeight: '300',
+    previewCase: 'normal',
+    previewSpacing: '0',
+  },
+  {
+    id: 'sum-name',
+    label: 'Summary Name (bottom cards)',
+    cssVar: '--fs-sum-name',
+    default: 10, min: 6, max: 999, step: 1,
+    preview: () => rows[0]?.name?.toUpperCase() || 'SHAMPOO — CLARIFYING',
+    previewFont: "'Jost', sans-serif",
+    previewWeight: '500',
+    previewCase: 'uppercase',
+    previewSpacing: '1.5px',
+  },
 ];
 
 // Load saved sizes or use defaults
-let typoSizes = JSON.parse(localStorage.getItem(‘sc4_typo’) || ‘null’) || {};
+let typoSizes = JSON.parse(localStorage.getItem('sc4_typo') || 'null') || {};
 TYPO_CONTROLS.forEach(c => {
-if (typoSizes[c.id] === undefined) typoSizes[c.id] = c.default;
+  if (typoSizes[c.id] === undefined) typoSizes[c.id] = c.default;
 });
 
 function applyTypo() {
-const root = document.documentElement;
-TYPO_CONTROLS.forEach(c => {
-root.style.setProperty(c.cssVar, typoSizes[c.id] + ‘px’);
-});
-localStorage.setItem(‘sc4_typo’, JSON.stringify(typoSizes));
+  const root = document.documentElement;
+  TYPO_CONTROLS.forEach(c => {
+    root.style.setProperty(c.cssVar, typoSizes[c.id] + 'px');
+  });
+  localStorage.setItem('sc4_typo', JSON.stringify(typoSizes));
 }
 
 function openTypo() {
-document.getElementById(‘aaBtn’)?.classList.add(‘active’);
-renderTypoRows();
-document.getElementById(‘typoOverlay’).classList.add(‘open’);
+  document.getElementById('aaBtn')?.classList.add('active');
+  renderTypoRows();
+  document.getElementById('typoOverlay').classList.add('open');
 }
 
 function closeTypo() {
-document.getElementById(‘aaBtn’)?.classList.remove(‘active’);
-document.getElementById(‘typoOverlay’).classList.remove(‘open’);
+  document.getElementById('aaBtn')?.classList.remove('active');
+  document.getElementById('typoOverlay').classList.remove('open');
 }
 
 function handleTypoOverlayClick(e) {
-const popup = document.getElementById(‘typoPopup’);
-if (popup && !popup.contains(e.target)) closeTypo();
+  const popup = document.getElementById('typoPopup');
+  if (popup && !popup.contains(e.target)) closeTypo();
 }
 
 function renderTypoRows() {
-const container = document.getElementById(‘typoRows’);
-container.innerHTML = ‘’;
+  const container = document.getElementById('typoRows');
+  container.innerHTML = '';
 
-TYPO_CONTROLS.forEach(c => {
-const size = typoSizes[c.id];
-const row = document.createElement(‘div’);
-row.className = ‘typo-row’;
-row.id = ‘typorow-’ + c.id;
+  TYPO_CONTROLS.forEach(c => {
+    const size = typoSizes[c.id];
+    const row = document.createElement('div');
+    row.className = 'typo-row';
+    row.id = 'typorow-' + c.id;
 
-```
-const info = document.createElement('div');
-info.className = 'typo-row-info';
-info.innerHTML = `
-  <div class="typo-row-label">${c.label}</div>
-  <div class="typo-row-preview" id="tyroprev-${c.id}" style="
-    font-size:${size}px;
-    font-family:${c.previewFont};
-    font-weight:${c.previewWeight};
-    text-transform:${c.previewCase};
-    letter-spacing:${c.previewSpacing};
-  ">${c.preview()}</div>`;
+    const info = document.createElement('div');
+    info.className = 'typo-row-info';
+    info.innerHTML = `
+      <div class="typo-row-label">${c.label}</div>
+      <div class="typo-row-preview" id="tyroprev-${c.id}" style="
+        font-size:${size}px;
+        font-family:${c.previewFont};
+        font-weight:${c.previewWeight};
+        text-transform:${c.previewCase};
+        letter-spacing:${c.previewSpacing};
+      ">${c.preview()}</div>`;
 
-const stepper = document.createElement('div');
-stepper.className = 'typo-stepper';
-stepper.innerHTML = `
-  <button class="typo-step-btn" id="typo-minus-${c.id}"
-    onclick="stepTypo('${c.id}', -1)" ${size <= c.min ? 'disabled' : ''}>−</button>
-  <span class="typo-size-val" id="tyroval-${c.id}">${size}px</span>
-  <button class="typo-step-btn" id="typo-plus-${c.id}"
-    onclick="stepTypo('${c.id}', 1)" ${size >= c.max ? 'disabled' : ''}>+</button>`;
+    const stepper = document.createElement('div');
+    stepper.className = 'typo-stepper';
+    stepper.innerHTML = `
+      <button class="typo-step-btn" id="typo-minus-${c.id}"
+        onclick="stepTypo('${c.id}', -1)" ${size <= c.min ? 'disabled' : ''}>−</button>
+      <span class="typo-size-val" id="tyroval-${c.id}">${size}px</span>
+      <button class="typo-step-btn" id="typo-plus-${c.id}"
+        onclick="stepTypo('${c.id}', 1)" ${size >= c.max ? 'disabled' : ''}>+</button>`;
 
-row.appendChild(info);
-row.appendChild(stepper);
-container.appendChild(row);
-```
-
-});
+    row.appendChild(info);
+    row.appendChild(stepper);
+    container.appendChild(row);
+  });
 }
 
 function stepTypo(id, dir) {
-const c = TYPO_CONTROLS.find(x => x.id === id);
-if (!c) return;
-const newSize = Math.min(c.max, Math.max(c.min, typoSizes[id] + (dir * c.step)));
-typoSizes[id] = newSize;
-applyTypo();
+  const c = TYPO_CONTROLS.find(x => x.id === id);
+  if (!c) return;
+  const newSize = Math.min(c.max, Math.max(c.min, typoSizes[id] + (dir * c.step)));
+  typoSizes[id] = newSize;
+  applyTypo();
 
-// Update just this row live without full re-render
-const prev = document.getElementById(‘tyroprev-’ + id);
-if (prev) { prev.style.fontSize = newSize + ‘px’; prev.textContent = c.preview(); }
+  // Update just this row live without full re-render
+  const prev = document.getElementById('tyroprev-' + id);
+  if (prev) { prev.style.fontSize = newSize + 'px'; prev.textContent = c.preview(); }
 
-const val = document.getElementById(‘tyroval-’ + id);
-if (val) val.textContent = newSize + ‘px’;
+  const val = document.getElementById('tyroval-' + id);
+  if (val) val.textContent = newSize + 'px';
 
-const minBtn = document.getElementById(‘typo-minus-’ + id);
-const maxBtn = document.getElementById(‘typo-plus-’ + id);
-if (minBtn) minBtn.disabled = newSize <= c.min;
-if (maxBtn) maxBtn.disabled = newSize >= c.max;
+  const minBtn = document.getElementById('typo-minus-' + id);
+  const maxBtn = document.getElementById('typo-plus-' + id);
+  if (minBtn) minBtn.disabled = newSize <= c.min;
+  if (maxBtn) maxBtn.disabled = newSize >= c.max;
 
-// Always re-render so column width recalculates for every font change
-render();
+  // Always re-render so column width recalculates for every font change
+  render();
 }
 
 function resetTypo() {
-TYPO_CONTROLS.forEach(c => { typoSizes[c.id] = c.default; });
-applyTypo();
-renderTypoRows();
+  TYPO_CONTROLS.forEach(c => { typoSizes[c.id] = c.default; });
+  applyTypo();
+  renderTypoRows();
 }
 
 // ── Size / Orientation dropdown ───────────────────────────────────
 const SIZES = [
-{ id: ‘l1600’, w: 1600, h: 1200, label: ‘Landscape’,  sub: ‘1600 × 1200’, icon: ‘⬛’, cls: ‘’          },
-{ id: ‘p1200’, w: 1200, h: 1600, label: ‘Portrait’,   sub: ‘1200 × 1600’, icon: ‘▬’,  cls: ‘portrait’  },
-{ id: ‘l1280’, w: 1280, h: 800,  label: ‘Landscape’,  sub: ‘1280 × 800’,  icon: ‘⬛’, cls: ‘landscape2’ },
-{ id: ‘p800’,  w: 800,  h: 1280, label: ‘Portrait’,   sub: ‘800 × 1280’,  icon: ‘▬’,  cls: ‘portrait2’  },
+  { id: 'l1600', w: 1600, h: 1200, label: 'Landscape',  sub: '1600 × 1200', icon: '⬛', cls: ''          },
+  { id: 'p1200', w: 1200, h: 1600, label: 'Portrait',   sub: '1200 × 1600', icon: '▬',  cls: 'portrait'  },
+  { id: 'l1280', w: 1280, h: 800,  label: 'Landscape',  sub: '1280 × 800',  icon: '⬛', cls: 'landscape2' },
+  { id: 'p800',  w: 800,  h: 1280, label: 'Portrait',   sub: '800 × 1280',  icon: '▬',  cls: 'portrait2'  },
 ];
 
-let currentSizeId = localStorage.getItem(‘sc4_size’) || ‘l1600’;
+let currentSizeId = 'l1600';
 
 function applySize(id) {
-const size = SIZES.find(s => s.id === id);
-if (!size) return;
-currentSizeId = id;
-localStorage.setItem(‘sc4_size’, id);
+  const size = SIZES.find(s => s.id === id);
+  if (!size) return;
+  currentSizeId = id;
 
-const vp = document.getElementById(‘viewport’);
-vp.style.width  = size.w + ‘px’;
-vp.style.height = size.h + ‘px’;
-vp.style.transform = ‘’;
+  const vp = document.getElementById('viewport');
+  vp.style.width  = size.w + 'px';
+  vp.style.height = size.h + 'px';
+  vp.style.transform = '';
 
-document.body.style.width    = size.w + ‘px’;
-document.body.style.minHeight = size.h + ‘px’;
-document.body.style.height   = ‘auto’;
-document.body.style.overflow = ‘auto’;
+  document.body.style.width    = size.w + 'px';
+  document.body.style.minHeight = size.h + 'px';
+  document.body.style.height   = 'auto';
+  document.body.style.overflow = 'auto';
 
-// Update button label
-document.getElementById(‘sizeBtnLabel’).textContent = size.sub;
+  // Update button label
+  document.getElementById('sizeBtnLabel').textContent = size.sub;
 
-// Update export labels
-document.getElementById(‘exportSubJpg’).textContent = `${size.w} × ${size.h} · compressed`;
-document.getElementById(‘exportSubPng’).textContent = `${size.w} × ${size.h} · lossless`;
+  // Update export labels
+  document.getElementById('exportSubJpg').textContent = `${size.w} × ${size.h} · compressed`;
+  document.getElementById('exportSubPng').textContent = `${size.w} × ${size.h} · lossless`;
 
-renderSizeDropdown();
+  renderSizeDropdown();
 
-// Wait for DOM to reflow at new dimensions before calculating layout
-requestAnimationFrame(() => requestAnimationFrame(() => render()));
+  // Wait for DOM to reflow at new dimensions before calculating layout
+  requestAnimationFrame(() => requestAnimationFrame(() => render()));
 }
 
 function renderSizeDropdown() {
-const dd = document.getElementById(‘sizeDropdown’);
-if (!dd) return;
-dd.innerHTML = SIZES.map(s => ` <div class="size-option ${s.id === currentSizeId ? 'active' : ''}" onclick="applySize('${s.id}'); closeSizeMenu()"> <span class="size-icon">${s.icon}</span> <div class="size-option-info"> <div class="size-option-dims">${s.sub}</div> <div class="size-option-label">${s.label}</div> </div> <span class="size-check">${s.id === currentSizeId ? '✓' : ''}</span> </div>`).join(’’);
+  const dd = document.getElementById('sizeDropdown');
+  if (!dd) return;
+  dd.innerHTML = SIZES.map(s => `
+    <div class="size-option ${s.id === currentSizeId ? 'active' : ''}"
+      onclick="applySize('${s.id}'); closeSizeMenu()">
+      <span class="size-icon">${s.icon}</span>
+      <div class="size-option-info">
+        <div class="size-option-dims">${s.sub}</div>
+        <div class="size-option-label">${s.label}</div>
+      </div>
+      <span class="size-check">${s.id === currentSizeId ? '✓' : ''}</span>
+    </div>`).join('');
 }
 
 function toggleSizeMenu(e) {
-e.stopPropagation();
-const dd = document.getElementById(‘sizeDropdown’);
-renderSizeDropdown();
-dd.classList.toggle(‘open’);
-if (dd.classList.contains(‘open’)) {
-setTimeout(() => document.addEventListener(‘click’, closeSizeMenu, {once:true}), 50);
-}
+  e.stopPropagation();
+  const dd = document.getElementById('sizeDropdown');
+  renderSizeDropdown();
+  dd.classList.toggle('open');
+  if (dd.classList.contains('open')) {
+    setTimeout(() => document.addEventListener('click', closeSizeMenu, {once:true}), 50);
+  }
 }
 
 function closeSizeMenu() {
-document.getElementById(‘sizeDropdown’)?.classList.remove(‘open’);
+  document.getElementById('sizeDropdown')?.classList.remove('open');
 }
 
 function getActiveDimensions() {
-const size = SIZES.find(s => s.id === currentSizeId) || SIZES[0];
-return { w: size.w, h: size.h, label: size.id };
+  const size = SIZES.find(s => s.id === currentSizeId) || SIZES[0];
+  return { w: size.w, h: size.h, label: size.id };
 }
 
 function updateExportLabels() {
-const { w, h } = getActiveDimensions();
-document.getElementById(‘exportSubJpg’).textContent = `${w} × ${h} · compressed`;
-document.getElementById(‘exportSubPng’).textContent = `${w} × ${h} · lossless`;
+  const { w, h } = getActiveDimensions();
+  document.getElementById('exportSubJpg').textContent = `${w} × ${h} · compressed`;
+  document.getElementById('exportSubPng').textContent = `${w} × ${h} · lossless`;
 }
 
 // ── Settings menu ─────────────────────────────────────────────────
 function toggleSettingsMenu(e) {
-e.stopPropagation();
-const dd = document.getElementById(‘settingsDropdown’);
-const isOpen = dd.classList.contains(‘open’);
-closeSettingsMenu();
-if (!isOpen) {
-dd.classList.add(‘open’);
-// Update theme sublabel
-const themeSub = document.getElementById(‘soptThemeSub’);
-if (themeSub) {
-const names = {
-blush:‘Blush & Cream’, midnight:‘Midnight Spa’, matcha:‘Matcha’,
-cloud:‘Cloud’, sunset:‘Sunset’, lavender:‘Lavender Dream’,
-noir:‘Noir’, sage:‘Sage Garden’
-};
-themeSub.textContent = names[currentTheme] || currentTheme;
-}
-setTimeout(() => document.addEventListener(‘click’, closeSettingsMenu, {once:true}), 50);
-}
+  e.stopPropagation();
+  const dd = document.getElementById('settingsDropdown');
+  const isOpen = dd.classList.contains('open');
+  closeSettingsMenu();
+  if (!isOpen) {
+    dd.classList.add('open');
+    // Update theme sublabel
+    const themeSub = document.getElementById('soptThemeSub');
+    if (themeSub) {
+      const names = {
+        blush:'Blush & Cream', midnight:'Midnight Spa', matcha:'Matcha',
+        cloud:'Cloud', sunset:'Sunset', lavender:'Lavender Dream',
+        noir:'Noir', sage:'Sage Garden'
+      };
+      themeSub.textContent = names[currentTheme] || currentTheme;
+    }
+    setTimeout(() => document.addEventListener('click', closeSettingsMenu, {once:true}), 50);
+  }
 }
 function closeSettingsMenu() {
-document.getElementById(‘settingsDropdown’)?.classList.remove(‘open’);
+  document.getElementById('settingsDropdown')?.classList.remove('open');
 }
 
 // ── Export ────────────────────────────────────────────────────────
 function toggleExportMenu(e) {
-e.stopPropagation();
-const dd = document.getElementById(‘exportDropdown’);
-dd.classList.toggle(‘open’);
-if (dd.classList.contains(‘open’)) {
-setTimeout(() => document.addEventListener(‘click’, closeExportMenu, {once:true}), 50);
-}
+  e.stopPropagation();
+  const dd = document.getElementById('exportDropdown');
+  dd.classList.toggle('open');
+  if (dd.classList.contains('open')) {
+    setTimeout(() => document.addEventListener('click', closeExportMenu, {once:true}), 50);
+  }
 }
 
 function closeExportMenu() {
-document.getElementById(‘exportDropdown’)?.classList.remove(‘open’);
+  document.getElementById('exportDropdown')?.classList.remove('open');
 }
 
 // ── iOS-safe export: draws tracker natively onto Canvas, opens image in new tab ──
@@ -2721,567 +2702,563 @@ document.getElementById(‘exportDropdown’)?.classList.remove(‘open’);
 //  so we draw everything with Canvas 2D API then window.open the dataURL)
 
 async function doExport(fmt) {
-closeExportMenu();
+  closeExportMenu();
 
-const { w: exportW, h: exportH, label: orientLabel } = getActiveDimensions();
+  const { w: exportW, h: exportH, label: orientLabel } = getActiveDimensions();
 
-const toHide = [‘settingsWrap’, ‘panelOverlay’, ‘noteOverlay’, ‘emojiPicker’, ‘typoOverlay’, ‘exportToast’];
-toHide.forEach(id => { const el = document.getElementById(id); if (el) el.style.visibility = ‘hidden’; });
+  const toHide = ['settingsWrap', 'panelOverlay', 'noteOverlay', 'emojiPicker', 'typoOverlay', 'exportToast'];
+  toHide.forEach(id => { const el = document.getElementById(id); if (el) el.style.visibility = 'hidden'; });
 
-// Helper to resolve a CSS variable to its actual colour value
-function cssVar(name) {
-return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-}
-
-try {
-const canvas = document.createElement(‘canvas’);
-canvas.width  = exportW;
-canvas.height = exportH;
-const ctx = canvas.getContext(‘2d’);
-
-```
-// ── Colours from current theme ──
-const C = {
-  bg:      cssVar('--bg')      || '#faf7f2',
-  bg2:     cssVar('--bg2')     || '#f5ece6',
-  surface: cssVar('--surface') || '#ffffff',
-  ink:     cssVar('--ink')     || '#3a3030',
-  soft:    cssVar('--soft')    || '#7d6d6d',
-  rose:    cssVar('--accent1') || '#cd9b94',
-  mauve:   cssVar('--accent2') || '#a67070',
-  border:  cssVar('--border')  || 'rgba(180,140,140,0.15)',
-  pBg:  [0,1,2,3,4,5,6].map(i => cssVar(`--p${i}-bg`)),
-  pAcc: [0,1,2,3,4,5,6].map(i => cssVar(`--p${i}-accent`)),
-};
-
-// ── Live data ──
-const weekDates = getWeekDates(weekOffset);
-const todayStr  = new Date().toDateString();
-const DAY_NAMES = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
-const MONTHS    = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-function fmtDS(d) { return `${MONTHS[d.getMonth()]} ${d.getDate()}`; }
-const weekStr = `${fmtDS(weekDates[0]).replace(' ','-')}_${fmtDS(weekDates[6]).replace(' ','-')}`;
-
-// ── Mirror render()'s layout math exactly ──
-const W = exportW, H = exportH;
-const numRows = rows.length;
-
-const autoTitleSize = Math.max(22, Math.min(Math.round(W * 0.034), 54));
-const autoSubSize   = Math.max(8,  Math.min(Math.round(autoTitleSize * 0.20), 12));
-const headerSection = Math.round(autoTitleSize * 1.4 + autoSubSize + 32);
-const headerMargin  = Math.round(H * 0.016);
-const headerPad     = Math.round(H * 0.016);
-const summaryH      = Math.round(H * 0.115);
-const summaryMargin = Math.round(H * 0.014);
-const pagePadTop    = Math.round(H * 0.028);
-const pagePadBot    = Math.round(H * 0.020);
-const pagePadHoriz  = Math.round(W * 0.027);
-
-const gridAvailH = H - pagePadTop - pagePadBot - headerSection - headerMargin - headerPad - summaryH - summaryMargin;
-const dataRowH   = Math.max(32, Math.floor(gridAvailH / (1.4 + Math.max(numRows, 1))));
-const dayHeaderH = Math.max(36, Math.round(dataRowH * 1.4));
-
-const autoRowNameSize = Math.max(8,  Math.min(Math.round(dataRowH * 0.22), 26));
-const autoRowSubSize  = Math.max(7,  Math.min(Math.round(dataRowH * 0.15), 16));
-const autoDayNumSize  = Math.max(12, Math.min(Math.round(dayHeaderH * 0.46), 56));
-const autoDayLblSize  = Math.max(6,  Math.min(Math.round(dayHeaderH * 0.14), 18));
-const autoSumNumSize  = Math.max(12, Math.min(Math.round(summaryH * 0.30), 44));
-const autoSumNameSize = Math.max(7,  Math.min(Math.round(summaryH * 0.11), 14));
-const autoWeekSize    = Math.max(8,  Math.min(Math.round(headerSection * 0.14), 16));
-
-// Positions
-const headerTop  = pagePadTop;
-const gridTop    = headerTop + headerSection + headerMargin + headerPad + dayHeaderH;
-const gridLeft   = pagePadHoriz;
-const gridRight  = W - pagePadHoriz;
-const gridW      = gridRight - gridLeft;
-// Mirror render()'s dynamic column width calculation
-// Measure longest name text + icon + padding to get the right column width
-ctx.font = `600 ${autoRowNameSize}px Arial, sans-serif`;
-const longestNameW = rows.reduce((max, r) => {
-  // Check both single-line and best word-wrap width
-  const full = ctx.measureText(r.name).width;
-  const words = r.name.split(' ');
-  let wrapped = full;
-  for (let i = 1; i < words.length; i++) {
-    const w = Math.max(
-      ctx.measureText(words.slice(0, i).join(' ')).width,
-      ctx.measureText(words.slice(i).join(' ')).width
-    );
-    wrapped = Math.min(wrapped, w);
-  }
-  return Math.max(max, wrapped);
-}, 0);
-ctx.font = `300 ${autoRowSubSize}px Arial, sans-serif`;
-const subW = ctx.measureText('0/7 this week').width;
-const iconSzEst = Math.max(24, Math.min(Math.round(dataRowH * 0.50), 44));
-const neededColW = Math.max(longestNameW, subW) + iconSzEst + 32 + 18 + 14;
-const labelColW  = Math.max(120, Math.min(Math.ceil(neededColW), Math.round(gridW * 0.28)));
-const dayColW    = (gridW - labelColW) / 7;
-const dayHeaderTop = headerTop + headerSection + headerMargin + headerPad;
-const sumTop     = gridTop + numRows * dataRowH + summaryMargin;
-
-// ── Background ──
-ctx.fillStyle = C.bg;
-ctx.fillRect(0, 0, W, H);
-
-// ── Header: title ──
-ctx.font = `300 ${autoTitleSize}px Georgia, serif`;
-ctx.fillStyle = C.ink;
-const selfCareText = 'Self Care ';
-ctx.fillText(selfCareText, gridLeft, headerTop + autoTitleSize);
-const scWidth = ctx.measureText(selfCareText).width;
-ctx.font = `italic 300 ${autoTitleSize}px Georgia, serif`;
-ctx.fillStyle = C.mauve;
-ctx.fillText('Ritual', gridLeft + scWidth, headerTop + autoTitleSize);
-
-// Subtitle
-ctx.font = `400 ${autoSubSize}px Arial, sans-serif`;
-ctx.fillStyle = C.soft;
-ctx.fillText('WEEKLY TRACKER', gridLeft, headerTop + autoTitleSize + autoSubSize + 6);
-
-// Clock to the left of week range
-const now = new Date();
-let ch = now.getHours(), cm = now.getMinutes();
-const ampm = ch >= 12 ? 'PM' : 'AM';
-ch = ch % 12 || 12;
-const CMONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-const CDAYS   = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-const dateStr = `${CDAYS[now.getDay()]}, ${CMONTHS[now.getMonth()]} ${now.getDate()}`;
-const clockStr = `${dateStr}  ${ch}:${String(cm).padStart(2,'0')} ${ampm}`;
-ctx.font = `400 ${autoWeekSize}px Arial, sans-serif`;
-ctx.fillStyle = C.soft;
-ctx.textAlign = 'center';
-const clockW = ctx.measureText(clockStr).width;
-const wLabel = `${fmtDS(weekDates[0]).toUpperCase()} — ${fmtDS(weekDates[6]).toUpperCase()}`;
-const wLabelW = ctx.measureText(wLabel).width;
-const gap = Math.round(autoWeekSize * 2);
-const totalW = clockW + gap + wLabelW;
-const startX = (W - totalW) / 2;
-ctx.textAlign = 'left';
-ctx.fillText(clockStr, startX, headerTop + autoTitleSize * 0.75);
-ctx.fillText(wLabel, startX + clockW + gap, headerTop + autoTitleSize * 0.75);
-
-// Header separator line
-const sepY = headerTop + headerSection - 2;
-ctx.strokeStyle = C.border;
-ctx.lineWidth = 1;
-ctx.beginPath();
-ctx.moveTo(gridLeft, sepY); ctx.lineTo(gridRight, sepY);
-ctx.stroke();
-
-// ── Day header row ──
-ctx.fillStyle = C.surface;
-ctx.fillRect(gridLeft, dayHeaderTop, gridW, dayHeaderH);
-
-// Corner label area border-right
-ctx.strokeStyle = C.border;
-ctx.lineWidth = 1.5;
-ctx.beginPath();
-ctx.moveTo(gridLeft + labelColW, dayHeaderTop);
-ctx.lineTo(gridLeft + labelColW, dayHeaderTop + dayHeaderH);
-ctx.stroke();
-
-weekDates.forEach((d, i) => {
-  const cx = gridLeft + labelColW + i * dayColW + dayColW / 2;
-  const isToday = d.toDateString() === todayStr;
-
-  ctx.font = `600 ${autoDayLblSize}px Arial, sans-serif`;
-  ctx.fillStyle = C.soft;
-  ctx.textAlign = 'center';
-  ctx.fillText(DAY_NAMES[d.getDay()], cx, dayHeaderTop + dayHeaderH * 0.35);
-
-  ctx.font = `300 ${autoDayNumSize}px Georgia, serif`;
-  ctx.fillStyle = isToday ? C.rose : C.ink;
-  ctx.fillText(String(d.getDate()), cx, dayHeaderTop + dayHeaderH * 0.82);
-
-  if (isToday) {
-    ctx.fillStyle = C.rose;
-    const barW = Math.round(autoDayNumSize * 0.65);
-    ctx.fillRect(cx - barW/2, dayHeaderTop + dayHeaderH * 0.88, barW, 2);
-  }
-});
-
-// Header-row bottom border
-ctx.strokeStyle = C.border;
-ctx.lineWidth = 1.5;
-ctx.beginPath();
-ctx.moveTo(gridLeft, dayHeaderTop + dayHeaderH);
-ctx.lineTo(gridRight, dayHeaderTop + dayHeaderH);
-ctx.stroke();
-
-// Grid outer rounded rect
-const totalGridH = dayHeaderH + numRows * dataRowH;
-ctx.strokeStyle = C.border;
-ctx.lineWidth = 1;
-roundRect(ctx, gridLeft, dayHeaderTop, gridW, totalGridH, 14);
-ctx.stroke();
-// Clip subsequent fills to the grid area
-ctx.save();
-roundRect(ctx, gridLeft, dayHeaderTop, gridW, totalGridH, 14);
-ctx.clip();
-
-// ── Data rows ──
-rows.forEach((row, ri) => {
-  const ci   = row.colorIdx;  // FIXED: was row.color
-  const rowY = gridTop + ri * dataRowH;
-  const pBg  = C.pBg[ci]  || C.bg2;
-  const pAcc = C.pAcc[ci] || C.rose;
-
-  // Row background
-  ctx.fillStyle = C.surface;
-  ctx.fillRect(gridLeft, rowY, gridW, dataRowH);
-
-  // Left colour stripe
-  ctx.fillStyle = pAcc;
-  ctx.fillRect(gridLeft, rowY, 4, dataRowH);
-
-  // Icon pill
-  const iconSize = Math.round(dataRowH * 0.5);
-  const iconX = gridLeft + Math.round(labelColW * 0.08);
-  const iconY = rowY + (dataRowH - iconSize) / 2;
-  ctx.fillStyle = pBg;
-  roundRect(ctx, iconX, iconY, iconSize, iconSize, Math.round(iconSize * 0.25));
-  ctx.fill();
-  ctx.font = `${Math.round(iconSize * 0.55)}px Arial`;
-  ctx.textAlign = 'center';
-  ctx.fillText(row.icon || '✦', iconX + iconSize / 2, iconY + iconSize * 0.72);
-
-  // Row name — measure line count first so we can centre the block vertically
-  const nameX    = iconX + iconSize + Math.round(labelColW * 0.06);
-  const nameMaxW = labelColW - nameX + gridLeft - 6;
-  ctx.font = `600 ${autoRowNameSize}px Arial, sans-serif`;
-
-  // Split name into lines that fit nameMaxW
-  function getLines(text, maxW) {
-    const words = text.split(' ');
-    const lines = [];
-    let line = '';
-    for (const word of words) {
-      const test = line ? line + ' ' + word : word;
-      if (ctx.measureText(test).width > maxW && line) {
-        lines.push(line);
-        line = word;
-      } else { line = test; }
-    }
-    if (line) lines.push(line);
-    return lines;
+  // Helper to resolve a CSS variable to its actual colour value
+  function cssVar(name) {
+    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
   }
 
-  const nameLineH  = autoRowNameSize * 1.3;
-  const nameLines  = getLines(row.name || 'Ritual', nameMaxW);
-  const nameBlockH = nameLines.length * nameLineH;
-  const subLineH   = autoRowSubSize * 1.4;
-  const totalTextH = nameBlockH + subLineH * 0.6 + autoRowSubSize;
+  try {
+    const canvas = document.createElement('canvas');
+    canvas.width  = exportW;
+    canvas.height = exportH;
+    const ctx = canvas.getContext('2d');
 
-  // Centre the whole name+sub block in the row
-  const blockStartY = rowY + (dataRowH - totalTextH) / 2 + autoRowNameSize;
+    // ── Colours from current theme ──
+    const C = {
+      bg:      cssVar('--bg')      || '#faf7f2',
+      bg2:     cssVar('--bg2')     || '#f5ece6',
+      surface: cssVar('--surface') || '#ffffff',
+      ink:     cssVar('--ink')     || '#3a3030',
+      soft:    cssVar('--soft')    || '#7d6d6d',
+      rose:    cssVar('--accent1') || '#cd9b94',
+      mauve:   cssVar('--accent2') || '#a67070',
+      border:  cssVar('--border')  || 'rgba(180,140,140,0.15)',
+      pBg:  [0,1,2,3,4,5,6].map(i => cssVar(`--p${i}-bg`)),
+      pAcc: [0,1,2,3,4,5,6].map(i => cssVar(`--p${i}-accent`)),
+    };
 
-  ctx.fillStyle = C.ink;
-  ctx.textAlign = 'left';
-  nameLines.forEach((line, li) => {
+    // ── Live data ──
+    const weekDates = getWeekDates(weekOffset);
+    const todayStr  = new Date().toDateString();
+    const DAY_NAMES = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+    const MONTHS    = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    function fmtDS(d) { return `${MONTHS[d.getMonth()]} ${d.getDate()}`; }
+    const weekStr = `${fmtDS(weekDates[0]).replace(' ','-')}_${fmtDS(weekDates[6]).replace(' ','-')}`;
+
+    // ── Mirror render()'s layout math exactly ──
+    const W = exportW, H = exportH;
+    const numRows = rows.length;
+
+    const autoTitleSize = Math.max(22, Math.min(Math.round(W * 0.034), 54));
+    const autoSubSize   = Math.max(8,  Math.min(Math.round(autoTitleSize * 0.20), 12));
+    const headerSection = Math.round(autoTitleSize * 1.4 + autoSubSize + 32);
+    const headerMargin  = Math.round(H * 0.016);
+    const headerPad     = Math.round(H * 0.016);
+    const summaryH      = Math.round(H * 0.115);
+    const summaryMargin = Math.round(H * 0.014);
+    const pagePadTop    = Math.round(H * 0.028);
+    const pagePadBot    = Math.round(H * 0.020);
+    const pagePadHoriz  = Math.round(W * 0.027);
+
+    const gridAvailH = H - pagePadTop - pagePadBot - headerSection - headerMargin - headerPad - summaryH - summaryMargin;
+    const dataRowH   = Math.max(32, Math.floor(gridAvailH / (1.4 + Math.max(numRows, 1))));
+    const dayHeaderH = Math.max(36, Math.round(dataRowH * 1.4));
+
+    const autoRowNameSize = Math.max(8,  Math.min(Math.round(dataRowH * 0.22), 26));
+    const autoRowSubSize  = Math.max(7,  Math.min(Math.round(dataRowH * 0.15), 16));
+    const autoDayNumSize  = Math.max(12, Math.min(Math.round(dayHeaderH * 0.46), 56));
+    const autoDayLblSize  = Math.max(6,  Math.min(Math.round(dayHeaderH * 0.14), 18));
+    const autoSumNumSize  = Math.max(12, Math.min(Math.round(summaryH * 0.30), 44));
+    const autoSumNameSize = Math.max(7,  Math.min(Math.round(summaryH * 0.11), 14));
+    const autoWeekSize    = Math.max(8,  Math.min(Math.round(headerSection * 0.14), 16));
+
+    // Positions
+    const headerTop  = pagePadTop;
+    const gridTop    = headerTop + headerSection + headerMargin + headerPad + dayHeaderH;
+    const gridLeft   = pagePadHoriz;
+    const gridRight  = W - pagePadHoriz;
+    const gridW      = gridRight - gridLeft;
+    // Mirror render()'s dynamic column width calculation
+    // Measure longest name text + icon + padding to get the right column width
     ctx.font = `600 ${autoRowNameSize}px Arial, sans-serif`;
-    ctx.fillText(line, nameX, blockStartY + li * nameLineH);
-  });
+    const longestNameW = rows.reduce((max, r) => {
+      // Check both single-line and best word-wrap width
+      const full = ctx.measureText(r.name).width;
+      const words = r.name.split(' ');
+      let wrapped = full;
+      for (let i = 1; i < words.length; i++) {
+        const w = Math.max(
+          ctx.measureText(words.slice(0, i).join(' ')).width,
+          ctx.measureText(words.slice(i).join(' ')).width
+        );
+        wrapped = Math.min(wrapped, w);
+      }
+      return Math.max(max, wrapped);
+    }, 0);
+    ctx.font = `300 ${autoRowSubSize}px Arial, sans-serif`;
+    const subW = ctx.measureText('0/7 this week').width;
+    const iconSzEst = Math.max(24, Math.min(Math.round(dataRowH * 0.50), 44));
+    const neededColW = Math.max(longestNameW, subW) + iconSzEst + 32 + 18 + 14;
+    const labelColW  = Math.max(120, Math.min(Math.ceil(neededColW), Math.round(gridW * 0.28)));
+    const dayColW    = (gridW - labelColW) / 7;
+    const dayHeaderTop = headerTop + headerSection + headerMargin + headerPad;
+    const sumTop     = gridTop + numRows * dataRowH + summaryMargin;
 
-  // Check count — placed just below name block
-  let checkedCount = 0;
-  weekDates.forEach(d => { if (logData[dk(d)]?.[row.id]?.checked) checkedCount++; });
-  ctx.font = `300 ${autoRowSubSize}px Arial, sans-serif`;
-  ctx.fillStyle = C.soft;
-  ctx.fillText(`${checkedCount}/7 this week`, nameX, blockStartY + nameBlockH + autoRowSubSize * 0.2);
+    // ── Background ──
+    ctx.fillStyle = C.bg;
+    ctx.fillRect(0, 0, W, H);
 
-  // Separator right of label col
-  ctx.strokeStyle = C.border;
-  ctx.lineWidth = 1.5;
-  ctx.beginPath();
-  ctx.moveTo(gridLeft + labelColW, rowY);
-  ctx.lineTo(gridLeft + labelColW, rowY + dataRowH);
-  ctx.stroke();
+    // ── Header: title ──
+    ctx.font = `300 ${autoTitleSize}px Georgia, serif`;
+    ctx.fillStyle = C.ink;
+    const selfCareText = 'Self Care ';
+    ctx.fillText(selfCareText, gridLeft, headerTop + autoTitleSize);
+    const scWidth = ctx.measureText(selfCareText).width;
+    ctx.font = `italic 300 ${autoTitleSize}px Georgia, serif`;
+    ctx.fillStyle = C.mauve;
+    ctx.fillText('Ritual', gridLeft + scWidth, headerTop + autoTitleSize);
 
-  // Row bottom border
-  ctx.lineWidth = 1;
-  ctx.beginPath();
-  ctx.moveTo(gridLeft, rowY + dataRowH);
-  ctx.lineTo(gridRight, rowY + dataRowH);
-  ctx.stroke();
+    // Subtitle
+    ctx.font = `400 ${autoSubSize}px Arial, sans-serif`;
+    ctx.fillStyle = C.soft;
+    ctx.fillText('WEEKLY TRACKER', gridLeft, headerTop + autoTitleSize + autoSubSize + 6);
 
-  // ── Day cells ──
-  weekDates.forEach((d, di) => {
-    const cellX    = gridLeft + labelColW + di * dayColW;
-    const isChecked = !!logData[dk(d)]?.[row.id]?.checked;
+    // Clock to the left of week range
+    const now = new Date();
+    let ch = now.getHours(), cm = now.getMinutes();
+    const ampm = ch >= 12 ? 'PM' : 'AM';
+    ch = ch % 12 || 12;
+    const CMONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const CDAYS   = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const dateStr = `${CDAYS[now.getDay()]}, ${CMONTHS[now.getMonth()]} ${now.getDate()}`;
+    const clockStr = `${dateStr}  ${ch}:${String(cm).padStart(2,'0')} ${ampm}`;
+    ctx.font = `400 ${autoWeekSize}px Arial, sans-serif`;
+    ctx.fillStyle = C.soft;
+    ctx.textAlign = 'center';
+    const clockW = ctx.measureText(clockStr).width;
+    const wLabel = `${fmtDS(weekDates[0]).toUpperCase()} — ${fmtDS(weekDates[6]).toUpperCase()}`;
+    const wLabelW = ctx.measureText(wLabel).width;
+    const gap = Math.round(autoWeekSize * 2);
+    const totalW = clockW + gap + wLabelW;
+    const startX = (W - totalW) / 2;
+    ctx.textAlign = 'left';
+    ctx.fillText(clockStr, startX, headerTop + autoTitleSize * 0.75);
+    ctx.fillText(wLabel, startX + clockW + gap, headerTop + autoTitleSize * 0.75);
 
-    ctx.fillStyle = isChecked ? pBg : C.surface;
-    ctx.fillRect(cellX, rowY, dayColW, dataRowH);
-
-    if (isChecked) {
-      const ckSize = Math.round(dataRowH * 0.52);
-      ctx.font = `bold ${ckSize}px Arial, sans-serif`;
-      ctx.fillStyle = pAcc;
-      ctx.textAlign = 'center';
-      ctx.fillText('✓', cellX + dayColW / 2, rowY + dataRowH * 0.65);
-    }
-
-    // Cell right border
+    // Header separator line
+    const sepY = headerTop + headerSection - 2;
     ctx.strokeStyle = C.border;
     ctx.lineWidth = 1;
     ctx.beginPath();
-    ctx.moveTo(cellX + dayColW, rowY);
-    ctx.lineTo(cellX + dayColW, rowY + dataRowH);
+    ctx.moveTo(gridLeft, sepY); ctx.lineTo(gridRight, sepY);
     ctx.stroke();
-  });
-});
 
-ctx.restore(); // end grid clip
+    // ── Day header row ──
+    ctx.fillStyle = C.surface;
+    ctx.fillRect(gridLeft, dayHeaderTop, gridW, dayHeaderH);
 
-// ── Summary bar ──
-const cols = Math.min(Math.max(numRows, 1), 8);
-const cardW = Math.floor(gridW / cols);
-const cardH = summaryH - 8;
-const cardGap = Math.round(cardW * 0.04);
+    // Corner label area border-right
+    ctx.strokeStyle = C.border;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(gridLeft + labelColW, dayHeaderTop);
+    ctx.lineTo(gridLeft + labelColW, dayHeaderTop + dayHeaderH);
+    ctx.stroke();
 
-rows.forEach((row, ri) => {
-  if (ri >= 8) return;
-  const ci    = row.colorIdx;
-  const pBg   = C.pBg[ci]  || C.bg2;
-  const pAcc  = C.pAcc[ci] || C.rose;
-  const count = weekDates.filter(d => logData[dk(d)]?.[row.id]?.checked).length;
-  const pct   = count / 7;
+    weekDates.forEach((d, i) => {
+      const cx = gridLeft + labelColW + i * dayColW + dayColW / 2;
+      const isToday = d.toDateString() === todayStr;
 
-  const cx = gridLeft + ri * cardW + cardGap;
-  const cy = sumTop;
-  const cw = cardW - cardGap * 2;
-  const ch = cardH;
+      ctx.font = `600 ${autoDayLblSize}px Arial, sans-serif`;
+      ctx.fillStyle = C.soft;
+      ctx.textAlign = 'center';
+      ctx.fillText(DAY_NAMES[d.getDay()], cx, dayHeaderTop + dayHeaderH * 0.35);
 
-  // Card background
-  ctx.fillStyle = C.surface;
-  roundRect(ctx, cx, cy, cw, ch, 10);
-  ctx.fill();
-  ctx.strokeStyle = C.border;
-  ctx.lineWidth = 1;
-  roundRect(ctx, cx, cy, cw, ch, 10);
-  ctx.stroke();
+      ctx.font = `300 ${autoDayNumSize}px Georgia, serif`;
+      ctx.fillStyle = isToday ? C.rose : C.ink;
+      ctx.fillText(String(d.getDate()), cx, dayHeaderTop + dayHeaderH * 0.82);
 
-  // Icon
-  const iconSz = Math.round(ch * 0.42);
-  ctx.fillStyle = pBg;
-  roundRect(ctx, cx + 10, cy + (ch - iconSz) / 2, iconSz, iconSz, Math.round(iconSz * 0.25));
-  ctx.fill();
-  ctx.font = `${Math.round(iconSz * 0.6)}px Arial`;
-  ctx.textAlign = 'center';
-  ctx.fillText(row.icon || '✦', cx + 10 + iconSz / 2, cy + (ch - iconSz) / 2 + iconSz * 0.72);
+      if (isToday) {
+        ctx.fillStyle = C.rose;
+        const barW = Math.round(autoDayNumSize * 0.65);
+        ctx.fillRect(cx - barW/2, dayHeaderTop + dayHeaderH * 0.88, barW, 2);
+      }
+    });
 
-  // Count number
-  const textX = cx + 10 + iconSz + 8;
-  ctx.font = `300 ${autoSumNumSize}px Georgia, serif`;
-  ctx.fillStyle = C.ink;
-  ctx.textAlign = 'left';
-  ctx.fillText(String(count), textX, cy + ch * 0.48);
+    // Header-row bottom border
+    ctx.strokeStyle = C.border;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(gridLeft, dayHeaderTop + dayHeaderH);
+    ctx.lineTo(gridRight, dayHeaderTop + dayHeaderH);
+    ctx.stroke();
 
-  // " / 7"
-  ctx.font = `300 ${Math.round(autoSumNumSize * 0.55)}px Arial, sans-serif`;
-  ctx.fillStyle = C.soft;
-  const countW = ctx.measureText(String(count)).width + 2;
-  // approximate (Cormorant vs Arial width diff)
-  ctx.fillText(' / 7', textX + Math.round(autoSumNumSize * 0.75), cy + ch * 0.48);
+    // Grid outer rounded rect
+    const totalGridH = dayHeaderH + numRows * dataRowH;
+    ctx.strokeStyle = C.border;
+    ctx.lineWidth = 1;
+    roundRect(ctx, gridLeft, dayHeaderTop, gridW, totalGridH, 14);
+    ctx.stroke();
+    // Clip subsequent fills to the grid area
+    ctx.save();
+    roundRect(ctx, gridLeft, dayHeaderTop, gridW, totalGridH, 14);
+    ctx.clip();
 
-  // Label
-  ctx.font = `500 ${autoSumNameSize}px Arial, sans-serif`;
-  ctx.fillStyle = C.soft;
-  ctx.fillText(row.name.toUpperCase().slice(0, 12), textX, cy + ch * 0.72);
+    // ── Data rows ──
+    rows.forEach((row, ri) => {
+      const ci   = row.colorIdx;  // FIXED: was row.color
+      const rowY = gridTop + ri * dataRowH;
+      const pBg  = C.pBg[ci]  || C.bg2;
+      const pAcc = C.pAcc[ci] || C.rose;
 
-  // Progress bar
-  const barX = textX;
-  const barY = cy + ch * 0.82;
-  const barW2 = cw - (textX - cx) - 10;
-  const barH2 = Math.max(2, Math.round(ch * 0.05));
-  ctx.fillStyle = C.bg2;
-  roundRect(ctx, barX, barY, barW2, barH2, barH2 / 2);
-  ctx.fill();
-  if (pct > 0) {
-    ctx.fillStyle = pAcc;
-    roundRect(ctx, barX, barY, Math.max(barH2, barW2 * pct), barH2, barH2 / 2);
-    ctx.fill();
+      // Row background
+      ctx.fillStyle = C.surface;
+      ctx.fillRect(gridLeft, rowY, gridW, dataRowH);
+
+      // Left colour stripe
+      ctx.fillStyle = pAcc;
+      ctx.fillRect(gridLeft, rowY, 4, dataRowH);
+
+      // Icon pill
+      const iconSize = Math.round(dataRowH * 0.5);
+      const iconX = gridLeft + Math.round(labelColW * 0.08);
+      const iconY = rowY + (dataRowH - iconSize) / 2;
+      ctx.fillStyle = pBg;
+      roundRect(ctx, iconX, iconY, iconSize, iconSize, Math.round(iconSize * 0.25));
+      ctx.fill();
+      ctx.font = `${Math.round(iconSize * 0.55)}px Arial`;
+      ctx.textAlign = 'center';
+      ctx.fillText(row.icon || '✦', iconX + iconSize / 2, iconY + iconSize * 0.72);
+
+      // Row name — measure line count first so we can centre the block vertically
+      const nameX    = iconX + iconSize + Math.round(labelColW * 0.06);
+      const nameMaxW = labelColW - nameX + gridLeft - 6;
+      ctx.font = `600 ${autoRowNameSize}px Arial, sans-serif`;
+
+      // Split name into lines that fit nameMaxW
+      function getLines(text, maxW) {
+        const words = text.split(' ');
+        const lines = [];
+        let line = '';
+        for (const word of words) {
+          const test = line ? line + ' ' + word : word;
+          if (ctx.measureText(test).width > maxW && line) {
+            lines.push(line);
+            line = word;
+          } else { line = test; }
+        }
+        if (line) lines.push(line);
+        return lines;
+      }
+
+      const nameLineH  = autoRowNameSize * 1.3;
+      const nameLines  = getLines(row.name || 'Ritual', nameMaxW);
+      const nameBlockH = nameLines.length * nameLineH;
+      const subLineH   = autoRowSubSize * 1.4;
+      const totalTextH = nameBlockH + subLineH * 0.6 + autoRowSubSize;
+
+      // Centre the whole name+sub block in the row
+      const blockStartY = rowY + (dataRowH - totalTextH) / 2 + autoRowNameSize;
+
+      ctx.fillStyle = C.ink;
+      ctx.textAlign = 'left';
+      nameLines.forEach((line, li) => {
+        ctx.font = `600 ${autoRowNameSize}px Arial, sans-serif`;
+        ctx.fillText(line, nameX, blockStartY + li * nameLineH);
+      });
+
+      // Check count — placed just below name block
+      let checkedCount = 0;
+      weekDates.forEach(d => { if (logData[dk(d)]?.[row.id]?.checked) checkedCount++; });
+      ctx.font = `300 ${autoRowSubSize}px Arial, sans-serif`;
+      ctx.fillStyle = C.soft;
+      ctx.fillText(`${checkedCount}/7 this week`, nameX, blockStartY + nameBlockH + autoRowSubSize * 0.2);
+
+      // Separator right of label col
+      ctx.strokeStyle = C.border;
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(gridLeft + labelColW, rowY);
+      ctx.lineTo(gridLeft + labelColW, rowY + dataRowH);
+      ctx.stroke();
+
+      // Row bottom border
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(gridLeft, rowY + dataRowH);
+      ctx.lineTo(gridRight, rowY + dataRowH);
+      ctx.stroke();
+
+      // ── Day cells ──
+      weekDates.forEach((d, di) => {
+        const cellX    = gridLeft + labelColW + di * dayColW;
+        const isChecked = !!logData[dk(d)]?.[row.id]?.checked;
+
+        ctx.fillStyle = isChecked ? pBg : C.surface;
+        ctx.fillRect(cellX, rowY, dayColW, dataRowH);
+
+        if (isChecked) {
+          const ckSize = Math.round(dataRowH * 0.52);
+          ctx.font = `bold ${ckSize}px Arial, sans-serif`;
+          ctx.fillStyle = pAcc;
+          ctx.textAlign = 'center';
+          ctx.fillText('✓', cellX + dayColW / 2, rowY + dataRowH * 0.65);
+        }
+
+        // Cell right border
+        ctx.strokeStyle = C.border;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(cellX + dayColW, rowY);
+        ctx.lineTo(cellX + dayColW, rowY + dataRowH);
+        ctx.stroke();
+      });
+    });
+
+    ctx.restore(); // end grid clip
+
+    // ── Summary bar ──
+    const cols = Math.min(Math.max(numRows, 1), 8);
+    const cardW = Math.floor(gridW / cols);
+    const cardH = summaryH - 8;
+    const cardGap = Math.round(cardW * 0.04);
+
+    rows.forEach((row, ri) => {
+      if (ri >= 8) return;
+      const ci    = row.colorIdx;
+      const pBg   = C.pBg[ci]  || C.bg2;
+      const pAcc  = C.pAcc[ci] || C.rose;
+      const count = weekDates.filter(d => logData[dk(d)]?.[row.id]?.checked).length;
+      const pct   = count / 7;
+
+      const cx = gridLeft + ri * cardW + cardGap;
+      const cy = sumTop;
+      const cw = cardW - cardGap * 2;
+      const ch = cardH;
+
+      // Card background
+      ctx.fillStyle = C.surface;
+      roundRect(ctx, cx, cy, cw, ch, 10);
+      ctx.fill();
+      ctx.strokeStyle = C.border;
+      ctx.lineWidth = 1;
+      roundRect(ctx, cx, cy, cw, ch, 10);
+      ctx.stroke();
+
+      // Icon
+      const iconSz = Math.round(ch * 0.42);
+      ctx.fillStyle = pBg;
+      roundRect(ctx, cx + 10, cy + (ch - iconSz) / 2, iconSz, iconSz, Math.round(iconSz * 0.25));
+      ctx.fill();
+      ctx.font = `${Math.round(iconSz * 0.6)}px Arial`;
+      ctx.textAlign = 'center';
+      ctx.fillText(row.icon || '✦', cx + 10 + iconSz / 2, cy + (ch - iconSz) / 2 + iconSz * 0.72);
+
+      // Count number
+      const textX = cx + 10 + iconSz + 8;
+      ctx.font = `300 ${autoSumNumSize}px Georgia, serif`;
+      ctx.fillStyle = C.ink;
+      ctx.textAlign = 'left';
+      ctx.fillText(String(count), textX, cy + ch * 0.48);
+
+      // " / 7"
+      ctx.font = `300 ${Math.round(autoSumNumSize * 0.55)}px Arial, sans-serif`;
+      ctx.fillStyle = C.soft;
+      const countW = ctx.measureText(String(count)).width + 2;
+      // approximate (Cormorant vs Arial width diff)
+      ctx.fillText(' / 7', textX + Math.round(autoSumNumSize * 0.75), cy + ch * 0.48);
+
+      // Label
+      ctx.font = `500 ${autoSumNameSize}px Arial, sans-serif`;
+      ctx.fillStyle = C.soft;
+      ctx.fillText(row.name.toUpperCase().slice(0, 12), textX, cy + ch * 0.72);
+
+      // Progress bar
+      const barX = textX;
+      const barY = cy + ch * 0.82;
+      const barW2 = cw - (textX - cx) - 10;
+      const barH2 = Math.max(2, Math.round(ch * 0.05));
+      ctx.fillStyle = C.bg2;
+      roundRect(ctx, barX, barY, barW2, barH2, barH2 / 2);
+      ctx.fill();
+      if (pct > 0) {
+        ctx.fillStyle = pAcc;
+        roundRect(ctx, barX, barY, Math.max(barH2, barW2 * pct), barH2, barH2 / 2);
+        ctx.fill();
+      }
+    });
+
+    // ── Output ──
+    const mimeType = fmt === 'png' ? 'image/png' : 'image/jpeg';
+    const quality  = fmt === 'jpg' ? 0.93 : undefined;
+    const dataUrl  = fmt === 'png' ? canvas.toDataURL(mimeType) : canvas.toDataURL(mimeType, quality);
+
+    // iOS Safari ignores <a download> — open image in new tab instead
+    // User can then long-press → "Add to Photos" or share
+    const isIOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+    if (isIOS) {
+      // Open in new tab — user long-presses to save
+      const w = window.open('', '_blank');
+      if (w) {
+        w.document.write(`<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width"><title>Self Care Ritual</title><style>body{margin:0;background:#111;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;min-height:100vh;padding:20px;box-sizing:border-box}img{max-width:100%;height:auto;border-radius:8px}p{color:#fff;font-family:sans-serif;font-size:14px;text-align:center;margin-top:16px;opacity:0.7}</style></head><body><img src="${dataUrl}"><p>Long-press the image → Save to Photos</p></body></html>`);
+        w.document.close();
+      } else {
+        // Pop-up blocked fallback — show image in overlay
+        showImageOverlay(dataUrl);
+      }
+    } else {
+      const a = document.createElement('a');
+      a.href = dataUrl;
+      a.download = `self-care-ritual_${weekStr}_${orientLabel}.${fmt}`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    toHide.forEach(id => { const el = document.getElementById(id); if (el) el.style.visibility = ''; });
+    showToast(isIOS ? '✓ Image ready — long-press to save' : `✓ Saved as self-care-ritual_${weekStr}.${fmt}`);
+
+  } catch(err) {
+    toHide.forEach(id => { const el = document.getElementById(id); if (el) el.style.visibility = ''; });
+    showToast('Export failed — try again');
+    console.error(err);
   }
-});
-
-// ── Output ──
-const mimeType = fmt === 'png' ? 'image/png' : 'image/jpeg';
-const quality  = fmt === 'jpg' ? 0.93 : undefined;
-const dataUrl  = fmt === 'png' ? canvas.toDataURL(mimeType) : canvas.toDataURL(mimeType, quality);
-
-// iOS Safari ignores <a download> — open image in new tab instead
-// User can then long-press → "Add to Photos" or share
-const isIOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-
-if (isIOS) {
-  // Open in new tab — user long-presses to save
-  const w = window.open('', '_blank');
-  if (w) {
-    w.document.write(`<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width"><title>Self Care Ritual</title><style>body{margin:0;background:#111;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;min-height:100vh;padding:20px;box-sizing:border-box}img{max-width:100%;height:auto;border-radius:8px}p{color:#fff;font-family:sans-serif;font-size:14px;text-align:center;margin-top:16px;opacity:0.7}</style></head><body><img src="${dataUrl}"><p>Long-press the image → Save to Photos</p></body></html>`);
-    w.document.close();
-  } else {
-    // Pop-up blocked fallback — show image in overlay
-    showImageOverlay(dataUrl);
-  }
-} else {
-  const a = document.createElement('a');
-  a.href = dataUrl;
-  a.download = `self-care-ritual_${weekStr}_${orientLabel}.${fmt}`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-}
-
-toHide.forEach(id => { const el = document.getElementById(id); if (el) el.style.visibility = ''; });
-showToast(isIOS ? '✓ Image ready — long-press to save' : `✓ Saved as self-care-ritual_${weekStr}.${fmt}`);
-```
-
-} catch(err) {
-toHide.forEach(id => { const el = document.getElementById(id); if (el) el.style.visibility = ‘’; });
-showToast(‘Export failed — try again’);
-console.error(err);
-}
 }
 
 // Fallback overlay if window.open is blocked on iOS
 function showImageOverlay(dataUrl) {
-const ov = document.createElement(‘div’);
-ov.style.cssText = ‘position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;box-sizing:border-box’;
-const img = document.createElement(‘img’);
-img.src = dataUrl;
-img.style.cssText = ‘max-width:100%;max-height:75vh;border-radius:8px’;
-const msg = document.createElement(‘p’);
-msg.textContent = ‘Long-press the image → Save to Photos’;
-msg.style.cssText = ‘color:#fff;font-family:sans-serif;font-size:14px;margin-top:16px;text-align:center’;
-const close = document.createElement(‘button’);
-close.textContent = ‘✕ Close’;
-close.style.cssText = ‘margin-top:12px;padding:10px 28px;border:1.5px solid rgba(255,255,255,0.4);background:transparent;color:#fff;font-size:14px;border-radius:20px;cursor:pointer’;
-close.onclick = () => document.body.removeChild(ov);
-ov.appendChild(img); ov.appendChild(msg); ov.appendChild(close);
-document.body.appendChild(ov);
+  const ov = document.createElement('div');
+  ov.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;box-sizing:border-box';
+  const img = document.createElement('img');
+  img.src = dataUrl;
+  img.style.cssText = 'max-width:100%;max-height:75vh;border-radius:8px';
+  const msg = document.createElement('p');
+  msg.textContent = 'Long-press the image → Save to Photos';
+  msg.style.cssText = 'color:#fff;font-family:sans-serif;font-size:14px;margin-top:16px;text-align:center';
+  const close = document.createElement('button');
+  close.textContent = '✕ Close';
+  close.style.cssText = 'margin-top:12px;padding:10px 28px;border:1.5px solid rgba(255,255,255,0.4);background:transparent;color:#fff;font-size:14px;border-radius:20px;cursor:pointer';
+  close.onclick = () => document.body.removeChild(ov);
+  ov.appendChild(img); ov.appendChild(msg); ov.appendChild(close);
+  document.body.appendChild(ov);
 }
 
 // Canvas helper: rounded rectangle path
 function roundRect(ctx, x, y, w, h, r) {
-ctx.beginPath();
-ctx.moveTo(x + r, y);
-ctx.lineTo(x + w - r, y);
-ctx.quadraticCurveTo(x + w, y, x + w, y + r);
-ctx.lineTo(x + w, y + h - r);
-ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-ctx.lineTo(x + r, y + h);
-ctx.quadraticCurveTo(x, y + h, x, y + h - r);
-ctx.lineTo(x, y + r);
-ctx.quadraticCurveTo(x, y, x + r, y);
-ctx.closePath();
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
 }
 
 // Canvas helper: word-wrap text
 function wrapText(ctx, text, x, y, maxW, lineH) {
-const words = text.split(’ ’);
-let line = ‘’;
-let ly = y;
-for (const word of words) {
-const test = line ? line + ’ ’ + word : word;
-if (ctx.measureText(test).width > maxW && line) {
-ctx.fillText(line, x, ly);
-line = word;
-ly += lineH;
-} else {
-line = test;
-}
-}
-if (line) ctx.fillText(line, x, ly);
+  const words = text.split(' ');
+  let line = '';
+  let ly = y;
+  for (const word of words) {
+    const test = line ? line + ' ' + word : word;
+    if (ctx.measureText(test).width > maxW && line) {
+      ctx.fillText(line, x, ly);
+      line = word;
+      ly += lineH;
+    } else {
+      line = test;
+    }
+  }
+  if (line) ctx.fillText(line, x, ly);
 }
 
 // ── Backup / Restore data ─────────────────────────────────────────
 function backupData() {
-const payload = {
-version: 1,
-exportedAt: new Date().toISOString(),
-rows:      rows,
-logData:   logData,
-savedProds: savedProds,
-};
-const json = JSON.stringify(payload, null, 2);
-const blob = new Blob([json], { type: ‘application/json’ });
-const url  = URL.createObjectURL(blob);
-const date = new Date().toISOString().slice(0,10);
-const a    = document.createElement(‘a’);
-a.href     = url;
-a.download = `selfcare-backup-${date}.json`;
-document.body.appendChild(a);
-a.click();
-document.body.removeChild(a);
-setTimeout(() => URL.revokeObjectURL(url), 10000);
-showToast(‘✓ Backup downloaded’);
+  const payload = {
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    rows:      rows,
+    logData:   logData,
+    savedProds: savedProds,
+  };
+  const json = JSON.stringify(payload, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url  = URL.createObjectURL(blob);
+  const date = new Date().toISOString().slice(0,10);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = `selfcare-backup-${date}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 10000);
+  showToast('✓ Backup downloaded');
 }
 
 function restoreData() {
-const input = document.createElement(‘input’);
-input.type  = ‘file’;
-input.accept = ‘.json,application/json’;
-input.onchange = (e) => {
-const file = e.target.files[0];
-if (!file) return;
-const reader = new FileReader();
-reader.onload = (ev) => {
-try {
-const payload = JSON.parse(ev.target.result);
-if (!payload.rows || !payload.logData) throw new Error(‘Invalid backup file’);
-rows       = payload.rows;
-logData    = payload.logData;
-savedProds = payload.savedProds || [];
-save();
-render();
-showToast(‘✓ Data restored successfully’);
-} catch(err) {
-showToast(‘Invalid backup file — try again’);
-console.error(err);
-}
-};
-reader.readAsText(file);
-};
-document.body.appendChild(input);
-input.click();
-document.body.removeChild(input);
+  const input = document.createElement('input');
+  input.type  = 'file';
+  input.accept = '.json,application/json';
+  input.onchange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      try {
+        const payload = JSON.parse(ev.target.result);
+        if (!payload.rows || !payload.logData) throw new Error('Invalid backup file');
+        rows       = payload.rows;
+        logData    = payload.logData;
+        savedProds = payload.savedProds || [];
+        save();
+        render();
+        showToast('✓ Data restored successfully');
+      } catch(err) {
+        showToast('Invalid backup file — try again');
+        console.error(err);
+      }
+    };
+    reader.readAsText(file);
+  };
+  document.body.appendChild(input);
+  input.click();
+  document.body.removeChild(input);
 }
 
 function showToast(msg) {
-const toast = document.getElementById(‘exportToast’);
-toast.textContent = msg;
-toast.classList.add(‘show’);
-clearTimeout(toast._timer);
-toast._timer = setTimeout(() => toast.classList.remove(‘show’), 3000);
+  const toast = document.getElementById('exportToast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
 // ── Live clock ────────────────────────────────────────────────────
 function updateClock() {
-const el = document.getElementById(‘liveClock’);
-if (!el) return;
-const now = new Date();
-let h = now.getHours(), m = now.getMinutes();
-const ampm = h >= 12 ? ‘PM’ : ‘AM’;
-h = h % 12 || 12;
-const MONTHS = [‘Jan’,‘Feb’,‘Mar’,‘Apr’,‘May’,‘Jun’,‘Jul’,‘Aug’,‘Sep’,‘Oct’,‘Nov’,‘Dec’];
-const DAYS   = [‘Sun’,‘Mon’,‘Tue’,‘Wed’,‘Thu’,‘Fri’,‘Sat’];
-const dateStr = `${DAYS[now.getDay()]}, ${MONTHS[now.getMonth()]} ${now.getDate()}`;
-el.textContent = `${dateStr}  ${h}:${String(m).padStart(2,'0')} ${ampm}`;
+  const el = document.getElementById('liveClock');
+  if (!el) return;
+  const now = new Date();
+  let h = now.getHours(), m = now.getMinutes();
+  const ampm = h >= 12 ? 'PM' : 'AM';
+  h = h % 12 || 12;
+  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const DAYS   = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const dateStr = `${DAYS[now.getDay()]}, ${MONTHS[now.getMonth()]} ${now.getDate()}`;
+  el.textContent = `${dateStr}  ${h}:${String(m).padStart(2,'0')} ${ampm}`;
 }
 updateClock();
 setInterval(updateClock, 1000);
 
-// Startup
 applyTheme(currentTheme);
 applyTypo();
-applySize(currentSizeId);  // applySize calls render() via rAF internally
+applySize(currentSizeId);
+render();
 </script>
-
 <!-- html2canvas removed — export now uses native SVG/Canvas API (no external dependencies) -->
 
   <!-- Firebase sync settings overlay -->
-
   <div class="gist-overlay" id="gistOverlay">
     <div class="gist-panel">
       <h3>Real-time Sync</h3>
@@ -3312,7 +3289,6 @@ applySize(currentSizeId);  // applySize calls render() via rAF internally
   </div>
 
   <!-- Library item edit modal -->
-
   <div class="item-edit-overlay" id="itemEditOverlay">
     <div class="item-edit-panel">
       <h3 id="itemEditTitle">Edit Ritual</h3>
