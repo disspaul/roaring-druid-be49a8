@@ -3272,41 +3272,10 @@ el.textContent = `${dateStr}  ${h}:${String(m).padStart(2,'0')} ${ampm}`;
 updateClock();
 setInterval(updateClock, 1000);
 
-// Wait for full layout before rendering — fixes blank screen on iOS Safari
-// where offsetHeight/offsetWidth are 0 if render() fires too early
-function startApp() {
+// Startup
 applyTheme(currentTheme);
 applyTypo();
-
-// Apply size then wait two frames for the DOM to reflow at the new dimensions
-const vp = document.getElementById(‘viewport’);
-const size = SIZES.find(s => s.id === currentSizeId) || SIZES[0];
-vp.style.width  = size.w + ‘px’;
-vp.style.height = size.h + ‘px’;
-document.body.style.width    = size.w + ‘px’;
-document.body.style.minHeight = size.h + ‘px’;
-document.body.style.height   = ‘auto’;
-document.body.style.overflow = ‘auto’;
-document.getElementById(‘sizeBtnLabel’).textContent = size.sub;
-document.getElementById(‘exportSubJpg’).textContent = `${size.w} × ${size.h} · compressed`;
-document.getElementById(‘exportSubPng’).textContent = `${size.w} × ${size.h} · lossless`;
-
-// Multiple rAF passes to ensure iOS has painted and has real dimensions
-requestAnimationFrame(() => {
-requestAnimationFrame(() => {
-requestAnimationFrame(() => {
-render();
-});
-});
-});
-}
-
-// Use DOMContentLoaded + small timeout as extra safety net for iOS
-if (document.readyState === ‘loading’) {
-document.addEventListener(‘DOMContentLoaded’, () => setTimeout(startApp, 50));
-} else {
-setTimeout(startApp, 50);
-}
+applySize(currentSizeId);  // applySize calls render() via rAF internally
 </script>
 
 <!-- html2canvas removed — export now uses native SVG/Canvas API (no external dependencies) -->
