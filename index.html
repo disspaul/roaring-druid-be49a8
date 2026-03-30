@@ -3272,10 +3272,19 @@ el.textContent = `${dateStr}  ${h}:${String(m).padStart(2,'0')} ${ampm}`;
 updateClock();
 setInterval(updateClock, 1000);
 
+try {
 applyTheme(currentTheme);
 applyTypo();
 applySize(currentSizeId);
 render();
+} catch(err) {
+console.error(‘Startup error:’, err);
+// Show visible error on blank screen so we can diagnose
+const grid = document.getElementById(‘mainGrid’);
+if (grid) {
+grid.innerHTML = `<div style="padding:40px;color:#c00;font-family:monospace;font-size:13px;grid-column:1/-1"> <strong>Startup error — please report this:</strong><br><br>${err.message}<br><br> <pre>${err.stack}</pre> <br><button onclick="localStorage.clear();location.reload()"  style="padding:10px 20px;background:#c00;color:white;border:none;border-radius:8px;cursor:pointer;font-size:14px"> Clear data &amp; reload </button> </div>`;
+}
+}
 </script>
 
 <!-- html2canvas removed — export now uses native SVG/Canvas API (no external dependencies) -->
